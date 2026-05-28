@@ -249,7 +249,7 @@ struct SettingsView: View {
             } header: {
                 Text("Privacy")
             } footer: {
-                Text("Control how VoiceInk handles your transcription data and audio recordings.")
+                Text("Control how EliteWrite handles your transcription data and audio recordings.")
             }
 
             // MARK: - Backup
@@ -293,6 +293,28 @@ struct SettingsView: View {
             // MARK: - Diagnostics
             Section("Diagnostics") {
                 DiagnosticsSettingsView()
+            }
+
+            // MARK: - About
+            Section {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("EliteWrite")
+                        .font(.headline)
+                    Text("From tension to transformation.")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    Text("Mastering Elite Focus At Work")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.vertical, 4)
+                LabeledContent("By", value: "ExecEdgePro — execedgepro.com")
+                LabeledContent("License", value: "GPL v3.0 — Built on VoiceInk open source")
+                LabeledContent("Build", value: "EliteWrite — Early Access Build v0.4.6 · by ExecEdgePro")
+                LabeledContent("At Full Launch", value: "$29 one-time · Early access users: free forever")
+                LabeledContent("EFOS Pro", value: "Coming soon — $8/month · Early access: first year free")
+            } header: {
+                Text("About")
             }
         }
         .formStyle(.grouped)
@@ -412,7 +434,6 @@ struct PowerModeSection: View {
                 isEnabled: toggleBinding,
                 label: "Power Mode",
                 infoMessage: "Apply custom settings based on active app or website.",
-                infoURL: "https://tryvoiceink.com/docs/power-mode"
             ) {
                 Toggle(isOn: $powerModePersistSettings) {
                     HStack(spacing: 4) {

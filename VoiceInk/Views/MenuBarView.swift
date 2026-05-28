@@ -15,9 +15,12 @@ struct MenuBarView: View {
     @State private var launchAtLoginEnabled = LaunchAtLogin.isEnabled
     @State private var menuRefreshTrigger = false
     @State private var isHovered = false
-    
     var body: some View {
         VStack {
+            FocusMenuSection()
+
+            Divider()
+
             Button("Toggle Recorder") {
                 recorderUIManager.handleToggleMiniRecorder()
             }
@@ -239,8 +242,46 @@ struct MenuBarView: View {
             
             Divider()
 
-            Button("Quit VoiceInk") {
+            Button("Quit EliteWrite") {
                 NSApplication.shared.terminate(nil)
+            }
+        }
+    }
+
+}
+
+// MARK: - Focus Session Section
+
+private struct FocusMenuSection: View {
+    @ObservedObject private var focusManager = FocusSessionManager.shared
+    @AppStorage("focusSessionDurationMinutes") private var selectedDurationMinutes: Int = 25
+    @EnvironmentObject var menuBarManager: MenuBarManager
+
+    var body: some View {
+        switch focusManager.state {
+        case .idle:
+            Button {
+                menuBarManager.openMainWindowAndNavigate(to: "Focus")
+                focusManager.startSession(duration: TimeInterval(selectedDurationMinutes * 60))
+            } label: {
+                Label("Start Focus Session — \(selectedDurationMinutes) min", systemImage: "timer")
+            }
+            Picker("Session Duration", selection: $selectedDurationMinutes) {
+                Text("15 minutes").tag(15)
+                Text("25 minutes").tag(25)
+                Text("50 minutes").tag(50)
+            }
+        case .active, .paused:
+            Button {
+                menuBarManager.openMainWindowAndNavigate(to: "Focus")
+            } label: {
+                Label("Session Active — Open Dashboard", systemImage: "timer")
+            }
+        case .complete:
+            Button {
+                menuBarManager.openMainWindowAndNavigate(to: "Focus")
+            } label: {
+                Label("Session Complete — View Summary", systemImage: "checkmark.circle")
             }
         }
     }

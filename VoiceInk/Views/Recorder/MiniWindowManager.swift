@@ -11,7 +11,7 @@ class MiniWindowManager: ObservableObject {
 
     init(engine: VoiceInkEngine, recorder: Recorder) {
         guard let enhancementService = engine.enhancementService else {
-            preconditionFailure("VoiceInkEngine.enhancementService must be non-nil when creating MiniWindowManager")
+            preconditionFailure("EliteWriteEngine.enhancementService must be non-nil when creating MiniWindowManager")
         }
         self.makeView = { manager in
             AnyView(

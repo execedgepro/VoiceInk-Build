@@ -39,6 +39,13 @@ struct EnhancementSettingsView: View {
     }
 
     var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("AI rewrites your raw dictation into polished text. Connect an AI provider and choose a prompt style.")
+                .font(.system(size: 13))
+                .foregroundColor(.secondary)
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+                .padding(.bottom, 8)
         Form {
             Section {
                 Toggle(isOn: $enhancementService.isEnhancementEnabled) {
@@ -46,7 +53,6 @@ struct EnhancementSettingsView: View {
                         Text("Enable Enhancement")
                         InfoTip(
                             "AI enhancement lets you pass the transcribed audio through LLMs to post-process using different prompts suitable for different use cases like e-mails, summary, writing, etc.",
-                            learnMoreURL: "https://tryvoiceink.com/docs/enhancements-configuring-models"
                         )
                     }
                 }
@@ -144,6 +150,7 @@ struct EnhancementSettingsView: View {
             }
         }
         .frame(minWidth: 500, minHeight: 400)
+        } // end VStack
     }
 }
 

@@ -314,6 +314,8 @@ class RecordingShortcutManager: ObservableObject {
 
         case .pushToTalk:
             if recorderUIManager.isMiniRecorderVisible {
+                let pressDuration = shortcutPressStartTime.map { eventTime - $0 } ?? 1.0
+                guard pressDuration >= 0.1 else { return }
                 guard canHandleShortcutAction else { return }
                 logger.notice("handleShortcutKeyUp: stopping recording (push-to-talk key up)")
                 await recorderUIManager.toggleMiniRecorder()

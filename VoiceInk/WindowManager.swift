@@ -10,7 +10,7 @@ class WindowManager: NSObject {
     private static let mainWindowAutosaveName = NSWindow.FrameAutosaveName("VoiceInkMainWindowFrame")
 
     private let logger = Logger(subsystem: "com.prakashjoshipax.voiceink", category: "WindowManager")
-    private weak var mainWindow: NSWindow?
+    private var mainWindow: NSWindow?
     private var didApplyInitialPlacement = false
 
     private override init() {
@@ -32,7 +32,7 @@ class WindowManager: NSObject {
         window.titleVisibility = .hidden
         window.backgroundColor = .windowBackgroundColor
         window.isReleasedWhenClosed = false
-        window.title = "VoiceInk"
+        window.title = "EliteWrite"
         window.collectionBehavior = [.fullScreenPrimary]
         window.level = .normal
         window.isOpaque = true
@@ -58,7 +58,7 @@ class WindowManager: NSObject {
         window.backgroundColor = .clear
         window.isReleasedWhenClosed = false
         window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-        window.title = "VoiceInk Onboarding"
+        window.title = "EliteWrite Onboarding"
         window.isOpaque = false
         window.minSize = NSSize(width: 900, height: 780)
         window.makeKeyAndOrderFront(nil)
@@ -131,9 +131,8 @@ extension WindowManager: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         guard let window = notification.object as? NSWindow else { return }
         if window.identifier == Self.mainWindowIdentifier {
-            logger.notice("windowWillClose: main window closing, clearing weak reference")
+            logger.notice("windowWillClose: main window hiding (keeping strong reference)")
             window.orderOut(nil)
-            mainWindow = nil
             didApplyInitialPlacement = false
         }
     }

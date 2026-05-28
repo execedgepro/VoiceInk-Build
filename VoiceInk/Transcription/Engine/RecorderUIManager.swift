@@ -94,6 +94,7 @@ class RecorderUIManager: ObservableObject {
                 await cancelRecording()
             }
         } else {
+            CursorPaster.pasteTargetApp = NSWorkspace.shared.frontmostApplication
             SoundManager.shared.playStartSound()
             await MainActor.run { isMiniRecorderVisible = true }
             await engine.toggleRecord(powerModeId: powerModeId)
@@ -170,6 +171,7 @@ class RecorderUIManager: ObservableObject {
         logger.notice("cancelRecording called")
         SoundManager.shared.playEscSound()
         engine.shouldCancelRecording = true
+        CursorPaster.pasteTargetApp = nil
         await dismissMiniRecorder()
     }
 

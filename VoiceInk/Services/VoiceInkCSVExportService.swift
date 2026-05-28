@@ -10,7 +10,7 @@ class VoiceInkCSVExportService {
         
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [.commaSeparatedText]
-        savePanel.nameFieldStringValue = "VoiceInk-transcription.csv"
+        savePanel.nameFieldStringValue = "EliteWrite-transcription.csv"
         
         savePanel.begin { result in
             if result == .OK, let url = savePanel.url {
@@ -42,6 +42,7 @@ class VoiceInkCSVExportService {
             csvString.append(row)
         }
 
+        csvString.append("Produced with EliteWrite Early Access v0.4.6 · execedgepro.com\n")
         return csvString
     }
 

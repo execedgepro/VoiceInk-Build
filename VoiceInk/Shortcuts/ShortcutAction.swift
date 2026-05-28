@@ -14,6 +14,7 @@ enum ShortcutAction: Hashable {
     case miniRecorderEscape
     case miniRecorderPrompt(Int)
     case miniRecorderPowerMode(Int)
+    case focusSessionToggle
 
     var userDefaultsKey: String {
         "Shortcut_\(storageName)"
@@ -21,7 +22,7 @@ enum ShortcutAction: Hashable {
 
     var isStored: Bool {
         switch self {
-        case .miniRecorderEscape, .miniRecorderPrompt, .miniRecorderPowerMode:
+        case .miniRecorderEscape, .miniRecorderPrompt, .miniRecorderPowerMode, .focusSessionToggle:
             return false
         default:
             return true
@@ -56,6 +57,8 @@ enum ShortcutAction: Hashable {
             return "miniRecorderPrompt_\(index)"
         case .miniRecorderPowerMode(let index):
             return "miniRecorderPowerMode_\(index)"
+        case .focusSessionToggle:
+            return "focusSessionToggle"
         }
     }
 
@@ -91,6 +94,8 @@ enum ShortcutAction: Hashable {
             return "Select Prompt \(Self.displayNumber(forMiniRecorderIndex: index))"
         case .miniRecorderPowerMode(let index):
             return "Select Power Mode \(Self.displayNumber(forMiniRecorderIndex: index))"
+        case .focusSessionToggle:
+            return "Toggle Focus Session"
         }
     }
 

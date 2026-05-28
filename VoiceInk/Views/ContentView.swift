@@ -5,6 +5,7 @@ import OSLog
 // ViewType enum with all cases
 enum ViewType: String, CaseIterable, Identifiable {
     case metrics = "Dashboard"
+    case focus = "Focus"
     case transcribeAudio = "Transcribe Audio"
     case history = "History"
     case models = "AI Models"
@@ -14,13 +15,14 @@ enum ViewType: String, CaseIterable, Identifiable {
     case audioInput = "Audio Input"
     case dictionary = "Dictionary"
     case settings = "Settings"
-    case license = "VoiceInk Pro"
+    case license = "EliteWrite"
 
     var id: String { rawValue }
 
     var icon: String {
         switch self {
         case .metrics: return "gauge.medium"
+        case .focus: return "timer"
         case .transcribeAudio: return "waveform.circle.fill"
         case .history: return "doc.text.fill"
         case .models: return "brain.head.profile"
@@ -89,18 +91,8 @@ struct ContentView: View {
                                 .cornerRadius(8)
                         }
 
-                        Text("VoiceInk")
+                        Text("EliteWrite")
                             .font(.system(size: 14, weight: .semibold))
-
-                        if case .licensed = licenseViewModel.licenseState {
-                            Text("PRO")
-                                .font(.system(size: 9, weight: .heavy))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 2)
-                                .background(Color.blue)
-                                .cornerRadius(4)
-                        }
 
                         Spacer()
                     }
@@ -118,7 +110,7 @@ struct ContentView: View {
                 }
             }
             .listStyle(.sidebar)
-            .navigationTitle("VoiceInk")
+            .navigationTitle("EliteWrite")
             .navigationSplitViewColumnWidth(210)
         } detail: {
             if let selectedView = selectedView {
@@ -147,7 +139,7 @@ struct ContentView: View {
                     selectedView = .settings
                 case "AI Models":
                     selectedView = .models
-                case "VoiceInk Pro":
+                case "EliteWrite":
                     selectedView = .license
                 case "History":
                     selectedView = .history
@@ -157,6 +149,8 @@ struct ContentView: View {
                     selectedView = .enhancement
                 case "Transcribe Audio":
                     selectedView = .transcribeAudio
+                case "Focus":
+                    selectedView = .focus
                 case "Power Mode":
                     selectedView = .powerMode
                 default:
@@ -171,6 +165,8 @@ struct ContentView: View {
         switch viewType {
         case .metrics:
             MetricsView()
+        case .focus:
+            FocusSessionView()
         case .models:
             ModelManagementView()
         case .enhancement:

@@ -26,6 +26,8 @@ struct VoiceInkApp: App {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
     @AppStorage("enableAnnouncements") private var enableAnnouncements = true
     @State private var showMenuBarIcon = true
+    private let permissionsRepairService = PermissionsRepairService.shared
+    @State private var showPermissionsRepair = false
 
     // Audio cleanup manager for automatic deletion of old audio files
     private let audioCleanupManager = AudioCleanupManager.shared
@@ -53,7 +55,8 @@ struct VoiceInkApp: App {
             Transcription.self,
             VocabularyWord.self,
             WordReplacement.self,
-            SessionMetric.self
+            SessionMetric.self,
+            FocusSession.self
         ])
         var initializationFailed = false
         let resolvedContainer: ModelContainer
@@ -72,7 +75,7 @@ struct VoiceInkApp: App {
             DispatchQueue.main.async {
                 let alert = NSAlert()
                 alert.messageText = "Storage Warning"
-                alert.informativeText = "VoiceInk couldn't access its storage location. Your transcriptions will not be saved between sessions."
+                alert.informativeText = "EliteWrite couldn't access its storage location. Your transcriptions will not be saved between sessions."
                 alert.alertStyle = .warning
                 alert.addButton(withTitle: "OK")
                 alert.runModal()
@@ -105,7 +108,7 @@ struct VoiceInkApp: App {
 
         // 1. Create modelsDirectory URL
         let appSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("com.prakashjoshipax.VoiceInk")
+            .appendingPathComponent("com.execedgepro.EliteWrite")
         let modelsDirectory = appSupportDirectory.appendingPathComponent("WhisperModels")
 
         // 2. Create model managers
@@ -166,6 +169,8 @@ struct VoiceInkApp: App {
 
         appDelegate.menuBarManager = menuBarManager
 
+        FocusSessionManager.shared.configure(modelContext: resolvedContainer.mainContext)
+
         // Ensure no lingering recording state from previous runs
         Task {
             await recorderUIManager.resetOnLaunch()
@@ -185,55 +190,22 @@ struct VoiceInkApp: App {
 
     private static func createPersistentContainer(schema: Schema, logger: Logger) -> ModelContainer? {
         do {
-            // Create app-specific Application Support directory URL
             let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent("com.prakashjoshipax.VoiceInk", isDirectory: true)
+                .appendingPathComponent("com.execedgepro.EliteWrite", isDirectory: true)
 
-            // Create the directory if it doesn't exist
             try? FileManager.default.createDirectory(at: appSupportURL, withIntermediateDirectories: true)
 
-            // Define storage locations
             let defaultStoreURL = appSupportURL.appendingPathComponent("default.store")
-            let dictionaryStoreURL = appSupportURL.appendingPathComponent("dictionary.store")
-            let statsStoreURL = appSupportURL.appendingPathComponent("stats.store")
 
-            // Transcript configuration
-            let transcriptSchema = Schema([Transcription.self])
-            let transcriptConfig = ModelConfiguration(
+            // Single store for all model types — eliminates multi-store routing issues on macOS Tahoe beta (BUG-17)
+            let config = ModelConfiguration(
                 "default",
-                schema: transcriptSchema,
+                schema: schema,
                 url: defaultStoreURL,
                 cloudKitDatabase: .none
             )
 
-            // Dictionary configuration
-            let dictionarySchema = Schema([VocabularyWord.self, WordReplacement.self])
-            #if LOCAL_BUILD
-            let dictionaryCloudKit: ModelConfiguration.CloudKitDatabase = .none
-            #else
-            let dictionaryCloudKit: ModelConfiguration.CloudKitDatabase = .private("iCloud.com.prakashjoshipax.VoiceInk")
-            #endif
-            let dictionaryConfig = ModelConfiguration(
-                "dictionary",
-                schema: dictionarySchema,
-                url: dictionaryStoreURL,
-                cloudKitDatabase: dictionaryCloudKit
-            )
-
-            // Recorder session metrics configuration
-            let statsSchema = Schema([SessionMetric.self])
-            let statsConfig = ModelConfiguration(
-                "stats",
-                schema: statsSchema,
-                url: statsStoreURL,
-                cloudKitDatabase: .none
-            )
-
-            // Initialize container
-            return try ModelContainer(
-                for: schema,
-                configurations: transcriptConfig, dictionaryConfig, statsConfig
-            )
+            return try ModelContainer(for: schema, configurations: [config])
         } catch {
             logger.error("❌ Failed to create persistent ModelContainer: \(error.localizedDescription, privacy: .public)")
             return nil
@@ -242,30 +214,12 @@ struct VoiceInkApp: App {
 
     private static func createInMemoryContainer(schema: Schema, logger: Logger) -> ModelContainer? {
         do {
-            // Transcript configuration
-            let transcriptSchema = Schema([Transcription.self])
-            let transcriptConfig = ModelConfiguration(
+            let config = ModelConfiguration(
                 "default",
-                schema: transcriptSchema,
+                schema: schema,
                 isStoredInMemoryOnly: true
             )
-
-            // Dictionary configuration
-            let dictionarySchema = Schema([VocabularyWord.self, WordReplacement.self])
-            let dictionaryConfig = ModelConfiguration(
-                "dictionary",
-                schema: dictionarySchema,
-                isStoredInMemoryOnly: true
-            )
-
-            let statsSchema = Schema([SessionMetric.self])
-            let statsConfig = ModelConfiguration(
-                "stats",
-                schema: statsSchema,
-                isStoredInMemoryOnly: true
-            )
-
-            return try ModelContainer(for: schema, configurations: transcriptConfig, dictionaryConfig, statsConfig)
+            return try ModelContainer(for: schema, configurations: [config])
         } catch {
             logger.error("❌ Failed to create in-memory ModelContainer: \(error.localizedDescription, privacy: .public)")
             return nil
@@ -292,7 +246,7 @@ struct VoiceInkApp: App {
                         if containerInitializationFailed {
                             let alert = NSAlert()
                             alert.messageText = "Critical Storage Error"
-                            alert.informativeText = "VoiceInk cannot initialize its storage system. The app cannot continue.\n\nPlease try reinstalling the app or contact support if the issue persists."
+                            alert.informativeText = "EliteWrite cannot initialize its storage system. The app cannot continue.\n\nPlease try reinstalling the app or contact support if the issue persists."
                             alert.alertStyle = .critical
                             alert.addButton(withTitle: "Quit")
                             alert.runModal()
@@ -318,6 +272,14 @@ struct VoiceInkApp: App {
                             }
                             appDelegate.pendingOpenFileURL = nil
                         }
+
+                        // CR-006: check permissions health on every launch; show repair guide if broken
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            permissionsRepairService.checkPermissions()
+                            if permissionsRepairService.needsRepair {
+                                showPermissionsRepair = true
+                            }
+                        }
                     }
                     .background(WindowAccessor { window in
                         WindowManager.shared.configureWindow(window)
@@ -328,6 +290,12 @@ struct VoiceInkApp: App {
 
                         // Stop the automatic audio cleanup process
                         audioCleanupManager.stopAutomaticCleanup()
+                    }
+                    .sheet(isPresented: $showPermissionsRepair) {
+                        PermissionsRepairView(service: permissionsRepairService)
+                    }
+                    .onReceive(NotificationCenter.default.publisher(for: .focusSessionDidComplete)) { _ in
+                        menuBarManager.openMainWindowAndNavigate(to: "Focus")
                     }
             } else {
                 OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
@@ -379,6 +347,7 @@ struct VoiceInkApp: App {
             }(NSImage(named: "menuBarIcon")!)
 
             Image(nsImage: image)
+                .help("EliteWrite — Early Access Build v0.4.6")
         }
         .menuBarExtraStyle(.menu)
 
@@ -399,7 +368,7 @@ class UpdaterViewModel: ObservableObject {
     @Published var automaticallyChecksForUpdates = false
 
     init() {
-        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+        updaterController = SPUStandardUpdaterController(startingUpdater: false, updaterDelegate: nil, userDriverDelegate: nil)
 
         automaticallyChecksForUpdates = updaterController.updater.automaticallyChecksForUpdates
 

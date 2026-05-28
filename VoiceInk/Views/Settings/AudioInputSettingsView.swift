@@ -35,7 +35,7 @@ struct AudioInputSettingsView: View {
         CompactHeroSection(
             icon: "waveform",
             title: "Audio Input",
-            description: "Configure your microphone preferences"
+            description: "Choose which microphone EliteWrite listens to when you press Right ⌘ (Right Command Key) to record."
         )
     }
     

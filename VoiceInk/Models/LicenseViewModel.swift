@@ -88,9 +88,7 @@ class LicenseViewModel: ObservableObject {
     }
     
     func openPurchaseLink() {
-        if let url = URL(string: "https://tryvoiceink.com/buy") {
-            NSWorkspace.shared.open(url)
-        }
+        // Purchase link to be configured when execedgepro.com is ready
     }
     
     func validateLicense() async {
@@ -180,7 +178,7 @@ class LicenseViewModel: ObservableObject {
         } catch {
             validationSuccess = false
             logger.error("🔑 Unexpected license error: \(error, privacy: .public)")
-            validationMessage = "An unexpected error occurred. Please try again or contact support at support@tryvoiceink.com"
+            validationMessage = "An unexpected error occurred. Please try again or contact support at support@execedgepro.com"
         }
         
         isValidating = false

@@ -2,7 +2,8 @@
 DEPS_DIR := $(HOME)/VoiceInk-Dependencies
 WHISPER_CPP_DIR := $(DEPS_DIR)/whisper.cpp
 FRAMEWORK_PATH := $(WHISPER_CPP_DIR)/build-apple/whisper.xcframework
-LOCAL_DERIVED_DATA := $(CURDIR)/.local-build
+LOCAL_DERIVED_DATA := /tmp/elitewrite-build
+BUNDLE_ID := com.execedgepro.EliteWrite
 
 .PHONY: all clean whisper setup build local check healthcheck help dev run
 
@@ -46,7 +47,16 @@ build: setup
 
 # Build for local use without Apple Developer certificate
 local: check setup
-	@echo "Building VoiceInk for local use (no Apple Developer certificate required)..."
+	@echo ""
+	@echo "Quitting EliteWrite if running..."
+	@pkill -x "EliteWrite" 2>/dev/null && sleep 1 || true
+	@echo "Clearing stale permission entries (CR-006)..."
+	@tccutil reset Accessibility $(BUNDLE_ID) 2>/dev/null || true
+	@tccutil reset ListenEvent $(BUNDLE_ID) 2>/dev/null || true
+	@tccutil reset ScreenCapture $(BUNDLE_ID) 2>/dev/null || true
+	@echo "Permission entries cleared."
+	@echo ""
+	@echo "Building EliteWrite for local use (no Apple Developer certificate required)..."
 	@rm -rf "$(LOCAL_DERIVED_DATA)"
 	xcodebuild -project VoiceInk.xcodeproj -scheme VoiceInk -configuration Debug \
 		-derivedDataPath "$(LOCAL_DERIVED_DATA)" \
@@ -58,39 +68,36 @@ local: check setup
 		CODE_SIGN_ENTITLEMENTS=$(CURDIR)/VoiceInk/VoiceInk.local.entitlements \
 		SWIFT_ACTIVE_COMPILATION_CONDITIONS='$$(inherited) LOCAL_BUILD' \
 		build
-	@APP_PATH="$(LOCAL_DERIVED_DATA)/Build/Products/Debug/VoiceInk.app" && \
+	@APP_PATH="$(LOCAL_DERIVED_DATA)/Build/Products/Debug/EliteWrite.app" && \
 	if [ -d "$$APP_PATH" ]; then \
-		echo "Copying VoiceInk.app to ~/Downloads..."; \
-		rm -rf "$$HOME/Downloads/VoiceInk.app"; \
-		ditto "$$APP_PATH" "$$HOME/Downloads/VoiceInk.app"; \
-		xattr -cr "$$HOME/Downloads/VoiceInk.app"; \
+		echo "Installing EliteWrite.app to /Applications..."; \
+		rm -rf "/Applications/EliteWrite.app"; \
+		ditto "$$APP_PATH" "/Applications/EliteWrite.app"; \
+		xattr -cr "/Applications/EliteWrite.app"; \
 		echo ""; \
-		echo "Build complete! App saved to: ~/Downloads/VoiceInk.app"; \
-		echo "Run with: open ~/Downloads/VoiceInk.app"; \
+		echo "Build complete! App installed to: /Applications/EliteWrite.app"; \
+		echo ""; \
+		echo "Launching EliteWrite..."; \
+		open "/Applications/EliteWrite.app"; \
+		echo ""; \
+		echo "The app will guide you through re-granting permissions."; \
 		echo ""; \
 		echo "Limitations of local builds:"; \
 		echo "  - No iCloud dictionary sync"; \
 		echo "  - No automatic updates (pull new code and rebuild to update)"; \
 	else \
-		echo "Error: Could not find built VoiceInk.app at $$APP_PATH"; \
+		echo "Error: Could not find built EliteWrite.app at $$APP_PATH"; \
 		exit 1; \
 	fi
 
 # Run application
 run:
-	@if [ -d "$$HOME/Downloads/VoiceInk.app" ]; then \
-		echo "Opening ~/Downloads/VoiceInk.app..."; \
-		open "$$HOME/Downloads/VoiceInk.app"; \
+	@if [ -d "/Applications/EliteWrite.app" ]; then \
+		echo "Opening /Applications/EliteWrite.app..."; \
+		open "/Applications/EliteWrite.app"; \
 	else \
-		echo "Looking for VoiceInk.app in DerivedData..."; \
-		APP_PATH=$$(find "$$HOME/Library/Developer/Xcode/DerivedData" -name "VoiceInk.app" -type d | head -1) && \
-		if [ -n "$$APP_PATH" ]; then \
-			echo "Found app at: $$APP_PATH"; \
-			open "$$APP_PATH"; \
-		else \
-			echo "VoiceInk.app not found. Please run 'make build' or 'make local' first."; \
-			exit 1; \
-		fi; \
+		echo "EliteWrite.app not found in /Applications. Please run 'make local' first."; \
+		exit 1; \
 	fi
 
 # Cleanup

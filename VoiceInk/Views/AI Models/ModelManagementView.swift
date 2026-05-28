@@ -43,6 +43,10 @@ struct ModelManagementView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
+                Text("Download and switch between transcription engines. Larger models are more accurate; smaller ones are faster.")
+                    .font(.system(size: 13))
+                    .foregroundColor(.secondary)
+
                 if SystemArchitecture.isIntelMac {
                     intelMacWarningBanner
                 }
@@ -233,8 +237,7 @@ struct ModelManagementView: View {
                             .buttonStyle(.plain)
 
                             InfoTip(
-                                "Add a custom fine-tuned whisper model to use with VoiceInk. Select the downloaded .bin file.",
-                                learnMoreURL: "https://tryvoiceink.com/docs/custom-local-whisper-models"
+                                "Add a custom fine-tuned whisper model to use with EliteWrite. Select the downloaded .bin file.",
                             )
                             .help("Read more about custom local models")
                         }

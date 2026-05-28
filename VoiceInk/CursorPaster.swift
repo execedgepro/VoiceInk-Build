@@ -9,6 +9,9 @@ class CursorPaster {
     private typealias ClipboardItemSnapshot = [(NSPasteboard.PasteboardType, Data)]
     private typealias ClipboardSnapshot = [ClipboardItemSnapshot]
 
+    // Captures the app that was frontmost when recording started so paste lands there even if the user switches away mid-recording.
+    static var pasteTargetApp: NSRunningApplication?
+
     static func pasteAtCursor(_ text: String) {
         Task {
             await MainActor.run {
@@ -25,6 +28,19 @@ class CursorPaster {
         let savedContents = shouldRestoreClipboard ? snapshotClipboard(from: pasteboard) : []
 
         _ = ClipboardManager.setClipboard(text, transient: shouldRestoreClipboard)
+
+        if let target = pasteTargetApp {
+            pasteTargetApp = nil
+            target.activate(options: .activateIgnoringOtherApps)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                postPasteCommand()
+                if shouldRestoreClipboard {
+                    scheduleClipboardRestore(savedContents, on: pasteboard)
+                }
+            }
+            return Task { @MainActor in }
+        }
+
         postPasteCommand()
 
         if shouldRestoreClipboard {

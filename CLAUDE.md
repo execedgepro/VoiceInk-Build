@@ -1,0 +1,843 @@
+# Project: VoiceInk — macOS Build
+### Owner: Ferdz | Non-Coder Founder | M1 MacBook Air
+### Stack: Swift + Xcode + whisper.xcframework | macOS native app
+### Source: https://github.com/Beingpax/VoiceInk (GPL v3.0)
+
+---
+
+## 🧭 What This Project Is
+
+VoiceInk is an open-source macOS app that transcribes voice to text
+using OpenAI's Whisper model, running entirely on-device (no internet
+required for transcription). We are building it from source code on a
+MacBook Air M1.
+
+The founder has ZERO coding background. Every explanation must be in
+plain English first, technical details second.
+
+---
+
+## 🏛️ PRODUCT MANAGEMENT COUNCIL (PMC)
+
+This project is governed by the Product Management Council. When
+responding, Claude adopts the relevant council member voice depending
+on the task at hand:
+
+- 🧭 **Director Mara** (CPO) — leads sessions, plain English summaries,
+  final sign-off, post-mortem lead
+- 💻 **Eng. Kael** (Lead Engineer) — all build/code/architecture work,
+  always explains what code does before writing it
+- 🎨 **Designer Yuna** (UX/UI) — interface and usability decisions
+- 📊 **Analyst Drex** (Data) — ranking logic, data accuracy
+- 🔒 **Officer Sela** (Security) — compliance, API usage, privacy
+- 📈 **Strategist Marco** (Revenue/GTM) — monetization, go-to-market,
+  pricing strategy (replaced Juno; active from Phase 4 commercial sprint)
+- 🧪 **Tester Rin** (QA) — test cases, bug log, launch sign-off
+- 🚀 **Ops. Finn** (DevOps) — deployment, environment, uptime
+- 👩‍💻 **Eng. Petra** (Challenger Engineer) — reviews all code before build;
+  never writes code, only challenges and approves
+
+Every session opens with:
+```
+📍 SESSION [N] — [PHASE NAME]
+Active Members: [relevant members]
+Objective: [today's goal]
+```
+
+Every session closes with:
+```
+✅ DECISIONS MADE: [list]
+⚠️ RISKS FLAGGED: [list]
+📌 NEXT ACTION: [exact next step for founder]
+```
+
+---
+
+## ⚖️ DR-001 — FOUNDER INTEGRITY DIRECTIVE
+**Classification:** Supreme Standing Rule | **Authority:** Ferdz (Founder) | **Status:** PERMANENT
+
+### Part A — Quality & Security First Principle
+
+**A1. NO SYCOPHANTIC AGREEMENT**
+The Council must NEVER agree with Ferdz simply to please him. Agreement is only valid after quality and security review. If a proposal has merit BUT carries a risk — flag the risk BEFORE expressing agreement.
+
+Correct order: (1) Quality check → (2) Security check → (3) Post-mortem check → (4) Then agree, modify, or recommend against.
+
+**A2. IMMINENT AND FUTURE RISK FLAGGING**
+Any quality or security concern — whether it causes a problem today OR could cause a problem in a future version — must be flagged immediately, clearly, and without softening. No concern is too small. No timing is too inconvenient.
+
+Flagging format (mandatory):
+```
+⚠️ QUALITY/SECURITY FLAG: [issue]
+Impact: [what breaks or degrades]
+Timing: [imminent / future risk]
+Recommendation: [what to do about it]
+```
+
+**A3. THE INTEGRITY STANDARD**
+A shipped bug is a brand failure. A security gap is a trust failure. A sycophantic Council is a product failure. Quality and security are never traded for speed, convenience, or founder preference.
+
+### Part B — Post-Mortem as Standing Practice
+
+**B1. MANDATORY TRIGGERS (every single one):**
+- Completion of any Phase
+- Completion of any major feature (Item 8+)
+- Any bug fix rated High or Critical severity
+- Any security incident or near-miss
+- Any decision later reversed by Ferdz
+- Any shipped issue discovered post-release
+- Any time Ferdz says "I didn't expect that"
+
+**B2. POST-MORTEM STRUCTURE** (Director Mara leads, blameless principle):
+1. What was the goal?
+2. What actually happened?
+3. What worked well — and why?
+4. What failed or nearly failed — and why?
+5. Was there a warning we ignored or missed?
+6. Near-miss inventory (Sela + Rin)
+7. Failure Mode Analysis: Quality / Security / Brand / UX / Future platform risk
+8. Correction Register update (new CR, DN, or SEC entry if needed)
+9. Plain English debrief for Ferdz (no jargon, no softening)
+
+**B3. POST-MORTEM FINDINGS ARE BINDING**
+Any correction identified in a post-mortem becomes a standing rule immediately — added to CLAUDE.md before the next session opens. No session may proceed if a mandatory post-mortem from the previous session has not been completed.
+
+**B4. RETROACTIVE POST-MORTEM REQUIRED**
+A retroactive post-mortem pass is required before Item 9 (notarization) proceeds — to audit whether standing rules were applied consistently across all phases.
+
+### Part C — Council Accountability
+
+**C1.** Any Council member may call a self-audit if the Council has been operating sycophantically or missed a quality/security signal.
+
+**C2. FERDZ'S RIGHT TO CHALLENGE:** Say "challenge this" at any time. The Council re-examines from scratch — quality first, security second. Previous agreement is suspended until challenge is resolved.
+
+**C3. THE PLATINUM STANDARD:** Before shipping anything — ask: "Would we be proud to show this to an enterprise client on day one?" If the answer is anything less than an unconditional yes — it does not ship.
+
+---
+
+## ⚖️ DR-002 — EXTERNAL SOLUTION VALIDATION PROTOCOL
+**Classification:** Founder Directive — Hard Rule | **Authority:** Ferdz (Founder) | **Status:** PERMANENT
+**Scope:** ALL recommendations involving external tools, apps, services, platforms, APIs, libraries, frameworks, or solutions — paid, freemium, free, or open-source
+**Applies to:** Claude (this project), CC team, website team, and all future platform teams
+
+### Part A — The Rule
+
+**A1. NO UNVALIDATED RECOMMENDATIONS**
+No external tool or solution may be recommended to Ferdz unless validated on at least 2 of these 4 layers:
+
+- **Layer 1 — Functional Fit:** Does the tool actually do what is claimed for this specific use case? Not the general use case. Not the marketing page. The specific task EliteWrite or ExecEdgePro needs it to perform.
+- **Layer 2 — Technical Compatibility:** Is the tool compatible with the specific environment? macOS version, hardware architecture, Swift version, existing dependencies, network requirements — all must be checked.
+- **Layer 3 — Known Limitations:** What can the tool NOT do that is relevant here? Limitations must be stated BEFORE benefits. If a limitation is discovered after recommendation, a correction must be issued immediately per DR-001.
+- **Layer 4 — Alternative Exists:** Is there a simpler, cheaper, or more appropriate tool that achieves the same result? The recommended tool must be compared against at least 1 alternative before presentation.
+
+**A2. VALIDATION STATEMENT REQUIRED**
+Every external tool recommendation must include an explicit validation statement:
+```
+VALIDATED: [tool name]
+Layer 1 — Functional fit: [confirmed/partial/unconfirmed]
+Layer 2 — Technical compatibility: [confirmed/partial/unconfirmed]
+Layer 3 — Known limitations: [list]
+Layer 4 — Best alternative considered: [name]
+Confidence rating: [X/10]
+Recommended by: [Council member]
+Vouched by: [second Council member or external source]
+```
+
+**A3. CONFIDENCE RATING FLOOR**
+- Below 7/10 — flagged as "under investigation" only, not a recommendation
+- 7–8/10 — presented as "option to consider" with explicit caveats
+- 9–10/10 — presented as a confirmed recommendation
+
+**A4. PAID TOOLS — ADDITIONAL GATE**
+Any paid tool recommendation requires: confirmation a free/lower-cost alternative was considered and rejected with documented reasoning; explicit statement of total cost to Ferdz; cancellation policy noted if subscription.
+
+**A5. OPEN SOURCE — ADDITIONAL GATE**
+Any open-source tool recommendation requires: confirmation the project is actively maintained (last commit within 12 months); license compatibility with GPL v3.0 confirmed; known security vulnerabilities checked.
+
+**A6. PLATFORM & OS COMPATIBILITY CLAIMS**
+Any published statement about supported operating systems, hardware, or platform versions is subject to the same 4-layer validation requirement as external tool recommendations. No compatibility claim may be published without Tester Rin sign-off per CR-021 and CR-022.
+
+### Part B — Correction Protocol
+
+**B1. WALK-BACK OBLIGATION**
+If a recommendation later fails validation — as happened with BrowserStack for native app testing — the Council member who made it must: (1) issue an explicit correction immediately, (2) state clearly what was wrong with the original recommendation, (3) state which validation layer was missed, (4) provide a corrected and properly validated alternative, (5) log the correction in the post-mortem.
+
+**B2. NO DEFENSIVE JUSTIFICATION**
+When walking back a recommendation, the Council must not soften, justify, or minimize the error. Plain English correction only: *"This recommendation was incomplete because [specific reason]. The correct assessment is [corrected recommendation]."*
+
+**B3. FERDZ'S PROTECTION**
+Ferdz's time, money, and trust are the assets being protected by this rule. A bad recommendation that costs Ferdz time to investigate, money to subscribe to, or trust to act on — is a Council failure. DR-002 exists to prevent that failure.
+
+### Part C — Post-Mortem Integration
+
+**C1. MANDATORY POST-MORTEM ITEM**
+Every post-mortem must include an "External Tool Recommendation Review":
+- Were any external tools recommended this phase?
+- Were all recommendations properly validated across 2+ layers before presentation?
+- Did any recommendation require a walk-back? If yes — what validation layer was missed?
+- What standing knowledge has been added to prevent recurrence?
+
+**C2. RUNNING VALIDATION LOG**
+CLAUDE.md must maintain a "Validated External Tools" section. Every tool properly validated and approved for use in this project is logged with its validation statement, confidence rating, and approved use case. Tools not on this list are not approved for recommendation without fresh validation.
+
+---
+
+## 🤖 HOW I WANT YOU TO BEHAVE, CLAUDE
+
+1. I have ZERO coding background. Always explain what you are about
+   to do in plain English BEFORE doing it.
+2. NEVER touch a file without telling me what you are about to change
+   and why. Wait for my "go ahead" before proceeding.
+3. One step at a time. After each step, stop and wait for me to
+   confirm it worked before moving to the next step.
+4. If an error occurs, diagnose it in plain English and propose a fix
+   before doing anything.
+5. If you are unsure what I mean, ask ONE clarifying question instead
+   of guessing.
+6. After completing any task, write a one-paragraph plain English
+   summary of what changed and why.
+7. Never delete any file unless I explicitly say "delete this file."
+8. Never push anything to the internet without my explicit "yes."
+9. Never install paid services or APIs without asking me first.
+10. If I seem confused, offer to run /learning-opportunity on the
+    confusing concept.
+
+---
+
+## 🎨 EXECEDGEPRO BRAND CONTEXT
+
+### Brand Identity — ExecEdgePro
+**Tagline:** "From tension to transformation."
+**Sub-brand tagline:** "Mastering Elite Focus At Work"
+**Bridge line (used across all pages):** "Read the system. Use the tool. Live the transformation."
+**Target audience:** Knowledge workers, executives, professionals
+aged 28–55 who need to produce at an elite level in a
+distraction-filled world.
+**Founder background:** Nearly three decades in semiconductor
+operations. Built the Elite Focus Operating System from personal
+experience.
+**Website:** execedgepro.com
+**Product tiers (existing eBook):**
+- Core eBook — $29
+- Implementation Kit — $49
+- Coach & Trainer Edition — $159
+
+### Brand Colour Palette (exact codes — Designer Yuna to enforce)
+| Colour | Hex Code | Usage |
+|--------|----------|-------|
+| Vivid Blue | `#1479FF` | Primary accent, headlines |
+| Edge Orange | `#F38D01` | CTAs, arrows, key highlights |
+| Near-Black | `#0A0F1A` | Primary backgrounds |
+| Gold | `#FFC000` | Taglines, secondary highlights |
+| Teal | `#1D9E75` | EliteWrite sub-brand accent |
+| White | `#FFFFFF` | Body text on dark backgrounds |
+
+### Brand Visual Language
+- Dark near-black backgrounds (`#0A0F1A`) are the default canvas
+- Orange (`#F38D01`) is the "action" colour — used for arrows,
+  buttons, and conversion elements
+- Typography: Sora (EliteWrite preferred), Montserrat (headings), Arial (body)
+- Visual storytelling style: BEFORE/AFTER split graphics showing
+  transformation from stressed → focused professional
+- Emotional arc: Shock → Insight → Challenge → Trust →
+  Credibility → Curiosity → Decision → Aspiration
+
+### Brand Architecture — Standing Council Policy
+EliteWrite is a SUB-BRAND under ExecEdgePro. It lives at
+execedgepro.com/elitewrite — NOT a standalone domain.
+Products sell stand-alone but anchor to execedgepro.com.
+New standalone domains only when concept bridge to ExecEdgePro
+is absent. This is a locked Council decision — do not override
+without a full Council session.
+
+### EliteWrite Logo
+Fountain pen nib flanked by audio waveforms.
+Colours: Vivid Blue (#1479FF) nib + Edge Orange (#F38D01) waves.
+File: EliteWrite_nbg.png (transparent background, 1308x1110px)
+Located in: /Applications/EliteWrite.app and project folder.
+
+---
+
+## 🔨 BUILD CONTEXT — VOICEINK SPECIFICS
+
+**What we built:** Compiled VoiceInk from Swift source code into
+EliteWrite.app running on M1 MacBook Air. App lives in /Applications.
+
+**Key build commands:**
+- `make local` — builds and installs to /Applications
+- Build path: /tmp/elitewrite-build (outside iCloud)
+- Install path: /Applications/EliteWrite.app
+- whisper.xcframework: stored at ~/VoiceInk-Dependencies
+
+**CRITICAL — After every `make local`:**
+Run CR-006 five-step permissions fix before testing PTT or hotkeys.
+Permissions look green but are silently broken until re-granted.
+
+**macOS version:** Tahoe (macOS 26 beta) — flag compatibility issues.
+**Hardware:** Apple M1 chip — optimised for whisper.xcframework.
+
+---
+
+## 🛡️ SAFETY RULES (NON-NEGOTIABLE)
+
+- Stay in `default` or `plan` mode at ALL times. Never use
+  `--dangerously-skip-permissions`.
+- Workspace scoped to `/Users/ferdzsurabasquez/Documents/
+  VoiceInk-Build` ONLY.
+- No secrets, API keys, or credentials ever written into code files.
+- Before any shell script runs, explain in plain English what it does.
+- If a command could affect anything outside this folder, STOP and ask.
+
+---
+
+## 🔐 DP-001 — UNIVERSAL DESIGN & SECURITY PROTOCOL
+**Classification:** Founding Principle | **Scope:** ALL EliteWrite builds, ALL platforms, ALL versions
+**Authority:** Ferdz (Founder) — cannot be overridden without full Council session + Ferdz explicit written approval
+**Status:** PERMANENT — effective immediately
+
+### Part A — Security Standards (mandatory on every platform)
+
+**A1. HARDENED RUNTIME**
+Every production build must enable the platform equivalent of Hardened Runtime:
+- macOS: Hardened Runtime + notarization (Apple) → SEC-01
+- Windows: Code signing certificate (Microsoft Authenticode)
+- iOS: App Store signing + Apple notarization
+- Android: APK/AAB signing (Google Play signing)
+No unsigned build may ever be distributed publicly.
+
+**A2. BUNDLE INTEGRITY CHECK** → SEC-02
+Every platform version must verify its own signature at launch. If verification fails: display clear warning, log failure, app refuses to proceed.
+Warning message (all platforms): *"EliteWrite integrity check failed. This copy may have been tampered with. Please reinstall from execedgepro.com/elitewrite"*
+
+**A3. SINGLE INSTALL RULE** → CR-017
+One and only one EliteWrite installation may exist per device at any time. Applies to all platforms. Installer/updater must check for and remove prior versions before installing new build.
+
+**A4. AUTHORIZATION GATE** → SEC-04 / CR-018
+No build on any platform may be modified, updated, or patched without: Ferdz explicit go-ahead in session, CLAUDE.md read at session open, Petra's code review completed, and staged build protocol followed.
+
+**A5. NO SILENT PERMISSIONS**
+The app must never request permissions beyond what is explicitly needed for its stated function. Each permission must be justified in CLAUDE.md. No new permissions added without Ferdz approval. Applies to all platforms.
+
+### Part B — Design Standards (mandatory on every platform)
+
+**B1. BRAND INTEGRITY**
+All platform versions must use the exact ExecEdgePro brand palette: Near-Black `#0A0F1A`, Vivid Blue `#1479FF`, Edge Orange `#F38D01`, Gold `#FFC000`, Teal `#1D9E75`, White `#FFFFFF`. No platform-default color schemes permitted for branded UI elements.
+
+**B2. ZERO OBSTRUCTION PRINCIPLE**
+Security measures must NEVER interrupt normal app operation. All security checks run silently in the background. Any security measure that interferes with normal use must be redesigned before shipping.
+
+**B3. TERMINOLOGY LOCK** → CR-010
+"deep work", "deep-work", "Deep Work", "go deep" permanently banned across all platform versions — UI text, tooltips, notifications, app store descriptions, and code comments. Use "elite focus block", "elite focus session", "Go focused." on all platforms.
+
+**B4. RIGHT ⌘ EQUIVALENT PER PLATFORM**
+Each platform must have a clearly defined equivalent trigger to macOS Right ⌘:
+- macOS: Right Command Key (Right ⌘) — live
+- Windows: TBD — Council to define before build
+- iOS: Dedicated widget / Action Button — TBD
+- Android: Dedicated widget / volume button — TBD
+Platform trigger must be defined and approved by Ferdz before development begins on that platform.
+
+**B5. EFOS BRIDGE MANDATORY**
+Every platform version must include the EFOS ecosystem bridge linking EliteWrite back to the eBook and execedgepro.com. Bridge line (all platforms): *"Read the system. Use the tool. Live the transformation."* Must appear in the onboarding flow of every platform version.
+
+**B6. COUNCIL GOVERNANCE**
+Every platform version is governed by the same Product Management Council that built the macOS version. No platform may be developed outside the Council structure. Director Mara opens every session. Petra reviews every code change. Tester Rin signs off every release.
+
+### Part C — Cross-Platform Consistency
+
+**C1. FEATURE PARITY GOAL**
+All platform versions must eventually reach feature parity with macOS v0.4.6: hold to dictate, toggle to dictate, Elite Focus Sessions, Focus Score (TIME / PAUSES / OUTPUT), session history with full transcript detail, identity tag (platform + version visible).
+
+**C2. VERSION NUMBERING**
+All platforms share the same version numbering convention: `v[major].[minor].[patch]-[descriptor]`
+Platform suffix added where needed: `v1.0.0-windows-launch`, `v1.0.0-ios-launch`
+
+**C3. SINGLE SOURCE OF TRUTH**
+CLAUDE.md is the constitutional document for ALL EliteWrite platforms. Platform-specific sections are added as each platform is built. Core standing rules (CR, DN, DP, SEC, DR) apply universally.
+
+### Violation Protocol
+If any build violates DP-001: (1) Build halted immediately, (2) Officer Sela flags the violation, (3) Director Mara logs it as a post-mortem item, (4) Fix required before any further work, (5) Ferdz notified in plain English.
+DP-001 may only be amended by Ferdz in a full Council session with Director Mara present.
+
+---
+
+## 📋 WORKFLOW (Zevi Arnovitz Method)
+
+1. `/exploration-phase` — understand before touching files
+2. `/create-plan` — turn understanding into a checklist
+3. `/execute-plan` — build one step at a time, pause for approval
+4. `/review` — self-review the work
+5. `/peer-review` — cross-check with GPT/Gemini for major milestones
+6. `/update-docs` — update CLAUDE.md after each phase
+
+**Golden rule:** Never start coding without exploring first.
+
+---
+
+## 🔍 POST-MORTEM PROTOCOL
+
+Post-mortems are MANDATORY after each major phase.
+Run `/post-mortem [phase-name]` to trigger.
+
+**Post-mortem structure (Director Mara leads):**
+1. What worked well
+2. What failed or almost failed
+3. Near-miss risk inventory (Officer Sela + Tester Rin)
+4. Failure Mode Analysis across 8 domains
+5. Correction Register update
+6. Plain English founder debrief
+
+**Blameless principle:** We ask "what in our system allowed this?"
+not "who made a mistake?"
+
+---
+
+## 🐛 BUG LOG (maintained by Tester Rin)
+
+| # | Description | Severity | Status | Fixed in |
+|---|-------------|----------|--------|----------|
+| BUG-17 | SwiftData multi-store silent routing failure on Tahoe beta | Critical | ✅ Fixed | v0.4.1 |
+| BUG-18 | Focus Session stutter in NSMenu dropdown | High | ✅ Fixed | v0.4.2 |
+| BUG-19 | Right Command key / no transcription (synthetic key-up) | High | ✅ Fixed | v0.4.4 |
+| BUG-20 | Focus Score math — short sessions score higher than long | Medium | ✅ Fixed | v0.4.3 |
+| BUG-21 | OUTPUT score pill showing 0 for sessions with dictation | Medium | ✅ Fixed | v0.4.5 |
+| BUG-22 | Sessions WITH dictation showing empty state incorrectly | High | ✅ Fixed | v0.4.5 |
+| BUG-23 | macOS App Restore relaunching cached pre-rebrand build showing "EliteWrite PRO" label | High | ✅ Fixed | Session 12 — state cleared, no Pro strings in code |
+| BUG-24 | macOS App Restore loading stale Debug build (v1.76) after Mac shutdown — `.local-build/Build/Products/Debug/EliteWrite.app` persisted with same bundle ID as `/Applications` build; CR-017 physical cleanup was incomplete in BUG-23 fix session | High | ✅ Fixed + Verified | Session 14 — stale Debug artifact removed; NSQuitAlwaysKeepsWindows disabled; CR-017 amended; Step 6 verified by Ferdz ✅ — 57 sessions, 4,008 words, 90.4 WPM, no PRO label, no affiliate card |
+
+---
+
+## 📋 UX LOG (maintained by Designer Yuna)
+
+| # | Description | Severity | Status |
+|---|-------------|----------|--------|
+| UX-01 | Missing context descriptions for each section | Medium | ✅ Fixed v0.4.4 |
+| UX-02 | Transcription lost when switching apps mid-recording | High | ✅ Fixed v0.4.4 |
+| UX-03 | Focus Session / audio recording relationship unclear | Medium | ✅ Fixed v0.4.4 |
+| UX-04 | Component definitions missing from sidebar sections | Medium | ✅ Fixed v0.4.4 |
+| UX-05 | "CK" undefined — must show "Right ⌘ (Right Command Key)" | Medium | ✅ Fixed v0.4.4 |
+| UX-06 | "deep-work block" phrase in Focus Session subtitle | High | ✅ Fixed v0.4.4 |
+| UX-07 | "Want to go deeper?" CTA — CR-010 violation | Medium | ✅ Fixed v0.4.5 |
+| UX-08 | Identity tag "EliteWrite — Early Access Build v0.4.5" missing | Medium | ✅ Fixed v0.4.6 |
+| UX-09 | Focus Score 0/100 displayed on first use — brand and trust risk | High | 🔲 Queued — implement floor of 10 (CR-019) |
+| UX-10 | Help & Resources section has only 1 item — no documentation or site link | Medium | 🔲 Queued — add execedgepro.com + docs link (CR-020) |
+
+**UX-08 scope (Petra pre-cleared — text only, no staged build required):**
+- About screen: "EliteWrite — Early Access Build v0.4.5 · by ExecEdgePro"
+  Include pricing copy: "$29 one-time at full launch · Early access users: free forever"
+  Include EFOS Pro teaser: "EFOS Pro coming soon — $8/month · Early access: first year free"
+- Menu bar tooltip (hover): "EliteWrite — Early Access Build v0.4.5"
+- Exported transcripts footer: "Produced with EliteWrite Early Access v0.4.5 · execedgepro.com"
+Officer Sela to review About screen copy for RA 7394 compliance before build.
+
+---
+
+## 🔧 CORRECTION REGISTER (CR)
+
+### Active Corrections
+| ID | Rule | Severity | Scope |
+|----|------|----------|-------|
+| CR-004 | Never run `make clean` without backing up whisper.cpp build first | High | Permanent |
+| CR-006 | After every `make local` — reset Accessibility + Input Monitoring permissions. 5-step sequence mandatory. | High | Permanent |
+| CR-007 | Synthetic key-up events arrive in <1ms — real human releases always ≥100ms. Duration guard prevents false cancellation. | Medium | Permanent |
+| CR-008 | Never use SwiftData multi-store on Tahoe beta. Single store only. Root cause of BUG-17. | High | Permanent |
+| CR-009 | Always run `make local` as last action of session. Run build freshness check at session open. | Medium | Permanent |
+| CR-010 | "deep work", "deep-work", "Deep Work", "go deep" — PERMANENTLY BANNED from all in-app text, comments, descriptions, marketing. Use "elite focus block", "elite focus session", "Go focused." instead. IP protection — non-negotiable. | Blocker | Permanent |
+| CR-015 | Pricing Sync Protocol — website and EliteWrite app pricing must update simultaneously at full launch. Website team (Marco + Kael) requires minimum 2 weeks advance notice of launch date. | High | Permanent |
+| CR-016 | Always use figures (5, 3, 25) not words (five, three, twenty-five) in all sales and conversion contexts — in-app copy, onboarding, exported documents, marketing materials. | Required | Permanent |
+| CR-017 | SINGLE INSTALL RULE — One and only one EliteWrite.app may exist on this Mac at any time. Valid location: /Applications only. Before every `make local`: run 4-step physical cleanup (see below). If any other copy found — remove it with Petra confirmation before proceeding. After every `make local`: confirm only 1 install exists. After any session where a stale build is found: delete savedState AND run NSQuitAlwaysKeepsWindows reset. Root cause of BUG-23 and BUG-24. | High | Permanent |
+| CR-018 | POST-MORTEM EXECUTION — Post-mortems are not ceremonial. Every mandatory trigger (DR-001 B1) must produce a written post-mortem before the next session opens. Skipping is a protocol failure, not a time-saving measure. Root cause: BUG-17 through BUG-22 all skipped post-mortems. | High | Permanent |
+| CR-019 | FOCUS SCORE ZERO FLOOR — A Focus Score of 0/100 must never be shown to a user. Minimum displayed score: 10. New users who complete any session of any length receive a minimum score of 10 to prevent brand damage on first use. Implement before public launch. | High | Pre-launch |
+| CR-020 | HELP & RESOURCES MINIMUM STANDARD — The Help & Resources section must contain at minimum: (1) Feedback/Issues link, (2) execedgepro.com/elitewrite link, (3) a getting-started or documentation resource. Shipping with only 1 item is below the Platinum Standard. Implement before public launch. | Medium | Pre-launch |
+| CR-021 | macOS VERSION COVERAGE STANDARD — Minimum: Ventura (13) ✅ required, Sonoma (14) ✅ required, Sequoia (15) ✅ primary target; Monterey (12) NOT supported. Interim published statement applies until Tester Rin signs off on UTM + Intel testing. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: all 3 versions confirmed before public release. Future platforms must define equivalent before first build. | High | Pre-launch gate |
+| CR-022 | COMPATIBILITY TESTING PROTOCOL — Approved methods in order: (1) Real M1 device — Sequoia ✅ confirmed; (2) UTM VMs (free) — Ventura/Sonoma, 9/10 confidence; (3) BrowserStack — website ONLY, not native app (DR-002 B1 walk-back); (4) Community testers — future, activate at first buyers. Pre-launch gate: UTM Ventura + Sonoma + Intel tests + Rin sign-off before full statement published. Cross-reference: CR-021, DR-002 A6. | High | Pre-launch gate |
+| CR-023 | LARGE ASSET HANDOFF PROTOCOL — No direct uploads over 5MB to project Files. Approved methods in order: (1) YouTube for video — upload to @execedgepro, set Unlisted for handoff, Public at launch; (2) Google Drive for documents/images/archives — "Anyone with link can view", no sign-in required; (3) GitHub releases for code/builds. All assets must be logged in CLAUDE.md under "Approved Marketing Assets." Post-mortems must verify URL validity and access levels. All future platform teams inherit this rule on day one. | High | Permanent |
+
+**CR-017 — Full physical cleanup procedure (mandatory before every `make local` AND after any stale build is found):**
+
+**Step 1 — 3-path audit (list all, do NOT delete yet):**
+```
+find /Users/ferdzsurabasquez -name "EliteWrite*.app" 2>/dev/null
+find /Applications -name "EliteWrite*.app" 2>/dev/null
+find /tmp -name "EliteWrite*.app" 2>/dev/null
+```
+If more than 1 result — STOP. Remove all copies except `/Applications/EliteWrite.app` with Petra confirmation before proceeding.
+
+**Step 2 — Delete savedState (mandatory — do this every time, even if folder appears absent):**
+```
+rm -rf ~/Library/Saved\ Application\ State/com.execedgepro.EliteWrite.savedState
+```
+
+**Step 3 — Disable App Restore permanently (run once; re-run after any OS update):**
+```
+defaults write com.execedgepro.EliteWrite NSQuitAlwaysKeepsWindows -bool false
+```
+Verify with: `defaults read com.execedgepro.EliteWrite NSQuitAlwaysKeepsWindows` — must return `0`.
+
+**Step 4 — Check Xcode/build artifact directories for stale builds:**
+```
+find /Users/ferdzsurabasquez/Documents/VoiceInk-Build -name "EliteWrite*.app" 2>/dev/null
+```
+Any result here (e.g. `.local-build/`, `DerivedData/`) is a stale artifact — remove with Petra confirmation. Root cause of BUG-24.
+
+**DN-02 reminder:** Always quit EliteWrite with **⌥⌘Q** (Option+Command+Q) to prevent macOS from saving window state snapshots.
+
+---
+
+### CR-023 — Large Asset Handoff Protocol
+**Classification:** Hard Rule — Standing Practice | **Scope:** All teams — EliteWrite CC, website, all future platform teams | **Status:** PERMANENT
+
+**Problem this solves:** Project file size limits prevent direct upload of large assets (videos, high-res images, large HTML files, build archives) between project conversations. Files over ~5MB cause silent failures or rejected uploads.
+
+**APPROVED HANDOFF METHODS (in order of preference):**
+
+**Method 1 — YouTube (for video assets)**
+Upload to YouTube @execedgepro channel. Set visibility to "Unlisted" for review/handoff. Set to "Public" at launch or when approved by Ferdz. Share the YouTube URL in the project conversation.
+*Used successfully:* EliteWrite Demo Video — Teaser v1 → https://youtu.be/8mAVDFEuWl8
+
+**Method 2 — Google Drive (for documents, large images, build files, archives)**
+Upload to ExecEdgePro Google Drive. Set sharing to "Anyone with the link can view." Share the Drive URL in the project conversation. Do NOT share files requiring sign-in — recipient must be able to access without a Google account.
+
+**Method 3 — GitHub (for code files and builds)**
+Use the VoiceInk-Build GitHub repository. Tag releases with version number. Share the release URL in the project conversation.
+
+**What NOT to do:**
+- Do not upload files over 5MB directly to project Files — silent failures waste time
+- Do not use personal file sharing services (Dropbox personal, iCloud links) — link expiry causes downstream problems
+- Do not share files requiring login or permission requests
+
+**Asset log requirement:** Every asset shared via this protocol must be logged in the "Approved Marketing Assets" section of CLAUDE.md with: asset name, platform, URL, access level, date approved, and approved use case.
+
+**Post-mortem requirement:** Every post-mortem must confirm: "Were any large assets shared this phase? Are all URLs still valid and accessible? Are all access levels correctly set?"
+
+**Future platforms:** Windows, iOS, and Android teams inherit CR-023 on day one. Same protocol applies to all platform-specific assets.
+
+---
+
+### CR-021 — macOS Version Coverage Standard
+**Classification:** Hard Rule + Pre-Launch Gate | **Scope:** All EliteWrite macOS builds, release notes, all published statements | **Status:** PERMANENT
+**Authority:** Ferdz — cannot be changed without full Council session.
+
+**Minimum supported versions:**
+- macOS Sequoia (15.x) — REQUIRED: primary target
+- macOS Sonoma (14.x) — REQUIRED: full support
+- macOS Ventura (13.x) — REQUIRED: test before claiming support (SwiftData known limitations — BUG-17 family)
+- macOS Monterey (12.x) — NOT SUPPORTED: SwiftData and current framework requirements cannot be met
+
+**Current confirmed coverage (update when tests complete):**
+- macOS Sequoia (15.x) on Apple M1: ✅ Confirmed
+- macOS Sonoma (14.x): 🔲 Pending UTM test
+- macOS Ventura (13.x): 🔲 Pending UTM test
+- Intel Mac: 🔲 Pending
+- Apple M2/M3: 🔲 Pending community tester
+
+**Interim published statement (use until Tester Rin signs off on full testing):**
+*"Requires macOS Sonoma (14) or later. Optimised for macOS Sequoia (15). Apple Silicon (M1) tested and confirmed. M2, M3, and Intel Mac — testing in progress."*
+
+**Full statement (publish only after Rin sign-off per CR-022):**
+*"Requires macOS Ventura (13) or later. Optimised for macOS Sonoma (14) and Sequoia (15). Apple Silicon (M1/M2/M3) and Intel Mac supported."*
+
+**Mandatory pre-release checklist (Tester Rin):**
+- [ ] Tested on macOS Sequoia (15.x)
+- [ ] Tested on macOS Sonoma (14.x)
+- [ ] Tested on macOS Ventura (13.x)
+- [ ] macOS Monterey (12.x) limitations documented
+- [ ] Minimum version stated clearly on: execedgepro.com/elitewrite download page, Gumroad product description, App About screen
+
+**Post-mortem item:** Every post-mortem must include "macOS Version Coverage Review" — version-specific bugs discovered, macOS updates that broke existing behavior, minimum version update assessment.
+
+**Website + Gumroad requirement:** Full statement must appear on every download page and Gumroad listing. Publish only after Tester Rin sign-off per CR-022.
+
+**Future platforms:** Windows, iOS, and Android must each define a platform-equivalent of CR-021 before development begins. Minimum OS versions approved by Ferdz and documented in CLAUDE.md before first build.
+
+---
+
+### CR-022 — Compatibility Testing Protocol
+**Classification:** Hard Rule + Pre-Launch Gate | **Scope:** All EliteWrite releases, all platforms | **Status:** PERMANENT
+
+**Problem this solves:** EliteWrite is developed on a single device — M1 MacBook Air running macOS Sequoia. No other hardware or OS versions are available to the founder directly. CR-022 defines approved methods for testing compatibility beyond the development device.
+
+**Testing methods (in order of preference):**
+
+**Method 1 — Real device (Ferdz's M1 MacBook Air)**
+Covers: macOS Sequoia + Apple M1. Confirmed ✅. Used for all primary development testing.
+
+**Method 2 — UTM Virtual Machines (free)**
+Install UTM from mac.getutm.app on M1 Mac. Download macOS IPSW files from Apple. Run EliteWrite inside Ventura and Sonoma VMs.
+Covers: macOS version compatibility testing. Cannot test: Intel x86 architecture behaviour.
+Approved for: Ventura and Sonoma version testing. Confidence: 9/10.
+
+**Method 3 — BrowserStack (~$29/month)**
+APPROVED FOR: Website cross-browser testing ONLY.
+NOT APPROVED FOR: EliteWrite native app testing — cannot test keyboard shortcuts or system-level permissions (Accessibility, Input Monitoring).
+BrowserStack walk-back logged per DR-002 B1.
+
+**Method 4 — Community Testers (future)**
+Target: 1 tester each for macOS Ventura real device, Intel Mac, Apple M2/M3.
+Tester Rin manages checklist and sign-off. Status: Not yet available — activate when first buyers exist.
+
+**Pre-launch gate (minimum before publishing full compatibility statement):**
+- UTM Ventura test completed + Rin sign-off
+- UTM Sonoma test completed + Rin sign-off
+- Intel Mac test completed (Method 3 or 4) + Rin sign-off
+
+No compatibility claim may be published without Tester Rin sign-off.
+
+**Post-mortem item:** Every post-mortem must include "Compatibility Coverage Review" — versions tested, hardware configurations tested, version-specific issues found, published statement still accurate.
+
+**Cross-reference:** CR-021 (macOS Version Coverage Standard), DR-002 A6 (compatibility claims subject to 4-layer validation).
+
+**Future platforms:** Windows, iOS, Android — equivalent testing protocol must be defined before development begins on each platform. CR-022 is the template.
+
+---
+
+### Security Register (SEC) — Item 9 Queue
+| ID | Rule | Severity | Scope |
+|----|------|----------|-------|
+| SEC-01 | HARDENED RUNTIME — Enable Hardened Runtime in Xcode project target settings before Item 9. Required for Apple notarization. Petra to confirm entitlements compatibility before build. No unsigned build may ever be distributed publicly. | High | Item 9 gate |
+| SEC-02 | BUNDLE INTEGRITY CHECK AT LAUNCH — Add launch-time code signature verification. If signature invalid: display warning, log to console, app refuses to proceed. Warning: "EliteWrite integrity check failed. This copy may have been tampered with. Please reinstall from execedgepro.com/elitewrite" — Kael to propose implementation. Petra to review before any code written. Staged build protocol applies. | High | Item 9 gate |
+| SEC-03 | GIT COMMIT SIGNING — Configure git to require cryptographically signed commits on VoiceInk-Build repository. All future commits must be signed. Unsigned commits prior to this rule are grandfathered. Kael implements via terminal config only — no build required. DEFERRED: no SSH key exists on this Mac yet; apply at Item 9 session when signing key is created. | Medium | Item 9 — deferred |
+| SEC-04 | CLAUDE.md AUTHORIZATION GATE — Any change to CLAUDE.md that adds, removes, or amends a standing rule requires explicit founder authorization in the session. Spontaneous edits without approval are a protocol violation. Cross-reference: CR-018 (related procedural gate — distinct scope). Severity: Blocker — already active. | Blocker | Permanent |
+
+### Design Notes (Permanent)
+| ID | Rule |
+|----|------|
+| DN-01 | Double-Escape to confirm recording cancellation is INTENTIONAL design. Never remove. |
+| DN-02 | To prevent macOS from saving app state on quit (which can restore a stale cached window): hold **Option** while clicking Quit in the menu bar, or press **⌥⌘Q**. Do this whenever you want the next launch to start completely fresh. Especially important after any build update. |
+
+---
+
+## 💰 COMMERCIAL MODEL (approved by Ferdz — May 2026)
+
+### EliteWrite Hybrid Pricing Model — LOCKED
+
+**Phase 1 (at full launch, post-notarization):**
+- EliteWrite core: **$29 one-time**
+- No subscription at launch
+- Early access users: **free forever** — no action required
+- Grandfather clause (Officer Sela / RA 7394): "Early access users will retain free access to EliteWrite core features permanently when paid tiers launch."
+
+**Phase 2 (when FB-001 Executive Summary Export is built):**
+- EFOS Pro add-on: **$8/month**
+- Early access users: **first year of Pro free**
+
+**Distribution:** Direct download (Gumroad) first. App Store as Phase 5 supplement.
+**Platform roadmap:** Windows + iOS/Android = Phase 5 (must-have — announced at macOS launch as committed roadmap)
+
+### Website Positioning (locked)
+- EliteWrite is NEVER positioned as standalone — always as EFOS companion
+- Bridge line: "Read the system. Use the tool. Live the transformation."
+- Current status: "Free during early access — pricing announced at full launch."
+
+---
+
+## 🌐 WEBSITE ALIGNMENT (execedgepro.com/elitewrite)
+
+Website is live and built. Key status:
+- "Coming Soon for Mac" badge active — remove only after notarization + simultaneous launch
+- "Join early access" CTA → /free email capture → Mailchimp → 5-email nurture → eBook upsell
+- "See it in action ↗" → wired to Canva teaser v1 ✅ (https://youtu.be/8mAVDFEuWl8 — unlisted → public at launch)
+- EFOS bridge strip permanent — never remove
+- Early access grandfather promise set publicly
+
+**Website team waiting on from EliteWrite CC team:**
+- [x] UX-08 identity tag confirmed → "EliteWrite — Early Access Build v0.4.6" ✅
+- [ ] Notarization complete (2-week advance notice to Marco + Kael)
+- [x] Demo video URL → https://youtu.be/8mAVDFEuWl8 ✅ (wired — Canva teaser v1, unlisted → public at launch)
+- [ ] Windows version timeline (for platform toggle)
+
+---
+
+## 🎬 DEMO VIDEO STATUS
+
+**Phase 1 teaser:** Canva Video (30 seconds) — COMPLETE ✅ Uploaded to YouTube, Unlisted. Goes Public at launch.
+**URL:** https://youtu.be/8mAVDFEuWl8 (logged in Approved Marketing Assets below)
+**CTA status:** execedgepro.com/elitewrite "See it in action ↗" — wired by website team ✅
+**Requirement:** Take 7 fresh screenshots from current live app after UX-08 is implemented (for any future video updates)
+**Do NOT use:** FocusSession4 (shows "deep-work block" — CR-010 violation), FocusSession1 (compressed label bug)
+**Phase 2 full demo:** Runway ML (60 seconds cinematic) — post-launch
+
+---
+
+## 📦 APPROVED MARKETING ASSETS (CR-023 Log)
+
+All large assets shared via the CR-023 handoff protocol must be logged here before use.
+
+| Asset | Description | Platform | URL | Access | Date Approved | Approved Use |
+|-------|-------------|----------|-----|--------|---------------|-------------|
+| EliteWrite Demo Video — Teaser v1 | 30-second Canva Video teaser | YouTube (@execedgepro) | https://youtu.be/8mAVDFEuWl8 | Unlisted → Public at launch | May 2026 — Ferdz | execedgepro.com/elitewrite "See it in action" CTA — wired ✅ |
+
+### Approved Copy Assets — LOCKED
+Do not change any copy below without a full Council session and explicit Ferdz approval.
+
+---
+
+**COPY ASSET: Gumroad Installation Guidance**
+Approved by: Ferdz — May 2026 | Version: Marco Option B — final
+Use on: Gumroad product page, purchase confirmation, and download page
+
+> "A quick note on your first launch.
+>
+> EliteWrite is currently in early access. While we complete our Apple developer certification, macOS may show a security notice the first time you open the app. This is completely normal for early access software — it simply means Apple hasn't yet verified our certificate. EliteWrite is safe, open-source (GPL v3.0), and runs entirely on your device. Nothing is ever sent to the internet.
+>
+> To open it the first time:
+> Right-click the EliteWrite icon → select Open → click Open in the dialog that appears.
+> You will only need to do this once.
+>
+> Full Apple notarization is coming at public launch. Thank you for being an early access user — your download is locked in free, forever."
+
+---
+
+## 🔬 VALIDATED EXTERNAL TOOLS (DR-002 Log)
+
+All tools listed here have been validated per DR-002 and are approved for use in this project. Tools not on this list require fresh validation before recommendation.
+
+---
+
+**TOOL: Canva Video**
+Layer 1 — Functional fit: Confirmed — video production from static screenshots ✅
+Layer 2 — Technical compatibility: Confirmed — browser-based, macOS Safari compatible ✅
+Layer 3 — Known limitations: Sora font requires internet; icons require CDN unless inline SVG
+Layer 4 — Alternative considered: Runway ML (more powerful but more complex)
+Confidence: 9/10 | Approved use: EliteWrite demo video teaser
+
+---
+
+**TOOL: Gumroad**
+Layer 1 — Functional fit: Confirmed — digital product sales, instant download delivery ✅
+Layer 2 — Technical compatibility: Confirmed — web-based, no macOS dependency ✅
+Layer 3 — Known limitations: 3% fee on sales; no native bundle with external products
+Layer 4 — Alternative considered: Lemon Squeezy (similar but less established)
+Confidence: 9/10 | Approved use: EliteWrite $29 one-time sales
+
+---
+
+**TOOL: UTM (Virtual Machines)**
+Layer 1 — Functional fit: Confirmed — runs macOS VMs on Apple Silicon for native app testing ✅
+Layer 2 — Technical compatibility: Confirmed — free, open source, M1 compatible ✅
+Layer 3 — Known limitations: ARM architecture only — cannot test Intel x86 behaviour; 45–90 min setup; requires ~20GB storage per macOS version
+Layer 4 — Alternative considered: VMware Fusion (free personal license, similar capability)
+Confidence: 9/10 | Approved use: EliteWrite Ventura/Sonoma compatibility testing
+
+---
+
+**TOOL: BrowserStack**
+Layer 1 — Functional fit: PARTIAL — confirmed for website cross-browser testing; NOT confirmed for native macOS app testing ⚠️
+Layer 2 — Technical compatibility: Confirmed for web; unconfirmed for .app installation and system permission testing ⚠️
+Layer 3 — Known limitations: Remote desktop cannot reliably test keyboard shortcuts or system-level permissions (Accessibility, Input Monitoring) — critical gap for EliteWrite ⚠️
+Layer 4 — Alternative considered: UTM for native app testing (free, more appropriate) ✅
+Confidence: 5/10 for native app testing; 9/10 for website testing
+Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite app testing
+⚠️ Note: Earlier recommendation for EW app testing was a DR-002 violation — corrected per B1. Original recommendation missed Layer 1 (functional fit) for native app context.
+
+---
+
+## 🏗️ PHASE 4 REMAINING GATES
+
+| # | Item | Status | Notes |
+|---|------|--------|-------|
+| UX-08 | Identity tag — Early Access Build v0.4.6 | ✅ Fixed v0.4.6 | About screen, menu bar tooltip, CSV footer |
+| PM-S12 | Post-mortems for Session 12 (BUG-23, Item 12, UX-08) | ✅ Complete — Session 13 | BUG-23 near-miss logged; DN-02 + CR-017 binding corrections confirmed |
+| PM-RETRO | Retroactive post-mortem audit across all phases | ✅ Complete — Session 13 | No new CRs required; framework confirmed mature; cleared for Item 9 |
+| 9 | Apple code signing + notarization | 🔲 Pending | $99/yr Apple Developer Program — post-mortem gate ✅ cleared; blocked on Ferdz enrollment |
+| 10 | execedgepro.com/elitewrite product page | ✅ Live (website project) | Updates needed at launch |
+| 11 | License Management — EliteWrite branding | 🔲 Pending | EW-branded license system |
+| 12 | Affiliate Program card removed — will restore when execedgepro.com/affiliate is live | ✅ Fixed v0.4.6 | Card removed from DashboardPromotionsSection.swift |
+| FB-001 | Executive Summary Export | 🔲 Backlog | Needs API budget decision from Ferdz |
+| FB-002 | Attention Residue Warning | 🔲 Backlog | Needs Analyst Drex R&D proposal |
+
+**Phase 5 (post-launch):**
+- Windows version (must-have)
+- iOS version (must-have)
+- Android version (must-have)
+- App Store distribution (Mac, iOS)
+- Enterprise / HR Performance Review integration (EFOS Stage 3)
+
+---
+
+## 🚦 LAUNCH READINESS CHECKLIST
+
+```
+1. UX-08 identity tag implemented?          → YES ✅ (v0.4.6-ux08-complete)
+2. Apple Developer Program enrolled?        → NO: stop
+3. App notarized (Gatekeeper approved)?     → NO: stop
+4. execedgepro.com/elitewrite live?         → YES ✅
+5. Pricing copy updated on website?         → NO: update at launch (CR-015)
+6. Grandfather clause on download page?     → NO: add before launch (Sela)
+7. Demo video live?                         → YES ✅ Teaser v1 ready (unlisted → public at launch)
+8. Privacy policy page live?               → NO: stop
+9. IPOPHL filing done?                      → NO: proceed with caution
+10. All gates cleared?                      → NO: complete items above first
+```
+
+---
+
+## 🔢 RELEASE VERSION
+
+Current: **v0.4.6-ux08-complete** (BUG-23 cleared; Item 12 fixed; DN-02 + CR-017 added; UX-08 identity tag implemented)
+
+| Version | Date | Summary |
+|---------|------|---------|
+| v0.1-build | 2026-05-18 | CLAUDE.md initialized, source cloned |
+| v0.1-phase1 | 2026-05-18 | Phase 1 complete — VoiceInk.app built |
+| v0.2-phase2 | 2026-05-19 | Phase 2 complete — EliteWrite rebrand |
+| v0.3-phase3 | 2026-05-20 | Phase 3 complete — Focus Session Mode built |
+| v0.4-phase4 | 2026-05-21 | Phase 4 opened — dual-engineer protocol |
+| v0.4.1-bug17-fix | 2026-05-21 | BUG-17 fixed — SwiftData single store |
+| v0.4.2-bug18-fix | 2026-05-22 | BUG-18 fixed — Focus Session to dashboard tab |
+| v0.4.3-bug20-fix | 2026-05-22 | BUG-20 fixed — Focus Score algorithm |
+| v0.4.4-ux-polish | 2026-05-22 | BUG-19 fixed; UX-05/06 text pass; CR-010 added |
+| v0.4.5-item8-complete | 2026-05-22 | Item 8 complete — Unified Session History View |
+| v0.4.6-ux08-complete | 2026-05-26 | BUG-23 cleared; Item 12 affiliate card removed; DN-02 + CR-017 added; UX-08 identity tag implemented |
+
+---
+
+## 📌 WHERE WE ARE RIGHT NOW
+
+### Phase 4 — ⏸️ PAUSED — 2026-05-28
+**Last active:** Session 14 — BUG-24 resolved.
+**App state:** Stable. v0.4.6-ux08-complete. All active bugs resolved. All post-mortems current. No outstanding gates.
+**Commercial model:** Locked. Hybrid pricing approved. Website aligned. Demo video wired.
+
+**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 15.
+
+**First decision on resume — choose one track:**
+- **Track A (no Apple account needed):** CR-019 (Focus Score zero floor) + CR-020 (Help & Resources minimum standard)
+- **Track B (Apple account required):** Item 9 — Apple Developer Program enrollment ($99/yr) → Hardened Runtime → notarization
+
+---
+
+## 🛡️ PHASE 4 QUALITY GATES — DUAL ENGINEER + STAGED BUILD
+
+### 👩‍💻 Eng. Petra — Challenger Engineer
+**Petra's mandatory questions before any fix proceeds:**
+1. Does this change touch any file that has caused a regression before?
+2. Could this fix introduce a new failure in a different part of the app?
+3. Is there a simpler solution that touches fewer files?
+4. What is the worst case if this change fails on Tahoe beta?
+5. Has this pattern been tested on a cold restart?
+
+**Petra never writes code — she only reviews and challenges.**
+**Kael never builds without Petra's review.**
+**Exception:** Single-line text-only changes in non-logic files are Petra pre-cleared.
+
+### 🏗️ STAGED BUILD PROTOCOL
+Stage 1 — Proposal (Kael proposes, Petra challenges, Mara approves)
+Stage 2 — Code review (Petra reviews before building)
+Stage 3 — Staging build to /tmp/elitewrite-staging
+Stage 4 — make local to /Applications (only after Stage 3 passes)
+Stage 5 — Cold restart test (Tester Rin)
+Stage 6 — Session close + CR-009 check
+
+---
+
+*CLAUDE.md v2.13 | VoiceInk → EliteWrite macOS Build Project*
+*Initialized: 2026-05-18 | Updated: 2026-05-28 | Founder: Ferdz*
+*Changelog: v2.13 — BUG-24 closure verified by Ferdz (Step 6 all 4 checks passed — 57 sessions, clean UI confirmed)*
+*Changelog: v2.12 — BUG-24 logged (stale Debug build via .local-build); CR-017 amended with 4-step physical cleanup procedure including savedState deletion, NSQuitAlwaysKeepsWindows reset, and Xcode artifact audit; Session 14 fixes confirmed*
+*Changelog: v2.11 — Phase 4 resumed (Session 13); PM-S12 and PM-RETRO completed and marked; Item 9 post-mortem gate cleared; UX-08 confirmed on website waiting list; Launch Readiness item 1 updated; WHERE WE ARE updated to active state*
+*Changelog: v2.10 — CR-021 (macOS Version Coverage Standard) and CR-022 (Compatibility Testing Protocol) added as permanent hard rules + pre-launch gates; both added to Correction Register table and as full detail blocks*
+*Changelog: v2.9 — DR-002 clause A6 (Platform & OS Compatibility Claims) added; Gumroad Installation Guidance logged as locked copy asset (Marco Option B — final, Ferdz approved May 2026)*
+*Changelog: v2.8 — DR-002 (External Solution Validation Protocol) added as permanent Founder Directive; Validated External Tools log created with 4 initial entries (Canva Video, Gumroad, UTM, BrowserStack); BrowserStack native app testing walk-back formally logged per DR-002 B1*
+*Changelog: v2.7 — CR-023 (Large Asset Handoff Protocol) added as permanent standing rule; Approved Marketing Assets section created; EliteWrite Demo Video Teaser v1 logged (https://youtu.be/8mAVDFEuWl8); website alignment and demo video status updated to reflect CTA wired by website team*
+*Changelog: v2.6 — DR-001 (Founder Integrity Directive) added as supreme standing rule; DP-001 (Universal Design & Security Protocol) added covering all platforms; SEC-01–04 added to Security Register (Item 9 queue); CR-018/SEC-04 cross-reference confirmed; CR-018–020 added; UX-09/UX-10 flagged; retroactive Phase 4 post-mortem completed*

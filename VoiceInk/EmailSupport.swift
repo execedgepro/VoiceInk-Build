@@ -3,8 +3,8 @@ import SwiftUI
 import AppKit
 
 struct EmailSupport {
-    private static let supportEmailAddress = "support@tryvoiceink.com"
-    private static let supportEmailSubject = "VoiceInk Support Request"
+    private static let supportEmailAddress = "support@execedgepro.com"
+    private static let supportEmailSubject = "EliteWrite Support Request"
 
     static func generateSupportEmailBody() -> String {
         let systemInfo = SystemInfoService.shared.getSystemInfoString()
@@ -22,8 +22,6 @@ struct EmailSupport {
         - What actually happened instead?
 
 
-        ## 📋 COMMON ISSUES:
-        Check out our Common Issues page before sending an email: https://tryvoiceink.com/common-issues
         ------------------------
 
         System Information:

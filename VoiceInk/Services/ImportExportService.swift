@@ -210,8 +210,8 @@ class ImportExportService {
 
             let savePanel = NSSavePanel()
             savePanel.allowedContentTypes = [UTType.json]
-            savePanel.nameFieldStringValue = "VoiceInk_Settings_Backup.json"
-            savePanel.title = "Export VoiceInk Settings"
+            savePanel.nameFieldStringValue = "EliteWrite_Settings_Backup.json"
+            savePanel.title = "Export EliteWrite Settings"
             savePanel.message = "Choose a location to save your settings."
 
             DispatchQueue.main.async {
@@ -240,7 +240,7 @@ class ImportExportService {
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
-        openPanel.title = "Import VoiceInk Settings"
+        openPanel.title = "Import EliteWrite Settings"
         openPanel.message = "Choose a settings backup, then select what you want to import."
 
         guard openPanel.runModal() == .OK else {
@@ -347,7 +347,7 @@ class ImportExportService {
             if needsAPIKeyReminder {
                 informativeText += "\n\nIMPORTANT: If you were using AI enhancement features, please make sure to reconfigure your API keys in the Enhancement section."
             }
-            informativeText += "\n\nIt is recommended to restart VoiceInk for all changes to take full effect."
+            informativeText += "\n\nIt is recommended to restart EliteWrite for all changes to take full effect."
             alert.informativeText = informativeText
             alert.alertStyle = .informational
             alert.addButton(withTitle: "OK")

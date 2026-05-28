@@ -37,8 +37,8 @@ struct LicenseManagementView: View {
                         .font(.system(size: 32))
                         .foregroundStyle(.blue)
                     
-                    HStack(alignment: .lastTextBaseline, spacing: 8) { 
-                        Text(licenseViewModel.licenseState == .licensed ? "VoiceInk Pro" : "Upgrade to Pro")
+                    HStack(alignment: .lastTextBaseline, spacing: 8) {
+                        Text("EliteWrite")
                             .font(.system(size: 32, weight: .bold))
                         
                         Text("v\(appVersion)")
@@ -49,7 +49,7 @@ struct LicenseManagementView: View {
                 }
                 
                 Text(licenseViewModel.licenseState == .licensed ?
-                     "Thank you for supporting VoiceInk" :
+                     "Thank you for supporting EliteWrite" :
                      "Transcribe what you say to text instantly with AI")
                     .font(.title3)
                     .foregroundStyle(.secondary)
@@ -58,45 +58,9 @@ struct LicenseManagementView: View {
                 if case .licensed = licenseViewModel.licenseState {
                     HStack(spacing: 40) {
                         Button {
-                            if let url = URL(string: "https://github.com/Beingpax/VoiceInk/releases") {
-                                NSWorkspace.shared.open(url)
-                            }
-                        } label: {
-                            featureItem(icon: "list.bullet.clipboard.fill", title: "Changelog", color: .blue)
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Button {
-                            if let url = URL(string: "https://discord.gg/xryDy57nYD") {
-                                NSWorkspace.shared.open(url)
-                            }
-                        } label: {
-                            featureItem(icon: "bubble.left.and.bubble.right.fill", title: "Discord", color: .purple)
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Button {
                             EmailSupport.openSupportEmail()
                         } label: {
                             featureItem(icon: "envelope.fill", title: "Email Support", color: .orange)
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Button {
-                            if let url = URL(string: "https://tryvoiceink.com/docs") {
-                                NSWorkspace.shared.open(url)
-                            }
-                        } label: {
-                            featureItem(icon: "book.fill", title: "Docs", color: .indigo)
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Button {
-                            if let url = URL(string: "https://buymeacoffee.com/beingpax") {
-                                NSWorkspace.shared.open(url)
-                            }
-                        } label: {
-                            animatedTipJarItem()
                         }
                         .buttonStyle(.plain)
                     }
@@ -124,18 +88,17 @@ struct LicenseManagementView: View {
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(12)
                 
-                // Purchase Button 
+                // Purchase Button
                 Button(action: {
-                    if let url = URL(string: "https://tryvoiceink.com/buy") {
-                        NSWorkspace.shared.open(url)
-                    }
+                    // Purchase link to be configured when execedgepro.com is ready
                 }) {
-                    Text("Upgrade to VoiceInk Pro")
+                    Text("Activate EliteWrite License")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
                 }
                 .buttonStyle(.borderedProminent)
+                .disabled(true)
                 
                 // Features Grid
                 HStack(spacing: 40) {
@@ -193,20 +156,10 @@ struct LicenseManagementView: View {
                     .font(.headline)
 
                 HStack(spacing: 12) {
-                    Text("Manage your license and device activations")
+                    Text("Enter your license key above to activate EliteWrite.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
-
-                    Button(action: {
-                        if let url = URL(string: "https://polar.sh/beingpax/portal/request") {
-                            NSWorkspace.shared.open(url)
-                        }
-                    }) {
-                        Text("License Management Portal")
-                            .frame(width: 180)
-                    }
-                    .buttonStyle(.borderedProminent)
                 }
             }
             .padding(32)
@@ -241,7 +194,7 @@ struct LicenseManagementView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 } else {
-                    Text("You can use VoiceInk Pro on all your personal devices")
+                    Text("You can use EliteWrite on all your personal devices")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
@@ -282,28 +235,6 @@ struct LicenseManagementView: View {
         }
     }
     
-    @State private var heartPulse = false
-    
-    private func animatedTipJarItem() -> some View {
-        HStack(spacing: 8) {
-            Image(systemName: "heart.fill")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(.pink)
-                .scaleEffect(heartPulse ? 1.3 : 1.0)
-                .animation(
-                    Animation.easeInOut(duration: 1.2)
-                        .repeatForever(autoreverses: true),
-                    value: heartPulse
-                )
-                .onAppear {
-                    heartPulse = true
-                }
-            
-            Text("Tip Jar")
-                .font(.system(size: 13, weight: .medium))
-                .foregroundStyle(.primary)
-        }
-    }
 }
 
 

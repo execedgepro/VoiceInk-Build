@@ -422,6 +422,8 @@ not "who made a mistake?"
 | UX-09 | Focus Score 0/100 displayed on first use — brand and trust risk | High | ✅ Fixed Session 16 — Focus Score floor of 10 enforced at display layer. Short session confirmed 10, 4-min session confirmed 26. CR-019 discharged. |
 | UX-10 | Help & Resources section has only 1 item — no documentation or site link | Medium | ✅ Fixed Session 16 — 3 Help & Resources items live. Known gap: "EliteWrite on the Web" link returns 404 until Item 10 (website page) is complete. CR-020 discharged with known gap noted. |
 | UX-11 | execedgepro/VoiceInk-Build README.md showing VoiceInk branding — wrong brand on public repo | Medium | ✅ Fixed Session 15/16 — GitHub README fully rebranded to EliteWrite. Live at github.com/execedgepro/VoiceInk-Build. CR-010 verified clean. |
+| UX-12 | License view missing GPL attribution + incorrect multi-device copy | Medium | ✅ Fixed — GPL dual copyright notice added at bottom of License view; "all your personal devices" → "your Mac." Tester Rin Stage 5 confirmed. |
+| UX-13 | "Multiple Devices" tile in purchase card contradicts macOS-only positioning | Medium | ✅ Fixed — tile removed; 3 tiles remain: Priority Support, Lifetime Access, Free Updates. Tester Rin Stage 5 confirmed. |
 
 **UX-08 scope (Petra pre-cleared — text only, no staged build required):**
 - About screen: "EliteWrite — Early Access Build v0.4.5 · by ExecEdgePro"

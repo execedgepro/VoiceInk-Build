@@ -20,6 +20,13 @@ struct LicenseManagementView: View {
                     }
                 }
                 .padding(32)
+
+                Text("Original work © Beingpax (VoiceInk). Modifications © 2026 ExecEdgePro. Licensed under GPL v3.0.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, 24)
             }
         }
         .background(Color(NSColor.controlBackgroundColor))
@@ -194,7 +201,7 @@ struct LicenseManagementView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 } else {
-                    Text("You can use EliteWrite on all your personal devices")
+                    Text("You can use EliteWrite on your Mac.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }

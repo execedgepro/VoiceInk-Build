@@ -419,9 +419,9 @@ not "who made a mistake?"
 | UX-06 | "deep-work block" phrase in Focus Session subtitle | High | ✅ Fixed v0.4.4 |
 | UX-07 | "Want to go deeper?" CTA — CR-010 violation | Medium | ✅ Fixed v0.4.5 |
 | UX-08 | Identity tag "EliteWrite — Early Access Build v0.4.5" missing | Medium | ✅ Fixed v0.4.6 |
-| UX-09 | Focus Score 0/100 displayed on first use — brand and trust risk | High | ✅ Fixed Session 16 — display floor of 10 applied in all 3 view files; SwiftData raw score preserved |
-| UX-10 | Help & Resources section has only 1 item — no documentation or site link | Medium | ✅ Fixed Session 16 — "EliteWrite on the Web" + "Documentation & Open Source" added to HelpAndResourcesSection.swift |
-| UX-11 | execedgepro/VoiceInk-Build README.md showing VoiceInk branding — wrong brand on public repo | Medium | ✅ Fixed Session 15 — full EliteWrite rebrand, EFOS bridge, CR-021 requirements, GPL attribution |
+| UX-09 | Focus Score 0/100 displayed on first use — brand and trust risk | High | ✅ Fixed Session 16 — Focus Score floor of 10 enforced at display layer. Short session confirmed 10, 4-min session confirmed 26. CR-019 discharged. |
+| UX-10 | Help & Resources section has only 1 item — no documentation or site link | Medium | ✅ Fixed Session 16 — 3 Help & Resources items live. Known gap: "EliteWrite on the Web" link returns 404 until Item 10 (website page) is complete. CR-020 discharged with known gap noted. |
+| UX-11 | execedgepro/VoiceInk-Build README.md showing VoiceInk branding — wrong brand on public repo | Medium | ✅ Fixed Session 15/16 — GitHub README fully rebranded to EliteWrite. Live at github.com/execedgepro/VoiceInk-Build. CR-010 verified clean. |
 
 **UX-08 scope (Petra pre-cleared — text only, no staged build required):**
 - About screen: "EliteWrite — Early Access Build v0.4.5 · by ExecEdgePro"
@@ -776,7 +776,7 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 
 ## 🔢 RELEASE VERSION
 
-Current: **v0.4.6-ux08-complete** (BUG-23 cleared; Item 12 fixed; DN-02 + CR-017 added; UX-08 identity tag implemented)
+Current: **v0.4.7-ux09-ux10-complete** (UX-09 Focus Score floor; UX-10 Help & Resources 3 items; CR-019 + CR-020 discharged; UX-11 GitHub README rebranded)
 
 | Version | Date | Summary |
 |---------|------|---------|
@@ -791,21 +791,21 @@ Current: **v0.4.6-ux08-complete** (BUG-23 cleared; Item 12 fixed; DN-02 + CR-017
 | v0.4.4-ux-polish | 2026-05-22 | BUG-19 fixed; UX-05/06 text pass; CR-010 added |
 | v0.4.5-item8-complete | 2026-05-22 | Item 8 complete — Unified Session History View |
 | v0.4.6-ux08-complete | 2026-05-26 | BUG-23 cleared; Item 12 affiliate card removed; DN-02 + CR-017 added; UX-08 identity tag implemented |
+| v0.4.7-ux09-ux10-complete | 2026-05-29 | UX-09 Focus Score floor of 10 (CR-019 discharged); UX-10 Help & Resources 3 items (CR-020 discharged, 404 gap noted); UX-11 GitHub README rebranded |
 
 ---
 
 ## 📌 WHERE WE ARE RIGHT NOW
 
-### Phase 4 — ⏸️ PAUSED — 2026-05-28
-**Last active:** Session 14 — BUG-24 resolved.
-**App state:** Stable. v0.4.6-ux08-complete. All active bugs resolved. All post-mortems current. No outstanding gates.
+### Phase 4 — ⏸️ PAUSED — 2026-05-29
+**Last active:** Session 16 — UX-09, UX-10, UX-11 complete. Session 16 closed.
+**App state:** Stable. v0.4.7-ux09-ux10-complete. All active bugs resolved. All post-mortems current. CR-019 + CR-020 discharged.
 **Commercial model:** Locked. Hybrid pricing approved. Website aligned. Demo video wired.
 
-**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 15.
+**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 17.
 
-**First decision on resume — choose one track:**
-- **Track A (no Apple account needed):** CR-019 (Focus Score zero floor) + CR-020 (Help & Resources minimum standard)
-- **Track B (Apple account required):** Item 9 — Apple Developer Program enrollment ($99/yr) → Hardened Runtime → notarization
+**Track A — ✅ COMPLETE (Session 16):** CR-019 (Focus Score floor confirmed) + CR-020 (Help & Resources 3 items live, 404 gap noted — resolves at Item 10).
+**Track B — 🔲 PENDING (requires Apple account):** Item 9 — Apple Developer Program enrollment ($99/yr) → Hardened Runtime → notarization.
 
 ---
 
@@ -852,8 +852,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.14 | VoiceInk → EliteWrite macOS Build Project*
+*CLAUDE.md v2.15 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-05-29 | Founder: Ferdz*
+*Changelog: v2.15 — UX-09 (Focus Score floor) and UX-10 (Help & Resources 3 items) complete; CR-019 and CR-020 discharged; known gap logged (404 resolves at Item 10); UX-11 confirmed clean; app version bumped to v0.4.7-ux09-ux10-complete; Session 16 closed*
 *Changelog: v2.14 — Golden Build v0.4.6-golden created (Session 15); CR-026 (Inherited Credential Awareness) added; Golden Build Log section added*
 *Changelog: v2.13 — BUG-24 closure verified by Ferdz (Step 6 all 4 checks passed — 57 sessions, clean UI confirmed)*
 *Changelog: v2.12 — BUG-24 logged (stale Debug build via .local-build); CR-017 amended with 4-step physical cleanup procedure including savedState deletion, NSQuitAlwaysKeepsWindows reset, and Xcode artifact audit; Session 14 fixes confirmed*

@@ -112,7 +112,6 @@ struct LicenseManagementView: View {
                     featureItem(icon: "bubble.left.and.bubble.right.fill", title: "Priority Support", color: .purple)
                     featureItem(icon: "infinity.circle.fill", title: "Lifetime Access", color: .blue)
                     featureItem(icon: "arrow.up.circle.fill", title: "Free Updates", color: .green)
-                    featureItem(icon: "macbook.and.iphone", title: "Multiple Devices", color: .orange)
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
             }

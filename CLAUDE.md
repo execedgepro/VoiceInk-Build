@@ -452,6 +452,7 @@ Officer Sela to review About screen copy for RA 7394 compliance before build.
 | CR-021 | macOS VERSION COVERAGE STANDARD — Minimum: Ventura (13) ✅ required, Sonoma (14) ✅ required, Sequoia (15) ✅ primary target; Monterey (12) NOT supported. Interim published statement applies until Tester Rin signs off on UTM + Intel testing. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: all 3 versions confirmed before public release. Future platforms must define equivalent before first build. | High | Pre-launch gate |
 | CR-022 | COMPATIBILITY TESTING PROTOCOL — Approved methods in order: (1) Real M1 device — Sequoia ✅ confirmed; (2) UTM VMs (free) — Ventura/Sonoma, 9/10 confidence; (3) BrowserStack — website ONLY, not native app (DR-002 B1 walk-back); (4) Community testers — future, activate at first buyers. Pre-launch gate: UTM Ventura + Sonoma + Intel tests + Rin sign-off before full statement published. Cross-reference: CR-021, DR-002 A6. | High | Pre-launch gate |
 | CR-023 | LARGE ASSET HANDOFF PROTOCOL — No direct uploads over 5MB to project Files. Approved methods in order: (1) YouTube for video — upload to @execedgepro, set Unlisted for handoff, Public at launch; (2) Google Drive for documents/images/archives — "Anyone with link can view", no sign-in required; (3) GitHub releases for code/builds. All assets must be logged in CLAUDE.md under "Approved Marketing Assets." Post-mortems must verify URL validity and access levels. All future platform teams inherit this rule on day one. | High | Permanent |
+| CR-026 | INHERITED CREDENTIAL AWARENESS — When forking any open-source repository, the inherited commit history may contain credentials, API keys, tokens, or secrets from the original developer. MANDATORY before any public push: run GitHub push protection check or git-secrets scan to identify inherited credentials. These credentials belong to the original developer — not to ExecEdgePro — but must be identified before any public push per best practice. Inherited credentials already public in the upstream repo: use GitHub bypass mechanism. Credentials not yet public: scrub history with git filter-repo before pushing. This is not a security breach — it is standard fork hygiene. | High | Permanent |
 
 **CR-017 — Full physical cleanup procedure (mandatory before every `make local` AND after any stale build is found):**
 
@@ -807,6 +808,25 @@ Current: **v0.4.6-ux08-complete** (BUG-23 cleared; Item 12 fixed; DN-02 + CR-017
 
 ---
 
+## 🏅 GOLDEN BUILD LOG
+
+| Field | Value |
+|-------|-------|
+| Version | v0.4.6-golden |
+| Date | May 29, 2026 |
+| CLAUDE.md at freeze | v2.13 |
+| Git tag | v0.4.6-golden |
+| Git commit | 61835f2 |
+| Bundle archive | ~/Documents/EliteWrite-Golden-v0.4.6.app (83 MB) |
+| GitHub Release | https://github.com/execedgepro/VoiceInk-Build/releases/tag/v0.4.6-golden |
+| Status | ACTIVE — current golden build |
+| Proven stable | Full Mac shutdown + cold restart confirmed clean — May 29, 2026 |
+| Notes | All bugs BUG-17 to BUG-24 resolved. All UX fixes UX-01 to UX-08 applied. BUG-24 NSQuitAlwaysKeepsWindows fix proven under real shutdown conditions. Pre-notarization stable baseline. |
+
+**Recovery instructions:** `git checkout v0.4.6-golden` then `make local`
+
+---
+
 ## 🛡️ PHASE 4 QUALITY GATES — DUAL ENGINEER + STAGED BUILD
 
 ### 👩‍💻 Eng. Petra — Challenger Engineer
@@ -831,8 +851,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.13 | VoiceInk → EliteWrite macOS Build Project*
-*Initialized: 2026-05-18 | Updated: 2026-05-28 | Founder: Ferdz*
+*CLAUDE.md v2.14 | VoiceInk → EliteWrite macOS Build Project*
+*Initialized: 2026-05-18 | Updated: 2026-05-29 | Founder: Ferdz*
+*Changelog: v2.14 — Golden Build v0.4.6-golden created (Session 15); CR-026 (Inherited Credential Awareness) added; Golden Build Log section added*
 *Changelog: v2.13 — BUG-24 closure verified by Ferdz (Step 6 all 4 checks passed — 57 sessions, clean UI confirmed)*
 *Changelog: v2.12 — BUG-24 logged (stale Debug build via .local-build); CR-017 amended with 4-step physical cleanup procedure including savedState deletion, NSQuitAlwaysKeepsWindows reset, and Xcode artifact audit; Session 14 fixes confirmed*
 *Changelog: v2.11 — Phase 4 resumed (Session 13); PM-S12 and PM-RETRO completed and marked; Item 9 post-mortem gate cleared; UX-08 confirmed on website waiting list; Launch Readiness item 1 updated; WHERE WE ARE updated to active state*

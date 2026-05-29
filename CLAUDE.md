@@ -755,10 +755,21 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 | PM-RETRO | Retroactive post-mortem audit across all phases | ✅ Complete — Session 13 | No new CRs required; framework confirmed mature; cleared for Item 9 |
 | 9 | Apple code signing + notarization | 🔲 Pending | $99/yr Apple Developer Program — post-mortem gate ✅ cleared; blocked on Ferdz enrollment |
 | 10 | execedgepro.com/elitewrite product page | ✅ Live (website project) | Updates needed at launch |
-| 11 | License Management — EliteWrite branding | 🔲 Pending | EW-branded license system |
+| 11 | License Management — replace PolarService with Gumroad verification | 🔲 Pending — pre-paid-launch gate | Replace `PolarService` → Gumroad API using Product ID tekkCjXZ6ToGQHYbjirkXA==. LOCAL_BUILD flag bypasses this for early access. Must be done before $29 tier activates. |
 | 12 | Affiliate Program card removed — will restore when execedgepro.com/affiliate is live | ✅ Fixed v0.4.6 | Card removed from DashboardPromotionsSection.swift |
 | FB-001 | Executive Summary Export | 🔲 Backlog | Needs API budget decision from Ferdz |
 | FB-002 | Attention Residue Warning | 🔲 Backlog | Needs Analyst Drex R&D proposal |
+
+### Gumroad Early Access Distribution Gates — Session 16
+| Gate | Item | Status | Notes |
+|------|------|--------|-------|
+| 1 | CREDITS.md — GPL v3.0 attribution | ✅ Cleared Session 16 | CREDITS.md live on GitHub; Beingpax attribution complete |
+| 2 | GPL attribution notice in About/License view | ✅ Cleared Session 16 | Dual copyright footer added: "Original work © Beingpax (VoiceInk). Modifications © 2026 ExecEdgePro. Licensed under GPL v3.0." |
+| 3 | Device copy corrected | ✅ Cleared Session 16 | "all your personal devices" → "your Mac." Multiple Devices tile removed. Marco approved. |
+| 4 | Credential scan — no live keys in source | ✅ Cleared Session 16 | gsk_, polar_, apiKey, secret, sk_, pk_ all clean. Keychain architecture confirmed. |
+| 5 | Privacy policy | ⚠️ Conditional — live check at go-live | HTML file confirmed. Gate clears when execedgepro.com/privacy is live. Officer Sela to green-light before Gumroad link shared publicly. |
+| 6 | Gumroad product page | ✅ Cleared Session 16 | All 8 sub-items cleared. Product ID: tekkCjXZ6ToGQHYbjirkXA==. URL: execedgepro.gumroad.com/l/elitewrite-early-access. Test purchase confirmed — download + license key delivered. |
+| 9 | Security incident — CR-026 / Beingpax credentials | ✅ Cleared Session 16 | SECURITY_INCIDENT-20260529. Beingpax notified via GitHub Issue #749. CR-026 closed. Inherited credentials confirmed in git history only, not in source. |
 
 **Phase 5 (post-launch):**
 - Windows version (must-have)
@@ -788,7 +799,7 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 
 ## 🔢 RELEASE VERSION
 
-Current: **v0.4.7-ux09-ux10-complete** (UX-09 Focus Score floor; UX-10 Help & Resources 3 items; CR-019 + CR-020 discharged; UX-11 GitHub README rebranded)
+Current: **v0.4.7-session16-complete** (UX-09/10/11 + UX-12/13; CREDITS.md; GPL notices; credential scan clean; Gumroad early access live; all 9 distribution gates addressed)
 
 | Version | Date | Summary |
 |---------|------|---------|
@@ -804,20 +815,35 @@ Current: **v0.4.7-ux09-ux10-complete** (UX-09 Focus Score floor; UX-10 Help & Re
 | v0.4.5-item8-complete | 2026-05-22 | Item 8 complete — Unified Session History View |
 | v0.4.6-ux08-complete | 2026-05-26 | BUG-23 cleared; Item 12 affiliate card removed; DN-02 + CR-017 added; UX-08 identity tag implemented |
 | v0.4.7-ux09-ux10-complete | 2026-05-29 | UX-09 Focus Score floor of 10 (CR-019 discharged); UX-10 Help & Resources 3 items (CR-020 discharged, 404 gap noted); UX-11 GitHub README rebranded |
+| v0.4.7-session16-complete | 2026-05-29 | Session 16 comprehensive close — UX-12/13; CREDITS.md; GPL notices; credential scan; Gumroad early access live (test purchase confirmed); 9 distribution gates addressed; SECURITY_INCIDENT-20260529 closed |
 
 ---
 
 ## 📌 WHERE WE ARE RIGHT NOW
 
 ### Phase 4 — ⏸️ PAUSED — 2026-05-29
-**Last active:** Session 16 — UX-09, UX-10, UX-11 complete. Session 16 closed.
-**App state:** Stable. v0.4.7-ux09-ux10-complete. All active bugs resolved. All post-mortems current. CR-019 + CR-020 discharged.
-**Commercial model:** Locked. Hybrid pricing approved. Website aligned. Demo video wired.
+**Last active:** Session 16 — comprehensive session close. All 9 Gumroad distribution gates addressed.
+**App state:** Stable. v0.4.7-session16-complete. All active bugs resolved. All post-mortems current.
+**Commercial model:** Locked. Gumroad early access page live. Test purchase confirmed.
 
 **Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 17.
 
-**Track A — ✅ COMPLETE (Session 16):** CR-019 (Focus Score floor confirmed) + CR-020 (Help & Resources 3 items live, 404 gap noted — resolves at Item 10).
-**Track B — 🔲 PENDING (requires Apple account):** Item 9 — Apple Developer Program enrollment ($99/yr) → Hardened Runtime → notarization.
+**Session 16 completed:**
+- UX-09 ✅ Focus Score floor = 10 at display layer. CR-019 discharged.
+- UX-10 ✅ Help & Resources 3 items live. CR-020 discharged. Known gap: 404 resolves at Item 10.
+- UX-11 ✅ GitHub README rebranded to EliteWrite. CR-010 verified clean.
+- UX-12 ✅ GPL copyright notice + device copy corrected in License view.
+- UX-13 ✅ Multiple Devices tile removed from purchase card. Marco approved.
+- CREDITS.md ✅ GPL v3.0 attribution complete. Gates 1 + 2 cleared.
+- Credential scan ✅ gsk_, polar_, apiKey all clean. Keychain architecture confirmed. Gate 4 cleared.
+- Privacy policy ✅ HTML confirmed. Gate 5 conditional — live check at go-live.
+- SECURITY_INCIDENT-20260529 ✅ Beingpax notified via GitHub Issue #749. CR-026 closed. Gate 9 cleared.
+- Gumroad product page ✅ All 8 Gate 6 items cleared. Test purchase confirmed — download + key delivered.
+
+**Pending — opens Session 17:**
+- Gate 5 final: confirm execedgepro.com/privacy is live → Officer Sela green light → share Gumroad link publicly
+- Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch
+- Track B: Item 9 — Apple Developer Program ($99/yr) → Hardened Runtime → notarization
 
 ---
 
@@ -866,7 +892,7 @@ Stage 6 — Session close + CR-009 check
 
 *CLAUDE.md v2.15 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-05-29 | Founder: Ferdz*
-*Changelog: v2.15 — UX-09 (Focus Score floor) and UX-10 (Help & Resources 3 items) complete; CR-019 and CR-020 discharged; known gap logged (404 resolves at Item 10); UX-11 confirmed clean; app version bumped to v0.4.7-ux09-ux10-complete; Session 16 closed*
+*Changelog: v2.15 — Session 16 comprehensive close: UX-09/10/11/12/13 complete; CR-019 + CR-020 discharged; CREDITS.md + GPL notices added; credential scan clean (Gate 4); privacy policy conditional (Gate 5); Gumroad early access live + test purchase confirmed (Gate 6); SECURITY_INCIDENT-20260529 closed (Gate 9); CR-026 closed; Gumroad distribution gates table added; Item 11 updated with Gumroad verification gap; app version v0.4.7-session16-complete*
 *Changelog: v2.14 — Golden Build v0.4.6-golden created (Session 15); CR-026 (Inherited Credential Awareness) added; Golden Build Log section added*
 *Changelog: v2.13 — BUG-24 closure verified by Ferdz (Step 6 all 4 checks passed — 57 sessions, clean UI confirmed)*
 *Changelog: v2.12 — BUG-24 logged (stale Debug build via .local-build); CR-017 amended with 4-step physical cleanup procedure including savedState deletion, NSQuitAlwaysKeepsWindows reset, and Xcode artifact audit; Session 14 fixes confirmed*

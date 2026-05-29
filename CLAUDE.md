@@ -421,6 +421,7 @@ not "who made a mistake?"
 | UX-08 | Identity tag "EliteWrite — Early Access Build v0.4.5" missing | Medium | ✅ Fixed v0.4.6 |
 | UX-09 | Focus Score 0/100 displayed on first use — brand and trust risk | High | 🔲 Queued — implement floor of 10 (CR-019) |
 | UX-10 | Help & Resources section has only 1 item — no documentation or site link | Medium | 🔲 Queued — add execedgepro.com + docs link (CR-020) |
+| UX-11 | execedgepro/VoiceInk-Build README.md showing VoiceInk branding — wrong brand on public repo | Medium | ✅ Fixed Session 15 — full EliteWrite rebrand, EFOS bridge, CR-021 requirements, GPL attribution |
 
 **UX-08 scope (Petra pre-cleared — text only, no staged build required):**
 - About screen: "EliteWrite — Early Access Build v0.4.5 · by ExecEdgePro"

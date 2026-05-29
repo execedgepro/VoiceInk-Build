@@ -13,6 +13,8 @@ struct FocusSessionDetailView: View {
     private let brandBlue   = Color(red: 20/255.0,  green: 121/255.0, blue: 255/255.0)
     private let brandOrange = Color(red: 243/255.0, green: 141/255.0, blue: 1/255.0)
 
+    private var displayScore: Int { max(10, session.focusScore) }
+
     private var durationScore: Int {
         Int((min(focusedTime / max(targetDuration, 1), 1.0) * 50.0).rounded())
     }
@@ -74,7 +76,7 @@ struct FocusSessionDetailView: View {
 
     private var scoreSection: some View {
         VStack(spacing: 6) {
-            Text("\(session.focusScore)")
+            Text("\(displayScore)")
                 .font(.system(size: 64, weight: .bold).monospacedDigit())
                 .foregroundColor(brandOrange)
             Text("FOCUS SCORE")

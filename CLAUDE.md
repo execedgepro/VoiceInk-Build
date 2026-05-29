@@ -419,8 +419,8 @@ not "who made a mistake?"
 | UX-06 | "deep-work block" phrase in Focus Session subtitle | High | ✅ Fixed v0.4.4 |
 | UX-07 | "Want to go deeper?" CTA — CR-010 violation | Medium | ✅ Fixed v0.4.5 |
 | UX-08 | Identity tag "EliteWrite — Early Access Build v0.4.5" missing | Medium | ✅ Fixed v0.4.6 |
-| UX-09 | Focus Score 0/100 displayed on first use — brand and trust risk | High | 🔲 Queued — implement floor of 10 (CR-019) |
-| UX-10 | Help & Resources section has only 1 item — no documentation or site link | Medium | 🔲 Queued — add execedgepro.com + docs link (CR-020) |
+| UX-09 | Focus Score 0/100 displayed on first use — brand and trust risk | High | ✅ Fixed Session 16 — display floor of 10 applied in all 3 view files; SwiftData raw score preserved |
+| UX-10 | Help & Resources section has only 1 item — no documentation or site link | Medium | ✅ Fixed Session 16 — "EliteWrite on the Web" + "Documentation & Open Source" added to HelpAndResourcesSection.swift |
 | UX-11 | execedgepro/VoiceInk-Build README.md showing VoiceInk branding — wrong brand on public repo | Medium | ✅ Fixed Session 15 — full EliteWrite rebrand, EFOS bridge, CR-021 requirements, GPL attribution |
 
 **UX-08 scope (Petra pre-cleared — text only, no staged build required):**

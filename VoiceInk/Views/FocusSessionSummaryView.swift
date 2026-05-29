@@ -11,6 +11,8 @@ struct FocusSessionSummaryView: View {
     private let brandBlack  = Color(red: 10/255.0,  green: 15/255.0,  blue: 26/255.0)
     private let brandGold   = Color(red: 255/255.0, green: 192/255.0, blue: 0/255.0)
 
+    private var displayScore: Int { max(10, session.focusScore) }
+
     var body: some View {
         VStack(spacing: 0) {
             headerView
@@ -55,13 +57,13 @@ struct FocusSessionSummaryView: View {
                 Circle()
                     .stroke(Color.white.opacity(0.12), lineWidth: 10)
                 Circle()
-                    .trim(from: 0, to: CGFloat(session.focusScore) / 100.0)
+                    .trim(from: 0, to: CGFloat(displayScore) / 100.0)
                     .stroke(brandOrange,
                             style: StrokeStyle(lineWidth: 10, lineCap: .round))
                     .rotationEffect(.degrees(-90))
-                    .animation(.easeOut(duration: 0.8), value: session.focusScore)
+                    .animation(.easeOut(duration: 0.8), value: displayScore)
                 VStack(spacing: 2) {
-                    Text("\(session.focusScore)")
+                    Text("\(displayScore)")
                         .font(.system(size: 54, weight: .bold))
                         .foregroundColor(.white)
                     Text("/ 100")
@@ -81,7 +83,7 @@ struct FocusSessionSummaryView: View {
     // MARK: - Coaching Note
 
     private var coachingNoteView: some View {
-        Text(coachingNote(for: session.focusScore))
+        Text(coachingNote(for: displayScore))
             .font(.system(size: 15, weight: .medium))
             .foregroundColor(brandGold)
             .multilineTextAlignment(.center)

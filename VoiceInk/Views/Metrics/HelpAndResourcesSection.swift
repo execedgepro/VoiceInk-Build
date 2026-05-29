@@ -15,6 +15,16 @@ struct HelpAndResourcesSection: View {
                         EmailSupport.openSupportEmail()
                     }
                 )
+                resourceLink(
+                    icon: "globe",
+                    title: "EliteWrite on the Web",
+                    url: "https://execedgepro.com/elitewrite"
+                )
+                resourceLink(
+                    icon: "doc.text",
+                    title: "Documentation & Open Source",
+                    url: "https://github.com/execedgepro/VoiceInk-Build"
+                )
             }
         }
         .padding(18)

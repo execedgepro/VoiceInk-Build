@@ -628,6 +628,16 @@ No compatibility claim may be published without Tester Rin sign-off.
 **Distribution:** Direct download (Gumroad) first. App Store as Phase 5 supplement.
 **Platform roadmap:** Windows + iOS/Android = Phase 5 (must-have — announced at macOS launch as committed roadmap)
 
+### Gumroad Integration — Gate 6 Confirmed
+- **Gumroad Product ID:** tekkCjXZ6ToGQHYbjirkXA==
+- **Product URL:** https://execedgepro.gumroad.com/l/elitewrite-early-access
+- **License key system:** ON — unique key per download confirmed
+
+⚠️ **LICENSE VERIFICATION GAP — Item 11 pre-launch gate:**
+Current app (make local / LOCAL_BUILD flag) bypasses all license checks — `licenseState = .licensed` on launch. Safe for early access distribution.
+When LOCAL_BUILD is removed for paid launch, the in-app "Activate License" field calls `PolarService` → `api.polar.sh` using Beingpax's org ID (`6f3d781d-a630-4435-9dba-058486f2d936`). Gumroad keys will be rejected.
+**Required before paid launch (Item 11):** Replace `PolarService` with Gumroad license verification API (`https://api.gumroad.com/v2/licenses/verify`) using ExecEdgePro's product permalink. Kael to implement. Petra to review. Staged build protocol applies.
+
 ### Website Positioning (locked)
 - EliteWrite is NEVER positioned as standalone — always as EFOS companion
 - Bridge line: "Read the system. Use the tool. Live the transformation."

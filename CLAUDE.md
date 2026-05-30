@@ -273,7 +273,7 @@ EliteWrite.app running on M1 MacBook Air. App lives in /Applications.
 Run CR-006 five-step permissions fix before testing PTT or hotkeys.
 Permissions look green but are silently broken until re-granted.
 
-**macOS version:** Tahoe (macOS 26 beta) — flag compatibility issues.
+**macOS version:** Tahoe (macOS 26.5, BuildVersion 25F71) — flag compatibility issues.
 **Hardware:** Apple M1 chip — optimised for whisper.xcframework.
 
 ---
@@ -452,8 +452,8 @@ Officer Sela to review About screen copy for RA 7394 compliance before build.
 | CR-018 | POST-MORTEM EXECUTION — Post-mortems are not ceremonial. Every mandatory trigger (DR-001 B1) must produce a written post-mortem before the next session opens. Skipping is a protocol failure, not a time-saving measure. Root cause: BUG-17 through BUG-22 all skipped post-mortems. | High | Permanent |
 | CR-019 | FOCUS SCORE ZERO FLOOR — A Focus Score of 0/100 must never be shown to a user. Minimum displayed score: 10. New users who complete any session of any length receive a minimum score of 10 to prevent brand damage on first use. Implement before public launch. | High | Pre-launch |
 | CR-020 | HELP & RESOURCES MINIMUM STANDARD — The Help & Resources section must contain at minimum: (1) Feedback/Issues link, (2) execedgepro.com/elitewrite link, (3) a getting-started or documentation resource. Shipping with only 1 item is below the Platinum Standard. Implement before public launch. | Medium | Pre-launch |
-| CR-021 | macOS VERSION COVERAGE STANDARD — Minimum: Ventura (13) ✅ required, Sonoma (14) ✅ required, Sequoia (15) ✅ primary target; Monterey (12) NOT supported. Interim published statement applies until Tester Rin signs off on UTM + Intel testing. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: all 3 versions confirmed before public release. Future platforms must define equivalent before first build. | High | Pre-launch gate |
-| CR-022 | COMPATIBILITY TESTING PROTOCOL — Approved methods in order: (1) Real M1 device — Sequoia ✅ confirmed; (2) UTM VMs (free) — Ventura/Sonoma, 9/10 confidence; (3) BrowserStack — website ONLY, not native app (DR-002 B1 walk-back); (4) Community testers — future, activate at first buyers. Pre-launch gate: UTM Ventura + Sonoma + Intel tests + Rin sign-off before full statement published. Cross-reference: CR-021, DR-002 A6. | High | Pre-launch gate |
+| CR-021 | macOS VERSION COVERAGE STANDARD — Development + all Phase 4 testing confirmed on macOS Tahoe (26.5) — PRIMARY. Sequoia (15) previously assumed confirmed, now unverified — pending UTM test. Sonoma (14) and Ventura (13) pending UTM test. Monterey (12) NOT supported. Interim published statement applies until Tester Rin signs off on UTM + Intel testing. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: all 3 versions confirmed before public release. Future platforms must define equivalent before first build. | High | Pre-launch gate |
+| CR-022 | COMPATIBILITY TESTING PROTOCOL — Approved methods in order: (1) Real M1 device — Tahoe (26.5) ✅ confirmed; (2) UTM VMs (free) — Sequoia/Sonoma/Ventura, 9/10 confidence; (3) BrowserStack — website ONLY, not native app (DR-002 B1 walk-back); (4) Community testers — future, activate at first buyers. Pre-launch gate: UTM Sequoia + Sonoma + Ventura + Intel tests + Rin sign-off before full statement published. Cross-reference: CR-021, DR-002 A6. | High | Pre-launch gate |
 | CR-023 | LARGE ASSET HANDOFF PROTOCOL — No direct uploads over 5MB to project Files. Approved methods in order: (1) YouTube for video — upload to @execedgepro, set Unlisted for handoff, Public at launch; (2) Google Drive for documents/images/archives — "Anyone with link can view", no sign-in required; (3) GitHub releases for code/builds. All assets must be logged in CLAUDE.md under "Approved Marketing Assets." Post-mortems must verify URL validity and access levels. All future platform teams inherit this rule on day one. | High | Permanent |
 | CR-026 | INHERITED CREDENTIAL AWARENESS — When forking any open-source repository, the inherited commit history may contain credentials, API keys, tokens, or secrets from the original developer. MANDATORY before any public push: run GitHub push protection check or git-secrets scan to identify inherited credentials. These credentials belong to the original developer — not to ExecEdgePro — but must be identified before any public push per best practice. Inherited credentials already public in the upstream repo: use GitHub bypass mechanism. Credentials not yet public: scrub history with git filter-repo before pushing. This is not a security breach — it is standard fork hygiene. | High | Permanent |
 
@@ -522,29 +522,37 @@ Use the VoiceInk-Build GitHub repository. Tag releases with version number. Shar
 **Classification:** Hard Rule + Pre-Launch Gate | **Scope:** All EliteWrite macOS builds, release notes, all published statements | **Status:** PERMANENT
 **Authority:** Ferdz — cannot be changed without full Council session.
 
-**Minimum supported versions:**
-- macOS Sequoia (15.x) — REQUIRED: primary target
-- macOS Sonoma (14.x) — REQUIRED: full support
-- macOS Ventura (13.x) — REQUIRED: test before claiming support (SwiftData known limitations — BUG-17 family)
-- macOS Monterey (12.x) — NOT SUPPORTED: SwiftData and current framework requirements cannot be met
+**Development platform:**
+- macOS Tahoe (26.5 / BuildVersion 25F71) on Apple M1 — ✅ PRIMARY: all Phase 4 development and testing confirmed here
+
+**Minimum supported versions (for public release):**
+- macOS Sequoia (15.x) — 🔲 Pending UTM test — previously assumed confirmed, now unverified
+- macOS Sonoma (14.x) — 🔲 Pending UTM test — unchanged
+- macOS Ventura (13.x) — 🔲 Pending UTM test (SwiftData known limitations — BUG-17 family)
+- macOS Monterey (12.x) — ❌ NOT SUPPORTED: SwiftData and current framework requirements cannot be met
 
 **Current confirmed coverage (update when tests complete):**
-- macOS Sequoia (15.x) on Apple M1: ✅ Confirmed
+- macOS Tahoe (26.x) on Apple M1: ✅ PRIMARY — all Phase 4 development and testing confirmed
+- macOS Sequoia (15.x) on Apple M1: 🔲 Pending UTM test — previously assumed confirmed, now unverified
 - macOS Sonoma (14.x): 🔲 Pending UTM test
 - macOS Ventura (13.x): 🔲 Pending UTM test
 - Intel Mac: 🔲 Pending
 - Apple M2/M3: 🔲 Pending community tester
 
+**Platform note — Input Monitoring instability on Tahoe (26.x):**
+Input Monitoring permission sequence instability observed on Tahoe early release. Classified as known Tahoe platform behaviour — not an EliteWrite bug. Cross-reference: CR-008 (Tahoe beta platform instability pattern). CR-006 five-step permissions reset sequence is the mandatory mitigation.
+
 **Interim published statement (use until Tester Rin signs off on full testing):**
-*"Requires macOS Sonoma (14) or later. Optimised for macOS Sequoia (15). Apple Silicon (M1) tested and confirmed. M2, M3, and Intel Mac — testing in progress."*
+*"Developed and tested on macOS Tahoe (26.5). Requires macOS Sonoma (14) or later. Sequoia (15) and earlier versions — compatibility testing in progress via UTM."*
 
 **Full statement (publish only after Rin sign-off per CR-022):**
 *"Requires macOS Ventura (13) or later. Optimised for macOS Sonoma (14) and Sequoia (15). Apple Silicon (M1/M2/M3) and Intel Mac supported."*
 
 **Mandatory pre-release checklist (Tester Rin):**
-- [ ] Tested on macOS Sequoia (15.x)
-- [ ] Tested on macOS Sonoma (14.x)
-- [ ] Tested on macOS Ventura (13.x)
+- [x] Tested on macOS Tahoe (26.x) — ✅ PRIMARY confirmed (all Phase 4)
+- [ ] Tested on macOS Sequoia (15.x) via UTM
+- [ ] Tested on macOS Sonoma (14.x) via UTM
+- [ ] Tested on macOS Ventura (13.x) via UTM
 - [ ] macOS Monterey (12.x) limitations documented
 - [ ] Minimum version stated clearly on: execedgepro.com/elitewrite download page, Gumroad product description, App About screen
 
@@ -559,17 +567,17 @@ Use the VoiceInk-Build GitHub repository. Tag releases with version number. Shar
 ### CR-022 — Compatibility Testing Protocol
 **Classification:** Hard Rule + Pre-Launch Gate | **Scope:** All EliteWrite releases, all platforms | **Status:** PERMANENT
 
-**Problem this solves:** EliteWrite is developed on a single device — M1 MacBook Air running macOS Sequoia. No other hardware or OS versions are available to the founder directly. CR-022 defines approved methods for testing compatibility beyond the development device.
+**Problem this solves:** EliteWrite is developed on a single device — M1 MacBook Air running macOS Tahoe (26.5). No other hardware or OS versions are available to the founder directly. CR-022 defines approved methods for testing compatibility beyond the development device.
 
 **Testing methods (in order of preference):**
 
 **Method 1 — Real device (Ferdz's M1 MacBook Air)**
-Covers: macOS Sequoia + Apple M1. Confirmed ✅. Used for all primary development testing.
+Covers: macOS Tahoe (26.5) + Apple M1. Confirmed ✅. Used for all Phase 4 development and testing.
 
 **Method 2 — UTM Virtual Machines (free)**
-Install UTM from mac.getutm.app on M1 Mac. Download macOS IPSW files from Apple. Run EliteWrite inside Ventura and Sonoma VMs.
+Install UTM from mac.getutm.app on M1 Mac. Download macOS IPSW files from Apple. Run EliteWrite inside Sequoia, Sonoma, and Ventura VMs.
 Covers: macOS version compatibility testing. Cannot test: Intel x86 architecture behaviour.
-Approved for: Ventura and Sonoma version testing. Confidence: 9/10.
+Approved for: Sequoia, Sonoma, and Ventura version testing. Confidence: 9/10.
 
 **Method 3 — BrowserStack (~$29/month)**
 APPROVED FOR: Website cross-browser testing ONLY.
@@ -581,8 +589,9 @@ Target: 1 tester each for macOS Ventura real device, Intel Mac, Apple M2/M3.
 Tester Rin manages checklist and sign-off. Status: Not yet available — activate when first buyers exist.
 
 **Pre-launch gate (minimum before publishing full compatibility statement):**
-- UTM Ventura test completed + Rin sign-off
+- UTM Sequoia test completed + Rin sign-off
 - UTM Sonoma test completed + Rin sign-off
+- UTM Ventura test completed + Rin sign-off
 - Intel Mac test completed (Method 3 or 4) + Rin sign-off
 
 No compatibility claim may be published without Tester Rin sign-off.
@@ -890,8 +899,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.15 | VoiceInk → EliteWrite macOS Build Project*
-*Initialized: 2026-05-18 | Updated: 2026-05-29 | Founder: Ferdz*
+*CLAUDE.md v2.16 | VoiceInk → EliteWrite macOS Build Project*
+*Initialized: 2026-05-18 | Updated: 2026-05-30 | Founder: Ferdz*
+*Changelog: v2.16 — CR-021 corrected: development machine confirmed as macOS Tahoe (26.5 / BuildVersion 25F71) — all Phase 4 testing on Tahoe; Sequoia (15.x) status corrected from "confirmed" to pending UTM test; Tahoe added as PRIMARY to coverage matrix; Input Monitoring instability on Tahoe logged as known platform behaviour (cross-reference CR-008); interim published statement updated to Tahoe-accurate version; CR-022 Method 1 and problem statement updated to reflect Tahoe; Method 2 + pre-launch gate expanded to include Sequoia UTM test; BUILD CONTEXT macOS version updated to 26.5 / 25F71*
 *Changelog: v2.15 — Session 16 comprehensive close: UX-09/10/11/12/13 complete; CR-019 + CR-020 discharged; CREDITS.md + GPL notices added; credential scan clean (Gate 4); privacy policy conditional (Gate 5); Gumroad early access live + test purchase confirmed (Gate 6); SECURITY_INCIDENT-20260529 closed (Gate 9); CR-026 closed; Gumroad distribution gates table added; Item 11 updated with Gumroad verification gap; app version v0.4.7-session16-complete*
 *Changelog: v2.14 — Golden Build v0.4.6-golden created (Session 15); CR-026 (Inherited Credential Awareness) added; Golden Build Log section added*
 *Changelog: v2.13 — BUG-24 closure verified by Ferdz (Step 6 all 4 checks passed — 57 sessions, clean UI confirmed)*

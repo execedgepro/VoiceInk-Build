@@ -394,16 +394,8 @@ not "who made a mistake?"
 
 ## 🐛 BUG LOG (maintained by Tester Rin)
 
-| # | Description | Severity | Status | Fixed in |
-|---|-------------|----------|--------|----------|
-| BUG-17 | SwiftData multi-store silent routing failure on Tahoe beta | Critical | ✅ Fixed | v0.4.1 |
-| BUG-18 | Focus Session stutter in NSMenu dropdown | High | ✅ Fixed | v0.4.2 |
-| BUG-19 | Right Command key / no transcription (synthetic key-up) | High | ✅ Fixed | v0.4.4 |
-| BUG-20 | Focus Score math — short sessions score higher than long | Medium | ✅ Fixed | v0.4.3 |
-| BUG-21 | OUTPUT score pill showing 0 for sessions with dictation | Medium | ✅ Fixed | v0.4.5 |
-| BUG-22 | Sessions WITH dictation showing empty state incorrectly | High | ✅ Fixed | v0.4.5 |
-| BUG-23 | macOS App Restore relaunching cached pre-rebrand build showing "EliteWrite PRO" label | High | ✅ Fixed | Session 12 — state cleared, no Pro strings in code |
-| BUG-24 | macOS App Restore loading stale Debug build (v1.76) after Mac shutdown — `.local-build/Build/Products/Debug/EliteWrite.app` persisted with same bundle ID as `/Applications` build; CR-017 physical cleanup was incomplete in BUG-23 fix session | High | ✅ Fixed + Verified | Session 14 — stale Debug artifact removed; NSQuitAlwaysKeepsWindows disabled; CR-017 amended; Step 6 verified by Ferdz ✅ — 57 sessions, 4,008 words, 90.4 WPM, no PRO label, no affiliate card |
+All bugs BUG-17 to BUG-24 resolved and verified. Full log in CLAUDE-archive.md.
+Root-cause corrections remain active in the Correction Register below.
 
 ---
 
@@ -760,8 +752,6 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 | # | Item | Status | Notes |
 |---|------|--------|-------|
 | UX-08 | Identity tag — Early Access Build v0.4.6 | ✅ Fixed v0.4.6 | About screen, menu bar tooltip, CSV footer |
-| PM-S12 | Post-mortems for Session 12 (BUG-23, Item 12, UX-08) | ✅ Complete — Session 13 | BUG-23 near-miss logged; DN-02 + CR-017 binding corrections confirmed |
-| PM-RETRO | Retroactive post-mortem audit across all phases | ✅ Complete — Session 13 | No new CRs required; framework confirmed mature; cleared for Item 9 |
 | 9 | Apple code signing + notarization | 🔲 Pending | $99/yr Apple Developer Program — post-mortem gate ✅ cleared; blocked on Ferdz enrollment |
 | 10 | execedgepro.com/elitewrite product page | ✅ Live (website project) | Updates needed at launch |
 | 11 | License Management — replace PolarService with Gumroad verification | 🔲 Pending — pre-paid-launch gate | Replace `PolarService` → Gumroad API using Product ID tekkCjXZ6ToGQHYbjirkXA==. LOCAL_BUILD flag bypasses this for early access. Must be done before $29 tier activates. |
@@ -812,10 +802,7 @@ Current: **v0.4.7-session16-complete** (UX-09/10/11 + UX-12/13; CREDITS.md; GPL 
 
 | Version | Date | Summary |
 |---------|------|---------|
-| v0.1-build | 2026-05-18 | CLAUDE.md initialized, source cloned |
-| v0.1-phase1 | 2026-05-18 | Phase 1 complete — VoiceInk.app built |
-| v0.2-phase2 | 2026-05-19 | Phase 2 complete — EliteWrite rebrand |
-| v0.3-phase3 | 2026-05-20 | Phase 3 complete — Focus Session Mode built |
+| v0.1–v0.3 | 2026-05-18/20 | Phases 1–3: VoiceInk.app built → EliteWrite rebrand → Focus Session Mode. Full log in CLAUDE-archive.md. |
 | v0.4-phase4 | 2026-05-21 | Phase 4 opened — dual-engineer protocol |
 | v0.4.1-bug17-fix | 2026-05-21 | BUG-17 fixed — SwiftData single store |
 | v0.4.2-bug18-fix | 2026-05-22 | BUG-18 fixed — Focus Session to dashboard tab |
@@ -899,8 +886,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.16 | VoiceInk → EliteWrite macOS Build Project*
+*CLAUDE.md v2.17 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-05-30 | Founder: Ferdz*
+*Changelog: v2.17 — Size trim: Bug Log BUG-17 to BUG-24 (all resolved), PM-S12/PM-RETRO (complete), Phase 1–3 version table rows, and changelogs v2.6–v2.9 moved to CLAUDE-archive.md*
 *Changelog: v2.16 — CR-021 corrected: development machine confirmed as macOS Tahoe (26.5 / BuildVersion 25F71) — all Phase 4 testing on Tahoe; Sequoia (15.x) status corrected from "confirmed" to pending UTM test; Tahoe added as PRIMARY to coverage matrix; Input Monitoring instability on Tahoe logged as known platform behaviour (cross-reference CR-008); interim published statement updated to Tahoe-accurate version; CR-022 Method 1 and problem statement updated to reflect Tahoe; Method 2 + pre-launch gate expanded to include Sequoia UTM test; BUILD CONTEXT macOS version updated to 26.5 / 25F71*
 *Changelog: v2.15 — Session 16 comprehensive close: UX-09/10/11/12/13 complete; CR-019 + CR-020 discharged; CREDITS.md + GPL notices added; credential scan clean (Gate 4); privacy policy conditional (Gate 5); Gumroad early access live + test purchase confirmed (Gate 6); SECURITY_INCIDENT-20260529 closed (Gate 9); CR-026 closed; Gumroad distribution gates table added; Item 11 updated with Gumroad verification gap; app version v0.4.7-session16-complete*
 *Changelog: v2.14 — Golden Build v0.4.6-golden created (Session 15); CR-026 (Inherited Credential Awareness) added; Golden Build Log section added*
@@ -908,7 +896,4 @@ Stage 6 — Session close + CR-009 check
 *Changelog: v2.12 — BUG-24 logged (stale Debug build via .local-build); CR-017 amended with 4-step physical cleanup procedure including savedState deletion, NSQuitAlwaysKeepsWindows reset, and Xcode artifact audit; Session 14 fixes confirmed*
 *Changelog: v2.11 — Phase 4 resumed (Session 13); PM-S12 and PM-RETRO completed and marked; Item 9 post-mortem gate cleared; UX-08 confirmed on website waiting list; Launch Readiness item 1 updated; WHERE WE ARE updated to active state*
 *Changelog: v2.10 — CR-021 (macOS Version Coverage Standard) and CR-022 (Compatibility Testing Protocol) added as permanent hard rules + pre-launch gates; both added to Correction Register table and as full detail blocks*
-*Changelog: v2.9 — DR-002 clause A6 (Platform & OS Compatibility Claims) added; Gumroad Installation Guidance logged as locked copy asset (Marco Option B — final, Ferdz approved May 2026)*
-*Changelog: v2.8 — DR-002 (External Solution Validation Protocol) added as permanent Founder Directive; Validated External Tools log created with 4 initial entries (Canva Video, Gumroad, UTM, BrowserStack); BrowserStack native app testing walk-back formally logged per DR-002 B1*
-*Changelog: v2.7 — CR-023 (Large Asset Handoff Protocol) added as permanent standing rule; Approved Marketing Assets section created; EliteWrite Demo Video Teaser v1 logged (https://youtu.be/8mAVDFEuWl8); website alignment and demo video status updated to reflect CTA wired by website team*
-*Changelog: v2.6 — DR-001 (Founder Integrity Directive) added as supreme standing rule; DP-001 (Universal Design & Security Protocol) added covering all platforms; SEC-01–04 added to Security Register (Item 9 queue); CR-018/SEC-04 cross-reference confirmed; CR-018–020 added; UX-09/UX-10 flagged; retroactive Phase 4 post-mortem completed*
+*Changelogs v2.6–v2.9 archived to CLAUDE-archive.md*

@@ -397,6 +397,13 @@ not "who made a mistake?"
 All bugs BUG-17 to BUG-24 resolved and verified. Full log in CLAUDE-archive.md.
 Root-cause corrections remain active in the Correction Register below.
 
+### Active Bugs — Session 17
+| # | Description | Severity | Status |
+|---|-------------|----------|--------|
+| BUG-25 | Onboarding welcome screen shows original VoiceInk copy — "Welcome to the Future of Typing", "A New Way to Type", "Your Writing Assistant", "Try It Out!" heading | High | 🔲 Open — fix before wider distribution |
+| BUG-26 | Gumroad zip (EliteWrite-EarlyAccess-v0.4.7.zip) built before Session 16 Gate 3 fixes — "all your personal devices" copy still present; Multiple Devices tile still visible | High | 🔲 Open — rebuild zip from post-Session-16 build; re-upload to Gumroad before sharing link publicly |
+| BUG-27 | Default AI model is Large v3 Turbo (Quantized) 547MB — approved default is Parakeet V2 (474MB, English-only, speed 9.9, accuracy 9.4); English-only caveat label and language-switch note required in UI | Medium | 🔲 Open — staged build required; Petra review first |
+
 ---
 
 ## 📋 UX LOG (maintained by Designer Yuna)
@@ -444,7 +451,7 @@ Officer Sela to review About screen copy for RA 7394 compliance before build.
 | CR-018 | POST-MORTEM EXECUTION — Post-mortems are not ceremonial. Every mandatory trigger (DR-001 B1) must produce a written post-mortem before the next session opens. Skipping is a protocol failure, not a time-saving measure. Root cause: BUG-17 through BUG-22 all skipped post-mortems. | High | Permanent |
 | CR-019 | FOCUS SCORE ZERO FLOOR — A Focus Score of 0/100 must never be shown to a user. Minimum displayed score: 10. New users who complete any session of any length receive a minimum score of 10 to prevent brand damage on first use. Implement before public launch. | High | Pre-launch |
 | CR-020 | HELP & RESOURCES MINIMUM STANDARD — The Help & Resources section must contain at minimum: (1) Feedback/Issues link, (2) execedgepro.com/elitewrite link, (3) a getting-started or documentation resource. Shipping with only 1 item is below the Platinum Standard. Implement before public launch. | Medium | Pre-launch |
-| CR-021 | macOS VERSION COVERAGE STANDARD — Development + all Phase 4 testing confirmed on macOS Tahoe (26.5) — PRIMARY. Sequoia (15) previously assumed confirmed, now unverified — pending UTM test. Sonoma (14) and Ventura (13) pending UTM test. Monterey (12) NOT supported. Interim published statement applies until Tester Rin signs off on UTM + Intel testing. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: all 3 versions confirmed before public release. Future platforms must define equivalent before first build. | High | Pre-launch gate |
+| CR-021 | macOS VERSION COVERAGE STANDARD — Development + all Phase 4 testing confirmed on macOS Tahoe (26.5) — PRIMARY. Sequoia (15.6.1) ✅ CONFIRMED via UTM VM, June 1 2026. Sonoma (14) and Ventura (13) pending UTM test. Monterey (12) NOT supported. Interim published statement updated to reflect Sequoia confirmed. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: Sonoma + Ventura UTM tests remaining. | High | Pre-launch gate |
 | CR-022 | COMPATIBILITY TESTING PROTOCOL — Approved methods in order: (1) Real M1 device — Tahoe (26.5) ✅ confirmed; (2) UTM VMs (free) — Sequoia/Sonoma/Ventura, 9/10 confidence; (3) BrowserStack — website ONLY, not native app (DR-002 B1 walk-back); (4) Community testers — future, activate at first buyers. Pre-launch gate: UTM Sequoia + Sonoma + Ventura + Intel tests + Rin sign-off before full statement published. Cross-reference: CR-021, DR-002 A6. | High | Pre-launch gate |
 | CR-023 | LARGE ASSET HANDOFF PROTOCOL — No direct uploads over 5MB to project Files. Approved methods in order: (1) YouTube for video — upload to @execedgepro, set Unlisted for handoff, Public at launch; (2) Google Drive for documents/images/archives — "Anyone with link can view", no sign-in required; (3) GitHub releases for code/builds. All assets must be logged in CLAUDE.md under "Approved Marketing Assets." Post-mortems must verify URL validity and access levels. All future platform teams inherit this rule on day one. | High | Permanent |
 | CR-026 | INHERITED CREDENTIAL AWARENESS — When forking any open-source repository, the inherited commit history may contain credentials, API keys, tokens, or secrets from the original developer. MANDATORY before any public push: run GitHub push protection check or git-secrets scan to identify inherited credentials. These credentials belong to the original developer — not to ExecEdgePro — but must be identified before any public push per best practice. Inherited credentials already public in the upstream repo: use GitHub bypass mechanism. Credentials not yet public: scrub history with git filter-repo before pushing. This is not a security breach — it is standard fork hygiene. | High | Permanent |
@@ -518,31 +525,39 @@ Use the VoiceInk-Build GitHub repository. Tag releases with version number. Shar
 - macOS Tahoe (26.5 / BuildVersion 25F71) on Apple M1 — ✅ PRIMARY: all Phase 4 development and testing confirmed here
 
 **Minimum supported versions (for public release):**
-- macOS Sequoia (15.x) — 🔲 Pending UTM test — previously assumed confirmed, now unverified
+- macOS Sequoia (15.x) — ✅ CONFIRMED via UTM VM (external HDD), June 1 2026
 - macOS Sonoma (14.x) — 🔲 Pending UTM test — unchanged
 - macOS Ventura (13.x) — 🔲 Pending UTM test (SwiftData known limitations — BUG-17 family)
 - macOS Monterey (12.x) — ❌ NOT SUPPORTED: SwiftData and current framework requirements cannot be met
 
 **Current confirmed coverage (update when tests complete):**
 - macOS Tahoe (26.x) on Apple M1: ✅ PRIMARY — all Phase 4 development and testing confirmed
-- macOS Sequoia (15.x) on Apple M1: 🔲 Pending UTM test — previously assumed confirmed, now unverified
+- macOS Sequoia (15.6.1) on Apple M1: ✅ CONFIRMED — UTM VM (external HDD), June 1 2026
 - macOS Sonoma (14.x): 🔲 Pending UTM test
 - macOS Ventura (13.x): 🔲 Pending UTM test
 - Intel Mac: 🔲 Pending
 - Apple M2/M3: 🔲 Pending community tester
 
+**Sequoia (15.x) installation notes — confirmed Session 17:**
+- First-launch path on Sequoia 15: right-click → Open alone is insufficient. Required: System Settings → Privacy & Security → Open Anyway → password prompt → Open.
+- AI model downloads separately on first launch: ggml-large-v3-turbo-q5_0 — 547MB — internet required once only — fully on-device after that.
+- RAM requirement: 1.0 GB minimum during transcription.
+- Slight processing delay on first transcription is expected (model initialising) — not a bug.
+- Transcription confirmed working across multiple apps (Try It Out screen + Notes app). Right ⌘ shortcut confirmed working. No crashes, no errors.
+*README and Gumroad installation guidance must be updated to include this — see DOCS-01 in Phase 4 gates.*
+
 **Platform note — Input Monitoring instability on Tahoe (26.x):**
 Input Monitoring permission sequence instability observed on Tahoe early release. Classified as known Tahoe platform behaviour — not an EliteWrite bug. Cross-reference: CR-008 (Tahoe beta platform instability pattern). CR-006 five-step permissions reset sequence is the mandatory mitigation.
 
 **Interim published statement (use until Tester Rin signs off on full testing):**
-*"Developed and tested on macOS Tahoe (26.5). Requires macOS Sonoma (14) or later. Sequoia (15) and earlier versions — compatibility testing in progress via UTM."*
+*"Developed and tested on macOS Tahoe (26.5). Requires macOS Sonoma (14) or later. Sequoia (15) — confirmed compatible. Sonoma (14) and Ventura (13) — compatibility testing in progress via UTM."*
 
 **Full statement (publish only after Rin sign-off per CR-022):**
 *"Requires macOS Ventura (13) or later. Optimised for macOS Sonoma (14) and Sequoia (15). Apple Silicon (M1/M2/M3) and Intel Mac supported."*
 
 **Mandatory pre-release checklist (Tester Rin):**
 - [x] Tested on macOS Tahoe (26.x) — ✅ PRIMARY confirmed (all Phase 4)
-- [ ] Tested on macOS Sequoia (15.x) via UTM
+- [x] Tested on macOS Sequoia (15.6.1) via UTM — ✅ Confirmed June 1 2026
 - [ ] Tested on macOS Sonoma (14.x) via UTM
 - [ ] Tested on macOS Ventura (13.x) via UTM
 - [ ] macOS Monterey (12.x) limitations documented
@@ -581,7 +596,7 @@ Target: 1 tester each for macOS Ventura real device, Intel Mac, Apple M2/M3.
 Tester Rin manages checklist and sign-off. Status: Not yet available — activate when first buyers exist.
 
 **Pre-launch gate (minimum before publishing full compatibility statement):**
-- UTM Sequoia test completed + Rin sign-off
+- ✅ UTM Sequoia (15.6.1) test completed + Rin sign-off — June 1 2026
 - UTM Sonoma test completed + Rin sign-off
 - UTM Ventura test completed + Rin sign-off
 - Intel Mac test completed (Method 3 or 4) + Rin sign-off
@@ -758,6 +773,7 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 | 12 | Affiliate Program card removed — will restore when execedgepro.com/affiliate is live | ✅ Fixed v0.4.6 | Card removed from DashboardPromotionsSection.swift |
 | FB-001 | Executive Summary Export | 🔲 Backlog | Needs API budget decision from Ferdz |
 | FB-002 | Attention Residue Warning | 🔲 Backlog | Needs Analyst Drex R&D proposal |
+| DOCS-01 | README + Gumroad installation guidance — first-launch requirements section | 🔲 Pending Session 18 | Add: Sequoia Privacy & Security path; one-time AI model download (547MB); internet required first launch only; RAM 1.0 GB minimum; first-run speed note. Source: Sequoia notes in CR-021. |
 
 ### Gumroad Early Access Distribution Gates — Session 16
 | Gate | Item | Status | Notes |
@@ -798,7 +814,7 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 
 ## 🔢 RELEASE VERSION
 
-Current: **v0.4.7-session16-complete** (UX-09/10/11 + UX-12/13; CREDITS.md; GPL notices; credential scan clean; Gumroad early access live; all 9 distribution gates addressed)
+Current: **v0.4.7-session17-docs** (CLAUDE.md v2.18 — Sequoia 15.6.1 confirmed; BUG-25/26/27 logged; no app build this session)
 
 | Version | Date | Summary |
 |---------|------|---------|
@@ -812,32 +828,37 @@ Current: **v0.4.7-session16-complete** (UX-09/10/11 + UX-12/13; CREDITS.md; GPL 
 | v0.4.6-ux08-complete | 2026-05-26 | BUG-23 cleared; Item 12 affiliate card removed; DN-02 + CR-017 added; UX-08 identity tag implemented |
 | v0.4.7-ux09-ux10-complete | 2026-05-29 | UX-09 Focus Score floor of 10 (CR-019 discharged); UX-10 Help & Resources 3 items (CR-020 discharged, 404 gap noted); UX-11 GitHub README rebranded |
 | v0.4.7-session16-complete | 2026-05-29 | Session 16 comprehensive close — UX-12/13; CREDITS.md; GPL notices; credential scan; Gumroad early access live (test purchase confirmed); 9 distribution gates addressed; SECURITY_INCIDENT-20260529 closed |
+| v0.4.7-session17-docs | 2026-06-01 | Session 17 — CLAUDE.md v2.18: Sequoia 15.6.1 confirmed via UTM; BUG-25/26/27 logged; installation notes added to CR-021; no app build |
 
 ---
 
 ## 📌 WHERE WE ARE RIGHT NOW
 
-### Phase 4 — ⏸️ PAUSED — 2026-05-29
-**Last active:** Session 16 — comprehensive session close. All 9 Gumroad distribution gates addressed.
-**App state:** Stable. v0.4.7-session16-complete. All active bugs resolved. All post-mortems current.
-**Commercial model:** Locked. Gumroad early access page live. Test purchase confirmed.
+### Phase 4 — ⏸️ PAUSED — 2026-06-01
+**Last active:** Session 17 — CR-021 Sequoia confirmed; BUG-25/26/27 logged; CLAUDE.md v2.18.
+**App state:** Stable. v0.4.7-session16-complete (no new build this session). 3 active bugs logged.
+**Commercial model:** Locked. Gumroad early access page live. Test purchase confirmed. ⚠️ Gumroad zip is stale — see BUG-26 — must fix before sharing link publicly.
 
-**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 17.
+**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 18.
 
-**Session 16 completed:**
-- UX-09 ✅ Focus Score floor = 10 at display layer. CR-019 discharged.
-- UX-10 ✅ Help & Resources 3 items live. CR-020 discharged. Known gap: 404 resolves at Item 10.
-- UX-11 ✅ GitHub README rebranded to EliteWrite. CR-010 verified clean.
-- UX-12 ✅ GPL copyright notice + device copy corrected in License view.
-- UX-13 ✅ Multiple Devices tile removed from purchase card. Marco approved.
-- CREDITS.md ✅ GPL v3.0 attribution complete. Gates 1 + 2 cleared.
-- Credential scan ✅ gsk_, polar_, apiKey all clean. Keychain architecture confirmed. Gate 4 cleared.
-- Privacy policy ✅ HTML confirmed. Gate 5 conditional — live check at go-live.
-- SECURITY_INCIDENT-20260529 ✅ Beingpax notified via GitHub Issue #749. CR-026 closed. Gate 9 cleared.
-- Gumroad product page ✅ All 8 Gate 6 items cleared. Test purchase confirmed — download + key delivered.
+**Session 17 completed:**
+- CR-021 ✅ macOS Sequoia (15.6.1) confirmed compatible via UTM VM (external HDD), June 1 2026.
+- CR-021 ✅ Sequoia installation notes logged: Privacy & Security path required; 547MB model download first launch; 1.0 GB RAM minimum.
+- BUG-25 🔲 Onboarding VoiceInk copy — logged. Fix before wider distribution.
+- BUG-26 🔲 Gumroad zip stale (pre-Gate-3) — logged. Rebuild + re-upload before sharing Gumroad link publicly.
+- BUG-27 🔲 Default AI model not Parakeet V2 — logged. Staged build required.
+- DOCS-01 🔲 README + Gumroad first-launch requirements section — logged.
+- CLAUDE.md ✅ Bumped to v2.18.
 
-**Pending — opens Session 17:**
+**Session 16 completed (archived summary):**
+- UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
+
+**Pending — opens Session 18:**
+- BUG-26 URGENT: rebuild Gumroad zip from post-Session-16 build → re-upload to Gumroad before sharing link publicly
 - Gate 5 final: confirm execedgepro.com/privacy is live → Officer Sela green light → share Gumroad link publicly
+- BUG-25: onboarding rebranding — Petra review → staged build → Tester Rin Stage 5
+- BUG-27: default model → Parakeet V2 — Petra review → staged build → Tester Rin Stage 5
+- DOCS-01: README + Gumroad installation guidance update (Sequoia path + model download info)
 - Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch
 - Track B: Item 9 — Apple Developer Program ($99/yr) → Hardened Runtime → notarization
 
@@ -886,8 +907,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.17 | VoiceInk → EliteWrite macOS Build Project*
-*Initialized: 2026-05-18 | Updated: 2026-05-30 | Founder: Ferdz*
+*CLAUDE.md v2.18 | VoiceInk → EliteWrite macOS Build Project*
+*Initialized: 2026-05-18 | Updated: 2026-06-01 | Founder: Ferdz*
+*Changelog: v2.18 — Session 17: CR-021 Sequoia (15.6.1) confirmed via UTM VM (external HDD) June 1 2026; Sequoia installation notes added (Privacy & Security path, 547MB model download, 1.0 GB RAM); CR-022 Sequoia pre-launch gate checked; BUG-25/26/27 logged; DOCS-01 added; Phase 4 gates + WHERE WE ARE updated to Session 17*
 *Changelog: v2.17 — Size trim: Bug Log BUG-17 to BUG-24 (all resolved), PM-S12/PM-RETRO (complete), Phase 1–3 version table rows, and changelogs v2.6–v2.9 moved to CLAUDE-archive.md*
 *Changelog: v2.16 — CR-021 corrected: development machine confirmed as macOS Tahoe (26.5 / BuildVersion 25F71) — all Phase 4 testing on Tahoe; Sequoia (15.x) status corrected from "confirmed" to pending UTM test; Tahoe added as PRIMARY to coverage matrix; Input Monitoring instability on Tahoe logged as known platform behaviour (cross-reference CR-008); interim published statement updated to Tahoe-accurate version; CR-022 Method 1 and problem statement updated to reflect Tahoe; Method 2 + pre-launch gate expanded to include Sequoia UTM test; BUILD CONTEXT macOS version updated to 26.5 / 25F71*
 *Changelog: v2.15 — Session 16 comprehensive close: UX-09/10/11/12/13 complete; CR-019 + CR-020 discharged; CREDITS.md + GPL notices added; credential scan clean (Gate 4); privacy policy conditional (Gate 5); Gumroad early access live + test purchase confirmed (Gate 6); SECURITY_INCIDENT-20260529 closed (Gate 9); CR-026 closed; Gumroad distribution gates table added; Item 11 updated with Gumroad verification gap; app version v0.4.7-session16-complete*

@@ -401,7 +401,7 @@ Root-cause corrections remain active in the Correction Register below.
 | # | Description | Severity | Status |
 |---|-------------|----------|--------|
 | BUG-25 | Onboarding welcome screen shows original VoiceInk copy — "Welcome to the Future of Typing", "A New Way to Type", "Your Writing Assistant", "Try It Out!" heading | High | 🔲 Open — fix before wider distribution |
-| BUG-26 | Gumroad zip (EliteWrite-EarlyAccess-v0.4.7.zip) built before Session 16 Gate 3 fixes — "all your personal devices" copy still present; Multiple Devices tile still visible | High | 🔲 Open — rebuild zip from post-Session-16 build; re-upload to Gumroad before sharing link publicly |
+| BUG-26 | Gumroad zip (EliteWrite-EarlyAccess-v0.4.7.zip) built before Session 16 Gate 3 fixes — "all your personal devices" copy still present; Multiple Devices tile still visible | High | 🔲 Open — ⚠️ GUMROAD LISTING SUSPENDED June 1 2026 (Ferdz — mitigation in effect). Reinstate only after: (1) BUG-26 zip rebuilt + re-uploaded AND (2) BUG-25 onboarding fix — both Tester Rin Stage 5 verified. |
 | BUG-27 | Default AI model is Large v3 Turbo (Quantized) 547MB — approved default is Parakeet V2 (474MB, English-only, speed 9.9, accuracy 9.4); English-only caveat label and language-switch note required in UI | Medium | 🔲 Open — staged build required; Petra review first |
 
 ---
@@ -837,7 +837,7 @@ Current: **v0.4.7-session17-docs** (CLAUDE.md v2.18 — Sequoia 15.6.1 confirmed
 ### Phase 4 — ⏸️ PAUSED — 2026-06-01
 **Last active:** Session 17 — CR-021 Sequoia confirmed; BUG-25/26/27 logged; CLAUDE.md v2.18.
 **App state:** Stable. v0.4.7-session16-complete (no new build this session). 3 active bugs logged.
-**Commercial model:** Locked. Gumroad early access page live. Test purchase confirmed. ⚠️ Gumroad zip is stale — see BUG-26 — must fix before sharing link publicly.
+**Commercial model:** Locked. ⚠️ Gumroad listing SUSPENDED June 1 2026 — BUG-26 mitigation in effect. Reinstate after BUG-26 + BUG-25 both fixed and Tester Rin Stage 5 verified.
 
 **Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 18.
 
@@ -854,7 +854,7 @@ Current: **v0.4.7-session17-docs** (CLAUDE.md v2.18 — Sequoia 15.6.1 confirmed
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
 **Pending — opens Session 18:**
-- BUG-26 URGENT: rebuild Gumroad zip from post-Session-16 build → re-upload to Gumroad before sharing link publicly
+- BUG-26 URGENT: Gumroad listing SUSPENDED June 1 2026 (mitigation). Rebuild zip from post-Session-16 build → re-upload → Tester Rin Stage 5 → reinstate listing (requires BUG-25 fix also complete)
 - Gate 5 final: confirm execedgepro.com/privacy is live → Officer Sela green light → share Gumroad link publicly
 - BUG-25: onboarding rebranding — Petra review → staged build → Tester Rin Stage 5
 - BUG-27: default model → Parakeet V2 — Petra review → staged build → Tester Rin Stage 5

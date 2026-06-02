@@ -111,10 +111,8 @@ struct OnboardingView: View {
 struct TypewriterRoles: View {
     private let roles = [
         "Your Elite Writing Layer",
-        "Your Vibe-Coding Assistant",
-        "Works Everywhere on Mac with a click",
+        "Works in any app on your Mac",
         "100% offline & private",
-       
     ]
     
     @State private var displayedText = ""

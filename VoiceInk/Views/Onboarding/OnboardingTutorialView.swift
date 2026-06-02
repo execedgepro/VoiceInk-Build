@@ -21,7 +21,7 @@ struct OnboardingTutorialView: View {
                     VStack(alignment: .leading, spacing: 40) {
                         // Title and description
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("Try It Out!")
+                            Text("Try EliteWrite Now")
                                 .font(.system(size: 44, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
                             

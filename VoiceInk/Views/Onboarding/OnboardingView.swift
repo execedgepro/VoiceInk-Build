@@ -27,14 +27,14 @@ struct OnboardingView: View {
                                 
                                 // Title and subtitle
                                 VStack(spacing: 16) {
-                                    Text("Welcome to the Future of Typing")
+                                    Text("Welcome to EliteWrite")
                                         .font(.system(size: min(geometry.size.width * 0.055, 42), weight: .bold, design: .rounded))
                                         .foregroundColor(.white)
                                         .opacity(textOpacity)
                                         .multilineTextAlignment(.center)
                                         .padding(.horizontal)
                                     
-                                    Text("A New Way to Type")
+                                    Text("Voice to text — built for elite performers")
                                         .font(.system(size: min(geometry.size.width * 0.032, 24), weight: .medium, design: .rounded))
                                         .foregroundColor(.white.opacity(0.7))
                                         .opacity(textOpacity)
@@ -110,7 +110,7 @@ struct OnboardingView: View {
 // MARK: - Supporting Views
 struct TypewriterRoles: View {
     private let roles = [
-        "Your Writing Assistant",
+        "Your Elite Writing Layer",
         "Your Vibe-Coding Assistant",
         "Works Everywhere on Mac with a click",
         "100% offline & private",

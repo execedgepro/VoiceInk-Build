@@ -397,12 +397,13 @@ not "who made a mistake?"
 All bugs BUG-17 to BUG-24 resolved and verified. Full log in CLAUDE-archive.md.
 Root-cause corrections remain active in the Correction Register below.
 
-### Active Bugs — Session 17
+### Active Bugs — Session 18
 | # | Description | Severity | Status |
 |---|-------------|----------|--------|
-| BUG-25 | Onboarding welcome screen shows original VoiceInk copy — "Welcome to the Future of Typing", "A New Way to Type", "Your Writing Assistant", "Try It Out!" heading | High | 🔲 Open — fix before wider distribution |
-| BUG-26 | Gumroad zip (EliteWrite-EarlyAccess-v0.4.7.zip) built before Session 16 Gate 3 fixes — "all your personal devices" copy still present; Multiple Devices tile still visible | High | 🔲 Open — ⚠️ GUMROAD LISTING SUSPENDED June 1 2026 (Ferdz — mitigation in effect). Reinstate only after: (1) BUG-26 zip rebuilt + re-uploaded AND (2) BUG-25 onboarding fix — both Tester Rin Stage 5 verified. |
+| BUG-25 | Onboarding welcome screen shows original VoiceInk copy — "Welcome to the Future of Typing", "A New Way to Type", "Your Writing Assistant", "Try It Out!" heading | High | ✅ Fixed v0.4.8-bug25-fix — Tester Rin Stage 5 confirmed Jun 2 2026 |
+| BUG-26 | Gumroad zip (EliteWrite-EarlyAccess-v0.4.7.zip) built before Session 16 Gate 3 fixes — "all your personal devices" copy still present; Multiple Devices tile still visible | High | 🔲 Open — ⚠️ GUMROAD LISTING SUSPENDED June 1 2026. Zip rebuilt Jun 2 2026 (post-Session-16 build, correct copy confirmed). BUG-25 gate cleared Jun 2 2026. Pending: Ferdz uploads new zip to Gumroad → reinstate listing. |
 | BUG-27 | Default AI model is Large v3 Turbo (Quantized) 547MB — approved default is Parakeet V2 (474MB, English-only, speed 9.9, accuracy 9.4); English-only caveat label and language-switch note required in UI | Medium | 🔲 Open — staged build required; Petra review first |
+| BUG-28 | "Your Vibe-Coding Assistant" string in onboarding TypewriterRoles animation — inherited VoiceInk copy, not EliteWrite brand language | Medium | 🔲 Open — flagged by Petra Session 18. Fix before wider distribution. |
 
 ---
 
@@ -814,7 +815,7 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 
 ## 🔢 RELEASE VERSION
 
-Current: **v0.4.7-session17-docs** (CLAUDE.md v2.18 — Sequoia 15.6.1 confirmed; BUG-25/26/27 logged; no app build this session)
+Current: **v0.4.8-bug25-fix** (CLAUDE.md v2.19 — BUG-25 onboarding rebranding fixed; Tester Rin Stage 5 confirmed; BUG-26 zip rebuilt; BUG-28 logged)
 
 | Version | Date | Summary |
 |---------|------|---------|
@@ -829,35 +830,36 @@ Current: **v0.4.7-session17-docs** (CLAUDE.md v2.18 — Sequoia 15.6.1 confirmed
 | v0.4.7-ux09-ux10-complete | 2026-05-29 | UX-09 Focus Score floor of 10 (CR-019 discharged); UX-10 Help & Resources 3 items (CR-020 discharged, 404 gap noted); UX-11 GitHub README rebranded |
 | v0.4.7-session16-complete | 2026-05-29 | Session 16 comprehensive close — UX-12/13; CREDITS.md; GPL notices; credential scan; Gumroad early access live (test purchase confirmed); 9 distribution gates addressed; SECURITY_INCIDENT-20260529 closed |
 | v0.4.7-session17-docs | 2026-06-01 | Session 17 — CLAUDE.md v2.18: Sequoia 15.6.1 confirmed via UTM; BUG-25/26/27 logged; installation notes added to CR-021; no app build |
+| v0.4.8-bug25-fix | 2026-06-02 | BUG-25 fixed — onboarding fully rebranded (4 strings replaced in OnboardingView.swift + OnboardingTutorialView.swift); Tester Rin Stage 5 confirmed; BUG-26 zip rebuilt from post-Session-16 build; BUG-28 logged |
 
 ---
 
 ## 📌 WHERE WE ARE RIGHT NOW
 
-### Phase 4 — ⏸️ PAUSED — 2026-06-01
-**Last active:** Session 17 — CR-021 Sequoia confirmed; BUG-25/26/27 logged; CLAUDE.md v2.18.
-**App state:** Stable. v0.4.7-session16-complete (no new build this session). 3 active bugs logged.
-**Commercial model:** Locked. ⚠️ Gumroad listing SUSPENDED June 1 2026 — BUG-26 mitigation in effect. Reinstate after BUG-26 + BUG-25 both fixed and Tester Rin Stage 5 verified.
+### Phase 4 — ⏸️ PAUSED — 2026-06-02
+**Last active:** Session 18 — BUG-25 fixed (onboarding rebranded); BUG-26 zip rebuilt; BUG-28 logged; CLAUDE.md v2.19.
+**App state:** Stable. v0.4.8-bug25-fix. 3 active bugs (BUG-26, BUG-27, BUG-28).
+**Commercial model:** Locked. ⚠️ Gumroad listing SUSPENDED — BUG-26 mitigation in effect. BUG-25 gate cleared Jun 2 2026. Zip rebuilt Jun 2 2026. Pending: Ferdz uploads new zip to Gumroad → reinstate listing.
 
-**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 18.
+**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 19.
 
-**Session 17 completed:**
-- CR-021 ✅ macOS Sequoia (15.6.1) confirmed compatible via UTM VM (external HDD), June 1 2026.
-- CR-021 ✅ Sequoia installation notes logged: Privacy & Security path required; 547MB model download first launch; 1.0 GB RAM minimum.
-- BUG-25 🔲 Onboarding VoiceInk copy — logged. Fix before wider distribution.
-- BUG-26 🔲 Gumroad zip stale (pre-Gate-3) — logged. Rebuild + re-upload before sharing Gumroad link publicly.
-- BUG-27 🔲 Default AI model not Parakeet V2 — logged. Staged build required.
-- DOCS-01 🔲 README + Gumroad first-launch requirements section — logged.
-- CLAUDE.md ✅ Bumped to v2.18.
+**Session 18 completed:**
+- BUG-25 ✅ Onboarding fully rebranded — 4 strings replaced across OnboardingView.swift + OnboardingTutorialView.swift. Tester Rin Stage 5 confirmed Jun 2 2026.
+- BUG-26 ⚠️ Zip rebuilt Jun 2 2026 from post-Session-16 /Applications build (correct copy confirmed). BUG-25 gate cleared. Pending: Ferdz uploads new zip to Gumroad.
+- BUG-28 🔲 "Your Vibe-Coding Assistant" inherited VoiceInk copy in onboarding — logged by Petra Session 18.
+- CLAUDE.md ✅ Bumped to v2.19.
+
+**Session 17 completed (archived summary):**
+- CR-021 ✅ Sequoia (15.6.1) confirmed via UTM | BUG-25/26/27 logged | CLAUDE.md v2.18
 
 **Session 16 completed (archived summary):**
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
-**Pending — opens Session 18:**
-- BUG-26 URGENT: Gumroad listing SUSPENDED June 1 2026 (mitigation). Rebuild zip from post-Session-16 build → re-upload → Tester Rin Stage 5 → reinstate listing (requires BUG-25 fix also complete)
+**Pending — opens Session 19:**
+- BUG-26 URGENT: Upload new zip (~/Documents/EliteWrite-EarlyAccess-v0.4.7.zip, Jun 2 2026) to Gumroad → reinstate listing → Tester Rin Stage 5
 - Gate 5 final: confirm execedgepro.com/privacy is live → Officer Sela green light → share Gumroad link publicly
-- BUG-25: onboarding rebranding — Petra review → staged build → Tester Rin Stage 5
 - BUG-27: default model → Parakeet V2 — Petra review → staged build → Tester Rin Stage 5
+- BUG-28: "Your Vibe-Coding Assistant" onboarding copy — Petra review → staged build → Tester Rin Stage 5
 - DOCS-01: README + Gumroad installation guidance update (Sequoia path + model download info)
 - Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch
 - Track B: Item 9 — Apple Developer Program ($99/yr) → Hardened Runtime → notarization
@@ -907,8 +909,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.18 | VoiceInk → EliteWrite macOS Build Project*
+*CLAUDE.md v2.19 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-06-01 | Founder: Ferdz*
+*Changelog: v2.19 — Session 18: BUG-25 closed (onboarding rebranded — 4 strings in OnboardingView.swift + OnboardingTutorialView.swift; Tester Rin Stage 5 confirmed Jun 2 2026); BUG-26 zip rebuilt from post-Session-16 build (45MB, Jun 2 2026); BUG-26 status updated (pending Gumroad upload); BUG-28 logged (Vibe-Coding inherited copy); WHERE WE ARE updated to Session 18; version bumped to v0.4.8-bug25-fix*
 *Changelog: v2.18 — Session 17: CR-021 Sequoia (15.6.1) confirmed via UTM VM (external HDD) June 1 2026; Sequoia installation notes added (Privacy & Security path, 547MB model download, 1.0 GB RAM); CR-022 Sequoia pre-launch gate checked; BUG-25/26/27 logged; DOCS-01 added; Phase 4 gates + WHERE WE ARE updated to Session 17*
 *Changelog: v2.17 — Size trim: Bug Log BUG-17 to BUG-24 (all resolved), PM-S12/PM-RETRO (complete), Phase 1–3 version table rows, and changelogs v2.6–v2.9 moved to CLAUDE-archive.md*
 *Changelog: v2.16 — CR-021 corrected: development machine confirmed as macOS Tahoe (26.5 / BuildVersion 25F71) — all Phase 4 testing on Tahoe; Sequoia (15.x) status corrected from "confirmed" to pending UTM test; Tahoe added as PRIMARY to coverage matrix; Input Monitoring instability on Tahoe logged as known platform behaviour (cross-reference CR-008); interim published statement updated to Tahoe-accurate version; CR-022 Method 1 and problem statement updated to reflect Tahoe; Method 2 + pre-launch gate expanded to include Sequoia UTM test; BUILD CONTEXT macOS version updated to 26.5 / 25F71*

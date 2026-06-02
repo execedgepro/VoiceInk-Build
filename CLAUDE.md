@@ -880,9 +880,10 @@ Current: **v0.4.10-bug27-fix** (CLAUDE.md v2.24 — BUG-27 fixed; Screen Recordi
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
 **Pending — opens Session 19:**
-- Ventura 13.6 UTM test → Tester Rin sign-off → CR-021/022 Ventura gate cleared
-- Gate 5: confirm execedgepro.com/privacy live → Officer Sela green light
-- BUG-26 Gumroad reinstatement: upload ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip → reinstate listing (after both gates above cleared)
+- Gate A: Ventura 13.6 UTM test → Tester Rin sign-off → CR-021/022 Ventura gate cleared
+- Gate B: execedgepro.com/privacy live → Officer Sela green light → Gate 5 cleared
+- ⛔ DO NOT UPLOAD ZIP until BOTH Gate A and Gate B are cleared.
+- BUG-26 Gumroad reinstatement (after both gates): upload ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip → reinstate listing
 - DOCS-01: first-launch requirements update — Sequoia Privacy & Security path; Parakeet V2 474MB download; internet first launch only; RAM 1.0 GB minimum; first-run speed note
 - Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch
 - Track B: Item 9 — Apple Developer Program ($99/yr) → Hardened Runtime → notarization

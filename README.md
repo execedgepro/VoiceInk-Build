@@ -51,14 +51,24 @@ As an open-source project (GPL v3.0), you can build EliteWrite yourself:
 2. Install dependencies — `whisper.xcframework` required (see [BUILDING.md](BUILDING.md))
 3. Run `make local` to build and install to `/Applications`
 
-After every build, reset Accessibility and Input Monitoring permissions in System Settings → Privacy & Security.
+After every build, reset Accessibility, Input Monitoring, and Screen & System Audio Recording permissions in System Settings → Privacy & Security.
 
 ## Requirements
 
 - macOS Sonoma (14) or later
-- Optimised for macOS Sequoia (15)
+- Sonoma (14.6.1) and Sequoia (15.6.1) — confirmed compatible
 - Apple Silicon (M1) tested and confirmed
 - Intel Mac — testing in progress
+
+## First Launch — Permissions Required
+
+EliteWrite requires 3 permissions to work. Each will prompt you on first launch:
+
+1. **Accessibility** — allows EliteWrite to type your transcription into any app
+2. **Input Monitoring** — allows EliteWrite to detect your shortcut key
+3. **Screen & System Audio Recording** — enables context-aware transcription features
+
+For Screen & System Audio Recording: click **Enable Access** → add EliteWrite in System Settings → click **Quit & Reopen**.
 
 ## Documentation
 

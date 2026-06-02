@@ -407,9 +407,10 @@ Root-cause corrections remain active in the Correction Register below.
 | # | Description | Severity | Status |
 |---|-------------|----------|--------|
 | BUG-25 | Onboarding welcome screen shows original VoiceInk copy — "Welcome to the Future of Typing", "A New Way to Type", "Your Writing Assistant", "Try It Out!" heading | High | ✅ Fixed v0.4.8-bug25-fix — Tester Rin Stage 5 confirmed Jun 2 2026 |
-| BUG-26 | Gumroad zip originally built before Session 16 Gate 3 fixes — stale copy. Rebuilt and renamed EliteWrite-EarlyAccess-v0.4.9.zip (Jun 2 2026, v0.4.9-bug28-fix). Gumroad description updated to v0.4.9. | High | 🔲 Open — ⚠️ LISTING RE-ARCHIVED Jun 2 2026 (Ferdz — no real buyers, test purchases only). Zip clean and ready. Reinstate only after all 3 gates clear: (1) Gate 5 — execedgepro.com/privacy live; (2) BUG-27 — Parakeet V2 default fixed; (3) Sonoma + Ventura UTM tests complete. |
-| BUG-27 | Default AI model is Large v3 Turbo (Quantized) 547MB — approved default is Parakeet V2 (474MB, English-only, speed 9.9, accuracy 9.4); English-only caveat label and language-switch note required in UI | Medium | 🔲 Open — staged build required; Petra review first |
+| BUG-26 | Gumroad zip originally built before Session 16 Gate 3 fixes — stale copy. Rebuilt and renamed EliteWrite-EarlyAccess-v0.4.9.zip (Jun 2 2026, v0.4.9-bug28-fix). Gumroad description updated to v0.4.9. | High | 🔲 Open — ⚠️ LISTING RE-ARCHIVED Jun 2 2026 (Ferdz — no real buyers, test purchases only). Zip clean and ready. Reinstate only after all 3 gates clear: (1) Gate 5 — execedgepro.com/privacy live; (2) BUG-27 — Parakeet V2 default fixed; (3) Ventura UTM test complete (Sonoma ✅ confirmed Jun 2 2026). |
+| BUG-27 | Default AI model is Large v3 Turbo (Quantized) 547MB — approved default is Parakeet V2 (474MB, English-only, speed 9.9, accuracy 9.4); English-only caveat label and language-switch note required in UI | Medium | 🔲 Open — staged build required; Petra Stage 2 approved Jun 2 2026 |
 | BUG-28 | "Your Vibe-Coding Assistant" string in onboarding TypewriterRoles animation — inherited VoiceInk copy, not EliteWrite brand language | Medium | ✅ Fixed v0.4.9-bug28-fix — removed; "Works Everywhere on Mac with a click" also replaced with "Works in any app on your Mac". Tester Rin Stage 5 confirmed Jun 2 2026 |
+| BUG-29 | Gumroad zip contained two app files: EliteWrite.app (correct) and EliteWrite-Golden-v0.4.6.app (stale golden build, should not be present). Root cause: zip -r updated existing zip rather than creating fresh. Discovered during Sonoma UTM test Jun 2 2026. | High | ✅ Fixed — zip deleted and rebuilt fresh Jun 2 2026. EliteWrite.app only. |
 
 ---
 
@@ -458,7 +459,7 @@ Officer Sela to review About screen copy for RA 7394 compliance before build.
 | CR-018 | POST-MORTEM EXECUTION — Post-mortems are not ceremonial. Every mandatory trigger (DR-001 B1) must produce a written post-mortem before the next session opens. Skipping is a protocol failure, not a time-saving measure. Root cause: BUG-17 through BUG-22 all skipped post-mortems. | High | Permanent |
 | CR-019 | FOCUS SCORE ZERO FLOOR — A Focus Score of 0/100 must never be shown to a user. Minimum displayed score: 10. New users who complete any session of any length receive a minimum score of 10 to prevent brand damage on first use. Implement before public launch. | High | Pre-launch |
 | CR-020 | HELP & RESOURCES MINIMUM STANDARD — The Help & Resources section must contain at minimum: (1) Feedback/Issues link, (2) execedgepro.com/elitewrite link, (3) a getting-started or documentation resource. Shipping with only 1 item is below the Platinum Standard. Implement before public launch. | Medium | Pre-launch |
-| CR-021 | macOS VERSION COVERAGE STANDARD — Development + all Phase 4 testing confirmed on macOS Tahoe (26.5) — PRIMARY. Sequoia (15.6.1) ✅ CONFIRMED via UTM VM, June 1 2026. Sonoma (14) and Ventura (13) pending UTM test. Monterey (12) NOT supported. Interim published statement updated to reflect Sequoia confirmed. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: Sonoma + Ventura UTM tests remaining. | High | Pre-launch gate |
+| CR-021 | macOS VERSION COVERAGE STANDARD — Development + all Phase 4 testing confirmed on macOS Tahoe (26.5) — PRIMARY. Sequoia (15.6.1) ✅ CONFIRMED via UTM VM, June 1 2026. Sonoma (14.6.1) ✅ CONFIRMED via UTM VM, Jun 2 2026. Ventura (13) pending UTM test. Monterey (12) NOT supported. Interim published statement updated to reflect Sonoma confirmed. Full compatibility statement must not be published without Rin sign-off per CR-022. Pre-launch gate: Ventura UTM test remaining. | High | Pre-launch gate |
 | CR-022 | COMPATIBILITY TESTING PROTOCOL — Approved methods in order: (1) Real M1 device — Tahoe (26.5) ✅ confirmed; (2) UTM VMs (free) — Sequoia/Sonoma/Ventura, 9/10 confidence; (3) BrowserStack — website ONLY, not native app (DR-002 B1 walk-back); (4) Community testers — future, activate at first buyers. Pre-launch gate: UTM Sequoia + Sonoma + Ventura + Intel tests + Rin sign-off before full statement published. Cross-reference: CR-021, DR-002 A6. | High | Pre-launch gate |
 | CR-023 | LARGE ASSET HANDOFF PROTOCOL — No direct uploads over 5MB to project Files. Approved methods in order: (1) YouTube for video — upload to @execedgepro, set Unlisted for handoff, Public at launch; (2) Google Drive for documents/images/archives — "Anyone with link can view", no sign-in required; (3) GitHub releases for code/builds. All assets must be logged in CLAUDE.md under "Approved Marketing Assets." Post-mortems must verify URL validity and access levels. All future platform teams inherit this rule on day one. | High | Permanent |
 | CR-026 | INHERITED CREDENTIAL AWARENESS — When forking any open-source repository, the inherited commit history may contain credentials, API keys, tokens, or secrets from the original developer. MANDATORY before any public push: run GitHub push protection check or git-secrets scan to identify inherited credentials. These credentials belong to the original developer — not to ExecEdgePro — but must be identified before any public push per best practice. Inherited credentials already public in the upstream repo: use GitHub bypass mechanism. Credentials not yet public: scrub history with git filter-repo before pushing. This is not a security breach — it is standard fork hygiene. | High | Permanent |
@@ -534,14 +535,14 @@ Use the VoiceInk-Build GitHub repository. Tag releases with version number. Shar
 
 **Minimum supported versions (for public release):**
 - macOS Sequoia (15.x) — ✅ CONFIRMED via UTM VM (external HDD), June 1 2026
-- macOS Sonoma (14.x) — 🔲 Pending UTM test — unchanged
+- macOS Sonoma (14.6.1) — ✅ CONFIRMED via UTM VM, Jun 2 2026. Gatekeeper warning same path as Sequoia. AI model download screen (Large v3 Turbo). Gumroad download path confirmed working.
 - macOS Ventura (13.x) — 🔲 Pending UTM test (SwiftData known limitations — BUG-17 family)
 - macOS Monterey (12.x) — ❌ NOT SUPPORTED: SwiftData and current framework requirements cannot be met
 
 **Current confirmed coverage (update when tests complete):**
 - macOS Tahoe (26.x) on Apple M1: ✅ PRIMARY — all Phase 4 development and testing confirmed
 - macOS Sequoia (15.6.1) on Apple M1: ✅ CONFIRMED — UTM VM (external HDD), June 1 2026
-- macOS Sonoma (14.x): 🔲 Pending UTM test
+- macOS Sonoma (14.6.1): ✅ CONFIRMED — UTM VM, Jun 2 2026. Gatekeeper path confirmed. Gumroad download path confirmed.
 - macOS Ventura (13.x): 🔲 Pending UTM test
 - Intel Mac: 🔲 Pending
 - Apple M2/M3: 🔲 Pending community tester
@@ -558,7 +559,7 @@ Use the VoiceInk-Build GitHub repository. Tag releases with version number. Shar
 Input Monitoring permission sequence instability observed on Tahoe early release. Classified as known Tahoe platform behaviour — not an EliteWrite bug. Cross-reference: CR-008 (Tahoe beta platform instability pattern). CR-006 five-step permissions reset sequence is the mandatory mitigation.
 
 **Interim published statement (use until Tester Rin signs off on full testing):**
-*"Developed and tested on macOS Tahoe (26.5). Requires macOS Sonoma (14) or later. Sequoia (15) — confirmed compatible. Sonoma (14) and Ventura (13) — compatibility testing in progress via UTM."*
+*"Developed and tested on macOS Tahoe (26.5). Requires macOS Sonoma (14) or later. Sequoia (15) and Sonoma (14) — confirmed compatible. Ventura (13) — compatibility testing in progress via UTM."*
 
 **Full statement (publish only after Rin sign-off per CR-022):**
 *"Requires macOS Ventura (13) or later. Optimised for macOS Sonoma (14) and Sequoia (15). Apple Silicon (M1/M2/M3) and Intel Mac supported."*
@@ -566,7 +567,7 @@ Input Monitoring permission sequence instability observed on Tahoe early release
 **Mandatory pre-release checklist (Tester Rin):**
 - [x] Tested on macOS Tahoe (26.x) — ✅ PRIMARY confirmed (all Phase 4)
 - [x] Tested on macOS Sequoia (15.6.1) via UTM — ✅ Confirmed June 1 2026
-- [ ] Tested on macOS Sonoma (14.x) via UTM
+- [x] Tested on macOS Sonoma (14.6.1) via UTM — ✅ Confirmed Jun 2 2026
 - [ ] Tested on macOS Ventura (13.x) via UTM
 - [ ] macOS Monterey (12.x) limitations documented
 - [ ] Minimum version stated clearly on: execedgepro.com/elitewrite download page, Gumroad product description, App About screen
@@ -605,7 +606,7 @@ Tester Rin manages checklist and sign-off. Status: Not yet available — activat
 
 **Pre-launch gate (minimum before publishing full compatibility statement):**
 - ✅ UTM Sequoia (15.6.1) test completed + Rin sign-off — June 1 2026
-- UTM Sonoma test completed + Rin sign-off
+- ✅ UTM Sonoma (14.6.1) test completed + Rin sign-off — Jun 2 2026
 - UTM Ventura test completed + Rin sign-off
 - Intel Mac test completed (Method 3 or 4) + Rin sign-off
 
@@ -822,7 +823,7 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 
 ## 🔢 RELEASE VERSION
 
-Current: **v0.4.9-bug28-fix** (CLAUDE.md v2.21 — CR-027 added; zip renamed EliteWrite-EarlyAccess-v0.4.9.zip; Gumroad description updated to v0.4.9)
+Current: **v0.4.9-bug28-fix** (CLAUDE.md v2.22 — Sonoma 14.6.1 confirmed; BUG-29 fixed; zip rebuilt clean 22MB; CR-021 updated)
 
 | Version | Date | Summary |
 |---------|------|---------|
@@ -847,13 +848,13 @@ Current: **v0.4.9-bug28-fix** (CLAUDE.md v2.21 — CR-027 added; zip renamed Eli
 ### Phase 4 — ⏸️ PAUSED — 2026-06-02
 **Last active:** Session 18 — BUG-25 + BUG-28 fixed; Gumroad zip rebuilt clean; Council roster updated; CLAUDE.md v2.20.
 **App state:** Stable. v0.4.9-bug28-fix. 2 active bugs (BUG-26, BUG-27).
-**Commercial model:** Locked. ⚠️ Gumroad listing RE-ARCHIVED Jun 2 2026 (no real buyers — test purchases only). Zip clean (EliteWrite-EarlyAccess-v0.4.9.zip). Reinstate after all 3 gates: (1) Gate 5 privacy page live; (2) BUG-27 Parakeet V2 fixed; (3) Sonoma + Ventura UTM tests complete.
+**Commercial model:** Locked. ⚠️ Gumroad listing RE-ARCHIVED Jun 2 2026 (no real buyers — test purchases only). Zip clean (EliteWrite-EarlyAccess-v0.4.9.zip). Reinstate after all 3 gates: (1) Gate 5 privacy page live; (2) BUG-27 Parakeet V2 fixed; (3) Ventura UTM test complete (Sonoma ✅ Jun 2 2026).
 
 **Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 19.
 
 **Session 18 completed:**
 - BUG-25 ✅ Onboarding fully rebranded — 4 strings replaced across OnboardingView.swift + OnboardingTutorialView.swift. Tester Rin Stage 5 confirmed Jun 2 2026.
-- BUG-26 ⚠️ Listing re-archived Jun 2 2026 (no real buyers). Zip clean: EliteWrite-EarlyAccess-v0.4.9.zip (CR-027 compliant). Reinstate after 3 gates: Gate 5 privacy + BUG-27 + Sonoma/Ventura UTM.
+- BUG-26 ⚠️ Listing re-archived Jun 2 2026 (no real buyers). Zip clean: EliteWrite-EarlyAccess-v0.4.9.zip (CR-027 compliant). Reinstate after 3 gates: Gate 5 privacy + BUG-27 + Ventura UTM (Sonoma ✅ Jun 2 2026).
 - BUG-28 ✅ "Your Vibe-Coding Assistant" removed; TypewriterRoles trimmed to 3 clean EliteWrite strings. Tester Rin Stage 5 confirmed Jun 2 2026.
 - CLAUDE.md ✅ Bumped to v2.19.
 
@@ -864,7 +865,7 @@ Current: **v0.4.9-bug28-fix** (CLAUDE.md v2.21 — CR-027 added; zip renamed Eli
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
 **Pending — opens Session 19:**
-- BUG-26 / Gumroad reinstatement — 3 gates required before re-archiving ends: (1) Gate 5: execedgepro.com/privacy live → Officer Sela green light; (2) BUG-27: Parakeet V2 default fixed + Tester Rin Stage 5; (3) Sonoma + Ventura UTM tests complete + Rin sign-off. Zip ready: ~/Documents/EliteWrite-EarlyAccess-v0.4.9.zip.
+- BUG-26 / Gumroad reinstatement — 3 gates required: (1) Gate 5: execedgepro.com/privacy live → Officer Sela green light; (2) BUG-27: Parakeet V2 default fixed + Tester Rin Stage 5; (3) Ventura UTM test complete + Rin sign-off (Sonoma ✅ Jun 2 2026). Zip ready: ~/Documents/EliteWrite-EarlyAccess-v0.4.9.zip (clean — EliteWrite.app only, BUG-29 fixed).
 - BUG-27: default model → Parakeet V2 — Petra review → staged build → Tester Rin Stage 5
 - BUG-28 ✅ Fixed Session 18 — closed
 - DOCS-01: README + Gumroad installation guidance update (Sequoia path + model download info)
@@ -916,8 +917,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.21 | VoiceInk → EliteWrite macOS Build Project*
+*CLAUDE.md v2.22 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-06-01 | Founder: Ferdz*
+*Changelog: v2.22 — Session 18: CR-021 updated — Sonoma 14.6.1 CONFIRMED via UTM VM Jun 2 2026 (Gatekeeper path same as Sequoia; Gumroad download path confirmed; transcription working); CR-022 Sonoma pre-launch gate checked; BUG-29 logged and fixed — zip rebuilt fresh (deleted old, created new); zip now clean 22MB EliteWrite.app only (was 45MB with stale EliteWrite-Golden-v0.4.6.app); BUG-27 Petra Stage 2 approval noted; all Sonoma+Ventura references updated to Ventura-only pending; interim published statement updated to reflect Sonoma confirmed; CLAUDE.md v2.22*
 *Changelog: v2.21 — Session 18: CR-027 added (Version Naming Consistency — zip filename, Gumroad description, CLAUDE.md version log must match build version; build version is single source of truth; permanent); zip renamed EliteWrite-EarlyAccess-v0.4.9.zip (CR-027 compliant); Gumroad description updated to v0.4.9; BUG-26 status updated with correct filename; all zip references in CLAUDE.md updated*
 *Changelog: v2.20 — Session 18: BUG-28 closed (TypewriterRoles cleaned — "Your Vibe-Coding Assistant" removed, "Works Everywhere on Mac with a click" → "Works in any app on your Mac", array trimmed to 3 strings; Tester Rin Stage 5 confirmed Jun 2 2026); Gumroad zip rebuilt clean from v0.4.9-bug28-fix build (45MB, Jun 2 2026); Council roster updated (VP Lena + Dr. Reina added, CC Team defined); version bumped to v0.4.9-bug28-fix; CLAUDE.md v2.20*
 *Changelog: v2.19 — Session 18: BUG-25 closed (onboarding rebranded — 4 strings in OnboardingView.swift + OnboardingTutorialView.swift; Tester Rin Stage 5 confirmed Jun 2 2026); BUG-26 zip rebuilt from post-Session-16 build (45MB, Jun 2 2026); BUG-26 status updated (pending Gumroad upload); BUG-28 logged (Vibe-Coding inherited copy); WHERE WE ARE updated to Session 18; version bumped to v0.4.8-bug25-fix*

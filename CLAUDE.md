@@ -855,17 +855,23 @@ Current: **v0.4.10-bug27-fix** (CLAUDE.md v2.24 — BUG-27 fixed; Screen Recordi
 ## 📌 WHERE WE ARE RIGHT NOW
 
 ### Phase 4 — ⏸️ PAUSED — 2026-06-02
-**Last active:** Session 18 — BUG-25/27/28/29 fixed; Screen Recording permission documented; zip rebuilt clean 10MB; CLAUDE.md v2.24.
-**App state:** Stable. v0.4.10-bug27-fix. 1 active bug (BUG-26 pending reinstatement).
-**Commercial model:** Locked. ⚠️ Gumroad listing RE-ARCHIVED Jun 2 2026 (no real buyers — test purchases only). Zip clean (EliteWrite-EarlyAccess-v0.4.10.zip, 10MB, debug-excluded). Reinstate after 2 remaining gates: (1) Gate 5 privacy page live; (2) Ventura UTM test complete (BUG-27 ✅ Jun 2 2026; Sonoma ✅ Jun 2 2026).
+**Last active:** Session 18 — CLOSED Jun 2 2026. 5 bugs fixed. 2 CRs sealed. CLAUDE.md v2.24.
+**App state:** Stable. v0.4.10-bug27-fix. BUG-26 open (Gumroad reinstatement pending).
+**Commercial model:** Locked. ⚠️ Gumroad listing RE-ARCHIVED Jun 2 2026 (no real buyers — test purchases only). Zip ready: EliteWrite-EarlyAccess-v0.4.10.zip (10MB, debug-excluded, CR-027/028 compliant). Reinstate after 2 gates: (1) Gate 5 privacy page live; (2) Ventura UTM test complete.
 
 **Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 19.
 
-**Session 18 completed:**
-- BUG-25 ✅ Onboarding fully rebranded — 4 strings replaced across OnboardingView.swift + OnboardingTutorialView.swift. Tester Rin Stage 5 confirmed Jun 2 2026.
-- BUG-26 ⚠️ Listing re-archived Jun 2 2026 (no real buyers). Zip clean: EliteWrite-EarlyAccess-v0.4.10.zip (CR-027 compliant). Reinstate after 2 gates: Gate 5 privacy + Ventura UTM (BUG-27 ✅; Sonoma ✅ Jun 2 2026).
-- BUG-28 ✅ "Your Vibe-Coding Assistant" removed; TypewriterRoles trimmed to 3 clean EliteWrite strings. Tester Rin Stage 5 confirmed Jun 2 2026.
-- CLAUDE.md ✅ Bumped to v2.19.
+**Session 18 completed — Jun 2 2026:**
+- BUG-25 ✅ Onboarding rebranded — 4 VoiceInk strings replaced. Tester Rin Stage 5 confirmed.
+- BUG-26 ⚠️ Zip rebuilt clean (v0.4.10, 10MB, debug-excluded, CR-027/028 compliant). Re-archived — 2 gates to reinstate.
+- BUG-27 ✅ Parakeet V2 default — OnboardingModelDownloadView rewritten to FluidAudioModelManager. Tester Rin Stage 5 confirmed.
+- BUG-28 ✅ "Your Vibe-Coding Assistant" removed; TypewriterRoles 3 clean strings. Tester Rin Stage 5 confirmed.
+- BUG-29 ✅ Double app in zip fixed — fresh zip creation protocol established.
+- CR-027 ✅ Version Naming Consistency — sealed and enforced. v0.4.10 across all references.
+- CR-028 ✅ ZIP Contents Verification — sealed. unzip -l mandatory before every upload.
+- CR-021 ✅ Sonoma 14.6.1 confirmed via UTM VM. Screen Recording = 3rd required permission documented.
+- Council roster ✅ 10-member Claude.ai Council + 6-member CC Team defined.
+- CLAUDE.md ✅ v2.24 final.
 
 **Session 17 completed (archived summary):**
 - CR-021 ✅ Sequoia (15.6.1) confirmed via UTM | BUG-25/26/27 logged | CLAUDE.md v2.18
@@ -874,10 +880,10 @@ Current: **v0.4.10-bug27-fix** (CLAUDE.md v2.24 — BUG-27 fixed; Screen Recordi
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
 **Pending — opens Session 19:**
-- BUG-26 / Gumroad reinstatement — 2 gates remaining: (1) Gate 5: execedgepro.com/privacy live → Officer Sela green light; (2) Ventura UTM test complete + Rin sign-off. BUG-27 ✅ Jun 2 2026. Sonoma ✅ Jun 2 2026. Zip ready: ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip (10MB, EliteWrite.app only, debug-excluded, BUG-29 fixed, CR-027 compliant).
-- BUG-27 ✅ Fixed Session 18 — Parakeet V2 default; Tester Rin Stage 5 confirmed Jun 2 2026
-- BUG-28 ✅ Fixed Session 18 — closed
-- DOCS-01: README + Gumroad installation guidance update (Sequoia path + model download info)
+- Ventura 13.6 UTM test → Tester Rin sign-off → CR-021/022 Ventura gate cleared
+- Gate 5: confirm execedgepro.com/privacy live → Officer Sela green light
+- BUG-26 Gumroad reinstatement: upload ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip → reinstate listing (after both gates above cleared)
+- DOCS-01: first-launch requirements update — Sequoia Privacy & Security path; Parakeet V2 474MB download; internet first launch only; RAM 1.0 GB minimum; first-run speed note
 - Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch
 - Track B: Item 9 — Apple Developer Program ($99/yr) → Hardened Runtime → notarization
 
@@ -928,7 +934,7 @@ Stage 6 — Session close + CR-009 check
 
 *CLAUDE.md v2.24 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-06-01 | Founder: Ferdz*
-*Changelog: v2.24 — Session 18: BUG-27 closed (OnboardingModelDownloadView rewritten — FluidAudioModelManager replaces WhisperModelManager; Parakeet V2 default with English-only caveat in Edge Orange; Tester Rin Stage 5 confirmed Jun 2 2026); Screen Recording permission discovered during Stage 5 — 3rd required permission documented; Gumroad installation guidance updated with all 3 permissions; README updated; DOCS-01 partial; zip rebuilt 10MB debug-excluded (CR-028 verified); BUG-26 reinstatement now 2 gates only (BUG-27 ✅); version v0.4.10-bug27-fix; CLAUDE.md v2.24*
+*Changelog: v2.24 final — Session 18 CLOSED Jun 2 2026. Full session summary: BUG-25/27/28/29 closed; BUG-26 zip rebuilt (re-archived, 2 gates to reinstate); CR-027 Version Naming Consistency + CR-028 ZIP Contents Verification sealed; CR-021 Sonoma 14.6.1 confirmed; Screen Recording = 3rd permission documented across Gumroad copy + README; Council roster updated (10-member Claude.ai + 6-member CC Team); WHERE WE ARE updated with Session 18 close + Session 19 agenda; zip EliteWrite-EarlyAccess-v0.4.10.zip (10MB, debug-excluded, CR-027/028 compliant); app v0.4.10-bug27-fix; CLAUDE.md v2.24*
 *Changelog: v2.23 — Session 18: CR-028 added (ZIP CONTENTS VERIFICATION — every distribution zip must be verified with unzip -l immediately after creation; single app only, correct name, correct version, no stale/golden copies; no upload without verification logged; all platforms, all builds; triggered by BUG-29)*
 *Changelog: v2.22 — Session 18: CR-021 updated — Sonoma 14.6.1 CONFIRMED via UTM VM Jun 2 2026 (Gatekeeper path same as Sequoia; Gumroad download path confirmed; transcription working); CR-022 Sonoma pre-launch gate checked; BUG-29 logged and fixed — zip rebuilt fresh (deleted old, created new); zip now clean 22MB EliteWrite.app only (was 45MB with stale EliteWrite-Golden-v0.4.6.app); BUG-27 Petra Stage 2 approval noted; all Sonoma+Ventura references updated to Ventura-only pending; interim published statement updated to reflect Sonoma confirmed; CLAUDE.md v2.22*
 *Changelog: v2.21 — Session 18: CR-027 added (Version Naming Consistency — zip filename, Gumroad description, CLAUDE.md version log must match build version; build version is single source of truth; permanent); zip renamed EliteWrite-EarlyAccess-v0.4.9.zip (CR-027 compliant); Gumroad description updated to v0.4.9; BUG-26 status updated with correct filename; all zip references in CLAUDE.md updated*

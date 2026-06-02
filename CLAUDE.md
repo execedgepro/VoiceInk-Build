@@ -407,7 +407,7 @@ Root-cause corrections remain active in the Correction Register below.
 | # | Description | Severity | Status |
 |---|-------------|----------|--------|
 | BUG-25 | Onboarding welcome screen shows original VoiceInk copy — "Welcome to the Future of Typing", "A New Way to Type", "Your Writing Assistant", "Try It Out!" heading | High | ✅ Fixed v0.4.8-bug25-fix — Tester Rin Stage 5 confirmed Jun 2 2026 |
-| BUG-26 | Gumroad zip originally built before Session 16 Gate 3 fixes — stale copy. Rebuilt and renamed EliteWrite-EarlyAccess-v0.4.9.zip (Jun 2 2026, v0.4.9-bug28-fix). Gumroad description updated to v0.4.9. | High | 🔲 Open — ⚠️ GUMROAD LISTING SUSPENDED June 1 2026. Zip rebuilt + renamed Jun 2 2026 (CR-027 compliant). BUG-25 + BUG-28 gates cleared. Pending: Ferdz uploads EliteWrite-EarlyAccess-v0.4.9.zip to Gumroad → reinstate listing. |
+| BUG-26 | Gumroad zip originally built before Session 16 Gate 3 fixes — stale copy. Rebuilt and renamed EliteWrite-EarlyAccess-v0.4.9.zip (Jun 2 2026, v0.4.9-bug28-fix). Gumroad description updated to v0.4.9. | High | 🔲 Open — ⚠️ LISTING RE-ARCHIVED Jun 2 2026 (Ferdz — no real buyers, test purchases only). Zip clean and ready. Reinstate only after all 3 gates clear: (1) Gate 5 — execedgepro.com/privacy live; (2) BUG-27 — Parakeet V2 default fixed; (3) Sonoma + Ventura UTM tests complete. |
 | BUG-27 | Default AI model is Large v3 Turbo (Quantized) 547MB — approved default is Parakeet V2 (474MB, English-only, speed 9.9, accuracy 9.4); English-only caveat label and language-switch note required in UI | Medium | 🔲 Open — staged build required; Petra review first |
 | BUG-28 | "Your Vibe-Coding Assistant" string in onboarding TypewriterRoles animation — inherited VoiceInk copy, not EliteWrite brand language | Medium | ✅ Fixed v0.4.9-bug28-fix — removed; "Works Everywhere on Mac with a click" also replaced with "Works in any app on your Mac". Tester Rin Stage 5 confirmed Jun 2 2026 |
 
@@ -847,13 +847,13 @@ Current: **v0.4.9-bug28-fix** (CLAUDE.md v2.21 — CR-027 added; zip renamed Eli
 ### Phase 4 — ⏸️ PAUSED — 2026-06-02
 **Last active:** Session 18 — BUG-25 + BUG-28 fixed; Gumroad zip rebuilt clean; Council roster updated; CLAUDE.md v2.20.
 **App state:** Stable. v0.4.9-bug28-fix. 2 active bugs (BUG-26, BUG-27).
-**Commercial model:** Locked. ⚠️ Gumroad listing SUSPENDED — BUG-26 mitigation in effect. BUG-25 gate cleared Jun 2 2026. Zip rebuilt Jun 2 2026. Pending: Ferdz uploads new zip to Gumroad → reinstate listing.
+**Commercial model:** Locked. ⚠️ Gumroad listing RE-ARCHIVED Jun 2 2026 (no real buyers — test purchases only). Zip clean (EliteWrite-EarlyAccess-v0.4.9.zip). Reinstate after all 3 gates: (1) Gate 5 privacy page live; (2) BUG-27 Parakeet V2 fixed; (3) Sonoma + Ventura UTM tests complete.
 
 **Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 19.
 
 **Session 18 completed:**
 - BUG-25 ✅ Onboarding fully rebranded — 4 strings replaced across OnboardingView.swift + OnboardingTutorialView.swift. Tester Rin Stage 5 confirmed Jun 2 2026.
-- BUG-26 ⚠️ Zip rebuilt + renamed EliteWrite-EarlyAccess-v0.4.9.zip Jun 2 2026 (CR-027 compliant). BUG-25 + BUG-28 gates cleared. Gumroad description updated to v0.4.9. Pending: Ferdz uploads zip → reinstate listing.
+- BUG-26 ⚠️ Listing re-archived Jun 2 2026 (no real buyers). Zip clean: EliteWrite-EarlyAccess-v0.4.9.zip (CR-027 compliant). Reinstate after 3 gates: Gate 5 privacy + BUG-27 + Sonoma/Ventura UTM.
 - BUG-28 ✅ "Your Vibe-Coding Assistant" removed; TypewriterRoles trimmed to 3 clean EliteWrite strings. Tester Rin Stage 5 confirmed Jun 2 2026.
 - CLAUDE.md ✅ Bumped to v2.19.
 
@@ -864,8 +864,7 @@ Current: **v0.4.9-bug28-fix** (CLAUDE.md v2.21 — CR-027 added; zip renamed Eli
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
 **Pending — opens Session 19:**
-- BUG-26 URGENT: Upload ~/Documents/EliteWrite-EarlyAccess-v0.4.9.zip (Jun 2 2026, CR-027 compliant) to Gumroad → reinstate listing
-- Gate 5 final: confirm execedgepro.com/privacy is live → Officer Sela green light → share Gumroad link publicly
+- BUG-26 / Gumroad reinstatement — 3 gates required before re-archiving ends: (1) Gate 5: execedgepro.com/privacy live → Officer Sela green light; (2) BUG-27: Parakeet V2 default fixed + Tester Rin Stage 5; (3) Sonoma + Ventura UTM tests complete + Rin sign-off. Zip ready: ~/Documents/EliteWrite-EarlyAccess-v0.4.9.zip.
 - BUG-27: default model → Parakeet V2 — Petra review → staged build → Tester Rin Stage 5
 - BUG-28 ✅ Fixed Session 18 — closed
 - DOCS-01: README + Gumroad installation guidance update (Sequoia path + model download info)

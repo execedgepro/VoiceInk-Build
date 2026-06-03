@@ -534,19 +534,17 @@ Use the VoiceInk-Build GitHub repository. Tag releases with version number. Shar
 **Development platform:**
 - macOS Tahoe (26.5 / BuildVersion 25F71) on Apple M1 — ✅ PRIMARY: all Phase 4 development and testing confirmed here
 
-**Minimum supported versions (for public release):**
-- macOS Sequoia (15.x) — ✅ CONFIRMED via UTM VM (external HDD), June 1 2026
-- macOS Sonoma (14.6.1) — ✅ CONFIRMED via UTM VM, Jun 2 2026. Gatekeeper warning same path as Sequoia. AI model download screen (Large v3 Turbo). Gumroad download path confirmed working.
-- macOS Ventura (13.x) — ❌ NOT SUPPORTED: Hard build target incompatibility. MACOSX_DEPLOYMENT_TARGET = 14.4 in app target — Ventura 13.x cannot run the binary. Confirmed Jun 3 2026.
-- macOS Monterey (12.x) — ❌ NOT SUPPORTED: SwiftData and current framework requirements cannot be met
-
-**Current confirmed coverage (update when tests complete):**
-- macOS Tahoe (26.x) on Apple M1: ✅ PRIMARY — all Phase 4 development and testing confirmed
-- macOS Sequoia (15.6.1) on Apple M1: ✅ CONFIRMED — UTM VM (external HDD), June 1 2026
-- macOS Sonoma (14.6.1): ✅ CONFIRMED — UTM VM, Jun 2 2026. Gatekeeper path confirmed. Gumroad download path confirmed.
-- macOS Ventura (13.x): ❌ NOT SUPPORTED — confirmed Jun 3 2026 (MACOSX_DEPLOYMENT_TARGET = 14.4 hard block)
-- Intel Mac: 🔲 Pending
-- Apple M2/M3: 🔲 Pending community tester
+**FINAL COMPATIBILITY MATRIX — LOCKED Jun 3 2026 (Tester Rin sign-off ✅ / Ferdz approved):**
+| macOS Version | Status | Notes |
+|---|---|---|
+| Tahoe (26.x) | ✅ PRIMARY | All Phase 4 development + testing confirmed — M1 MacBook Air |
+| Sequoia (15.6.1) | ✅ CONFIRMED | UTM VM, June 1 2026. Tester Rin sign-off ✅ |
+| Sonoma 14.4+ | ✅ MINIMUM | UTM VM (14.6.1 tested), Jun 2 2026. Tester Rin sign-off ✅ |
+| Sonoma 14.0–14.3 | ❌ NOT SUPPORTED | Below MACOSX_DEPLOYMENT_TARGET = 14.4 |
+| Ventura (13.x) | ❌ NOT SUPPORTED | Hard binary incompatibility. Confirmed Jun 3 2026. |
+| Monterey (12.x) and earlier | ❌ NOT SUPPORTED | Below deployment target + SwiftData gap |
+| Intel Mac | 🔲 Pending | Post-launch via community testers |
+| Apple M2/M3 | 🔲 Pending | Post-launch via community testers |
 
 **Sequoia (15.x) installation notes — confirmed Session 17:**
 - First-launch path on Sequoia 15: right-click → Open alone is insufficient. Required: System Settings → Privacy & Security → Open Anyway → password prompt → Open.
@@ -559,19 +557,18 @@ Use the VoiceInk-Build GitHub repository. Tag releases with version number. Shar
 **Platform note — Input Monitoring instability on Tahoe (26.x):**
 Input Monitoring permission sequence instability observed on Tahoe early release. Classified as known Tahoe platform behaviour — not an EliteWrite bug. Cross-reference: CR-008 (Tahoe beta platform instability pattern). CR-006 five-step permissions reset sequence is the mandatory mitigation.
 
-**Interim published statement (use until Tester Rin signs off on full testing):**
-*"Developed and tested on macOS Tahoe (26.5). Requires macOS Sonoma 14.4 or later. Sequoia (15) and Sonoma (14) — confirmed compatible. macOS Ventura (13) and earlier — NOT SUPPORTED."*
+**OFFICIAL PUBLISHED STATEMENT — LOCKED Jun 3 2026 (Tester Rin sign-off ✅ / Ferdz approved):**
+*"Requires macOS Sonoma 14.4 or later. Optimised for macOS Sequoia 15 and Tahoe 26. Apple Silicon M1 confirmed. macOS Ventura (13) and earlier are not compatible."*
 
-**Full statement (publish only after Rin sign-off per CR-022):**
-*"Requires macOS Sonoma 14.4 or later. Optimised for macOS Sonoma (14) and Sequoia (15). Apple Silicon (M1/M2/M3) and Intel Mac supported. macOS Ventura (13) and earlier are not compatible."*
+Use this exact statement on: GitHub README ✅ (updated Jun 3 2026), Gumroad product description (pending Ferdz manual update), execedgepro.com/elitewrite (pending website team).
 
 **Mandatory pre-release checklist (Tester Rin):**
 - [x] Tested on macOS Tahoe (26.x) — ✅ PRIMARY confirmed (all Phase 4)
 - [x] Tested on macOS Sequoia (15.6.1) via UTM — ✅ Confirmed June 1 2026
 - [x] Tested on macOS Sonoma (14.6.1) via UTM — ✅ Confirmed Jun 2 2026
 - [x] macOS Ventura (13.x) — ❌ CONFIRMED NOT SUPPORTED Jun 3 2026 (hard build target incompatibility — MACOSX_DEPLOYMENT_TARGET = 14.4)
-- [ ] macOS Monterey (12.x) limitations documented
-- [ ] Minimum version stated clearly on: execedgepro.com/elitewrite download page, Gumroad product description, App About screen
+- [x] macOS Monterey (12.x) — ❌ NOT SUPPORTED (same class — below deployment target 14.4 + SwiftData gap)
+- [x] Minimum version stated clearly on: GitHub README ✅ Jun 3 2026 | Gumroad product description — pending Ferdz manual update | execedgepro.com/elitewrite — pending website team | App About screen — no compatibility text in current build
 
 **Post-mortem item:** Every post-mortem must include "macOS Version Coverage Review" — version-specific bugs discovered, macOS updates that broke existing behavior, minimum version update assessment.
 
@@ -605,11 +602,11 @@ BrowserStack walk-back logged per DR-002 B1.
 Target: 1 tester each for Intel Mac, Apple M2/M3. (Ventura removed from test matrix Jun 3 2026 — confirmed incompatible.)
 Tester Rin manages checklist and sign-off. Status: Not yet available — activate when first buyers exist.
 
-**Pre-launch gate (minimum before publishing full compatibility statement):**
-- ✅ UTM Sequoia (15.6.1) test completed + Rin sign-off — June 1 2026
-- ✅ UTM Sonoma (14.6.1) test completed + Rin sign-off — Jun 2 2026
-- ✅ macOS Ventura (13.x) — CONFIRMED NOT SUPPORTED Jun 3 2026 (hard build target error — MACOSX_DEPLOYMENT_TARGET = 14.4). Gate resolved. Tester Rin sign-off: ✅
-- Intel Mac test completed (Method 3 or 4) + Rin sign-off
+**UTM TESTING — COMPLETE ✅ Jun 3 2026 (Tester Rin sign-off on all 3 versions):**
+- ✅ UTM Sequoia (15.6.1) — COMPATIBLE — Rin sign-off June 1 2026
+- ✅ UTM Sonoma (14.6.1) — COMPATIBLE (minimum 14.4) — Rin sign-off Jun 2 2026
+- ✅ macOS Ventura (13.x) — NOT SUPPORTED (hard build target block) — Rin sign-off Jun 3 2026
+- Intel Mac test — pending (post-launch via community testers, not a launch blocker)
 
 No compatibility claim may be published without Tester Rin sign-off.
 
@@ -713,9 +710,11 @@ Do not change any copy below without a full Council session and explicit Ferdz a
 ---
 
 **COPY ASSET: Gumroad Installation Guidance**
-Approved by: Ferdz — May 2026 | Version: Marco Option B + Session 18 permissions update
+Approved by: Ferdz — May 2026 | Version: Marco Option B + Session 18 permissions update + Session 19 requirements update
 Use on: Gumroad product page, purchase confirmation, and download page
 
+> **Requirements:** macOS Sonoma 14.4 or later. Apple Silicon (M1) confirmed. macOS Ventura (13) and earlier are not compatible.
+>
 > "A quick note on your first launch.
 >
 > EliteWrite is currently in early access. While we complete our Apple developer certification, macOS may show a security notice the first time you open the app. This is completely normal for early access software — it simply means Apple hasn't yet verified our certificate. EliteWrite is safe, open-source (GPL v3.0), and runs entirely on your device. Nothing is ever sent to the internet.
@@ -879,10 +878,11 @@ Current: **v0.4.10-bug27-fix** (CLAUDE.md v2.24 — BUG-27 fixed; Screen Recordi
 **Session 16 completed (archived summary):**
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
-**Session 19 opened — Jun 3 2026:**
-- Gate A: ✅ CLEARED Jun 3 2026 — Ventura 13.x confirmed INCOMPATIBLE (MACOSX_DEPLOYMENT_TARGET = 14.4 hard block). CR-021/022 Ventura gate resolved. Tester Rin sign-off confirmed.
-- Gate B: execedgepro.com/privacy live → Officer Sela green light → Gate 5 cleared
-- ⛔ DO NOT UPLOAD ZIP until Gate B is cleared.
+**Session 19 — Jun 3 2026 (in progress):**
+- Gate A: ✅ CLEARED Jun 3 2026 — Ventura 13.x confirmed INCOMPATIBLE. CR-021/022 UTM testing FULLY COMPLETE. Final compatibility matrix locked. Official published statement locked.
+- Gate B: execedgepro.com/privacy live → Officer Sela green light → Gate 5 cleared — ONLY REMAINING BLOCKER
+- ⚠️ ZIP CR-027 FLAG: Zip on disk is `EliteWrite-EarlyAccess-v0.4.9.zip` — must be renamed to `EliteWrite-EarlyAccess-v0.4.10.zip` before Gumroad upload. Content is correct (10MB, single EliteWrite.app, Jun 2 2026).
+- ⛔ DO NOT UPLOAD ZIP until: (1) Gate B cleared (privacy page live); (2) zip renamed to v0.4.10 per CR-027.
 - BUG-26 Gumroad reinstatement (after both gates): upload ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip → reinstate listing
 - DOCS-01: first-launch requirements update — Sequoia Privacy & Security path; Parakeet V2 474MB download; internet first launch only; RAM 1.0 GB minimum; first-run speed note
 - Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch
@@ -933,8 +933,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.25 | VoiceInk → EliteWrite macOS Build Project*
+*CLAUDE.md v2.26 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-06-03 | Founder: Ferdz*
+*Changelog: v2.26 — Session 19: CR-021/022 FULLY RESOLVED — final compatibility matrix locked (Tahoe ✅ / Sequoia ✅ / Sonoma 14.4+ ✅ minimum / Sonoma 14.0-14.3 ❌ / Ventura ❌ / Monterey ❌); official published statement locked Jun 3 2026; GitHub README updated to Sonoma 14.4+ minimum; Gumroad copy updated with requirements line; CR-022 UTM testing marked complete; zip CR-027 flag added (v0.4.9 zip on disk must be renamed to v0.4.10 before Gumroad upload); no new build — documentation only; CLAUDE.md v2.26*
 *Changelog: v2.25 — Session 19: CR-021 CRITICAL UPDATE — Ventura 13.x confirmed INCOMPATIBLE Jun 3 2026 (MACOSX_DEPLOYMENT_TARGET = 14.4 in app target; hard binary-level block; not Gatekeeper); minimum supported version updated to macOS Sonoma 14.4; all Ventura references updated across CR-021, CR-022, BUG-26, WHERE WE ARE; interim + full published statements updated; Gate A cleared; only Gate B (privacy page) remains before Gumroad reinstatement; no new build — documentation only; CLAUDE.md v2.25*
 *Changelog: v2.24 final — Session 18 CLOSED Jun 2 2026. Full session summary: BUG-25/27/28/29 closed; BUG-26 zip rebuilt (re-archived, 2 gates to reinstate); CR-027 Version Naming Consistency + CR-028 ZIP Contents Verification sealed; CR-021 Sonoma 14.6.1 confirmed; Screen Recording = 3rd permission documented across Gumroad copy + README; Council roster updated (10-member Claude.ai + 6-member CC Team); WHERE WE ARE updated with Session 18 close + Session 19 agenda; zip EliteWrite-EarlyAccess-v0.4.10.zip (10MB, debug-excluded, CR-027/028 compliant); app v0.4.10-bug27-fix; CLAUDE.md v2.24*
 *Changelog: v2.23 — Session 18: CR-028 added (ZIP CONTENTS VERIFICATION — every distribution zip must be verified with unzip -l immediately after creation; single app only, correct name, correct version, no stale/golden copies; no upload without verification logged; all platforms, all builds; triggered by BUG-29)*

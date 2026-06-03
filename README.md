@@ -4,7 +4,7 @@
   <p>Voice to text for macOS — built for knowledge workers who produce at an elite level</p>
 
   [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-  ![Platform](https://img.shields.io/badge/platform-macOS%2014.0%2B-brightgreen)
+  ![Platform](https://img.shields.io/badge/platform-macOS%2014.4%2B-brightgreen)
   [![GitHub release (latest by date)](https://img.shields.io/github/v/release/execedgepro/VoiceInk-Build)](https://github.com/execedgepro/VoiceInk-Build/releases)
   ![GitHub stars](https://img.shields.io/github/stars/execedgepro/VoiceInk-Build?style=social)
   <p>
@@ -55,10 +55,11 @@ After every build, reset Accessibility, Input Monitoring, and Screen & System Au
 
 ## Requirements
 
-- macOS Sonoma (14) or later
-- Sonoma (14.6.1) and Sequoia (15.6.1) — confirmed compatible
-- Apple Silicon (M1) tested and confirmed
-- Intel Mac — testing in progress
+- macOS Sonoma 14.4 or later
+- Optimised for macOS Sequoia 15 and Tahoe 26
+- Apple Silicon M1 confirmed
+- macOS Ventura (13) and earlier — NOT SUPPORTED
+- Intel Mac — testing in progress (post-launch)
 
 ## First Launch — Permissions Required
 

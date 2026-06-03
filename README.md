@@ -61,7 +61,18 @@ After every build, reset Accessibility, Input Monitoring, and Screen & System Au
 - macOS Ventura (13) and earlier — NOT SUPPORTED
 - Intel Mac — testing in progress (post-launch)
 
-## First Launch — Permissions Required
+## First Launch
+
+**macOS Security Warning**
+
+macOS may show a security warning on first open. This is normal for early access software.
+
+- **Most Macs:** Right-click EliteWrite → **Open** → click **Open** in the dialog
+- **macOS Sequoia (15):** System Settings → Privacy & Security → **Open Anyway** → enter password → **Open**
+
+You will only need to do this once.
+
+**Permissions Required**
 
 EliteWrite requires 3 permissions to work. Each will prompt you on first launch:
 
@@ -69,7 +80,15 @@ EliteWrite requires 3 permissions to work. Each will prompt you on first launch:
 2. **Input Monitoring** — allows EliteWrite to detect your shortcut key
 3. **Screen & System Audio Recording** — enables context-aware transcription features
 
-For Screen & System Audio Recording: click **Enable Access** → add EliteWrite in System Settings → click **Quit & Reopen**.
+For Screen & System Audio Recording: click **Enable Access** → add EliteWrite in System Settings → click **Quit & Reopen**. You will only need to do this once per permission.
+
+**AI Model Download**
+
+EliteWrite downloads the Parakeet V2 AI model (474 MB) on first launch — internet required once only. After download, everything runs fully on-device with no internet needed.
+
+- Minimum RAM: 1.0 GB during transcription
+- First transcription may be slightly slower as the model initialises
+- Subsequent transcriptions: near-instant on Apple Silicon
 
 ## Documentation
 

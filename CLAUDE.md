@@ -710,7 +710,7 @@ Do not change any copy below without a full Council session and explicit Ferdz a
 ---
 
 **COPY ASSET: Gumroad Installation Guidance**
-Approved by: Ferdz — May 2026 | Version: Marco Option B + Session 18 permissions update + Session 19 requirements update
+Approved by: Ferdz — May 2026 | Version: Marco Option B + Session 18 permissions update + Session 19 requirements + DOCS-01 final update Jun 3 2026
 Use on: Gumroad product page, purchase confirmation, and download page
 
 > **Requirements:** macOS Sonoma 14.4 or later. Apple Silicon (M1) confirmed. macOS Ventura (13) and earlier are not compatible.
@@ -721,7 +721,10 @@ Use on: Gumroad product page, purchase confirmation, and download page
 >
 > To open it the first time:
 > Right-click the EliteWrite icon → select Open → click Open in the dialog that appears.
+> On macOS Sequoia (15): go to System Settings → Privacy & Security → Open Anyway → enter your password → Open.
 > You will only need to do this once.
+>
+> EliteWrite downloads the Parakeet V2 AI model (474 MB) on first launch. Internet is required once only — after that, everything runs fully on-device. RAM: 1.0 GB minimum during transcription. Your first transcription may be slightly slower as the model initialises — subsequent transcriptions are near-instant on Apple Silicon.
 >
 > EliteWrite requires 3 permissions to work:
 > 1. Accessibility — allows EliteWrite to type your transcription into any app
@@ -789,7 +792,7 @@ Approved use: Website cross-browser testing ONLY — NOT approved for EliteWrite
 | 12 | Affiliate Program card removed — will restore when execedgepro.com/affiliate is live | ✅ Fixed v0.4.6 | Card removed from DashboardPromotionsSection.swift |
 | FB-001 | Executive Summary Export | 🔲 Backlog | Needs API budget decision from Ferdz |
 | FB-002 | Attention Residue Warning | 🔲 Backlog | Needs Analyst Drex R&D proposal |
-| DOCS-01 | README + Gumroad installation guidance — first-launch requirements section | 🔲 Partial Session 18 | 3 required permissions now documented (Accessibility, Input Monitoring, Screen & System Audio Recording — all added to Gumroad copy + README). Still needed: Sequoia Privacy & Security path; one-time AI model download (474MB Parakeet V2); internet required first launch only; RAM 1.0 GB minimum; first-run speed note. |
+| DOCS-01 | README + Gumroad installation guidance — first-launch requirements section | ✅ Complete Jun 3 2026 | README: security warning (both Sonoma + Sequoia paths), 3 permissions, model download (474MB Parakeet V2), RAM 1.0 GB minimum, first-run speed note. Gumroad copy: same items added. All 5 outstanding items resolved. |
 
 ### Gumroad Early Access Distribution Gates — Session 16
 | Gate | Item | Status | Notes |
@@ -933,8 +936,9 @@ Stage 6 — Session close + CR-009 check
 
 ---
 
-*CLAUDE.md v2.26 | VoiceInk → EliteWrite macOS Build Project*
+*CLAUDE.md v2.27 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-06-03 | Founder: Ferdz*
+*Changelog: v2.27 — Session 19: DOCS-01 COMPLETE — README first-launch section fully updated (macOS security warning with Sonoma + Sequoia paths; 3 permissions; Parakeet V2 474MB model download; internet once only; RAM 1.0 GB minimum; first-run speed note); Gumroad copy updated with same first-launch items (Sequoia path + model download note added); DOCS-01 marked complete in Phase 4 gates; no new build — documentation only; CLAUDE.md v2.27*
 *Changelog: v2.26 — Session 19: CR-021/022 FULLY RESOLVED — final compatibility matrix locked (Tahoe ✅ / Sequoia ✅ / Sonoma 14.4+ ✅ minimum / Sonoma 14.0-14.3 ❌ / Ventura ❌ / Monterey ❌); official published statement locked Jun 3 2026; GitHub README updated to Sonoma 14.4+ minimum; Gumroad copy updated with requirements line; CR-022 UTM testing marked complete; zip CR-027 flag added (v0.4.9 zip on disk must be renamed to v0.4.10 before Gumroad upload); no new build — documentation only; CLAUDE.md v2.26*
 *Changelog: v2.25 — Session 19: CR-021 CRITICAL UPDATE — Ventura 13.x confirmed INCOMPATIBLE Jun 3 2026 (MACOSX_DEPLOYMENT_TARGET = 14.4 in app target; hard binary-level block; not Gatekeeper); minimum supported version updated to macOS Sonoma 14.4; all Ventura references updated across CR-021, CR-022, BUG-26, WHERE WE ARE; interim + full published statements updated; Gate A cleared; only Gate B (privacy page) remains before Gumroad reinstatement; no new build — documentation only; CLAUDE.md v2.25*
 *Changelog: v2.24 final — Session 18 CLOSED Jun 2 2026. Full session summary: BUG-25/27/28/29 closed; BUG-26 zip rebuilt (re-archived, 2 gates to reinstate); CR-027 Version Naming Consistency + CR-028 ZIP Contents Verification sealed; CR-021 Sonoma 14.6.1 confirmed; Screen Recording = 3rd permission documented across Gumroad copy + README; Council roster updated (10-member Claude.ai + 6-member CC Team); WHERE WE ARE updated with Session 18 close + Session 19 agenda; zip EliteWrite-EarlyAccess-v0.4.10.zip (10MB, debug-excluded, CR-027/028 compliant); app v0.4.10-bug27-fix; CLAUDE.md v2.24*

@@ -881,8 +881,8 @@ Current: **v0.4.10-bug27-fix** (CLAUDE.md v2.24 — BUG-27 fixed; Screen Recordi
 **Session 19 — Jun 3 2026 (in progress):**
 - Gate A: ✅ CLEARED Jun 3 2026 — Ventura 13.x confirmed INCOMPATIBLE. CR-021/022 UTM testing FULLY COMPLETE. Final compatibility matrix locked. Official published statement locked.
 - Gate B: execedgepro.com/privacy live → Officer Sela green light → Gate 5 cleared — ONLY REMAINING BLOCKER
-- ⚠️ ZIP CR-027 FLAG: Zip on disk is `EliteWrite-EarlyAccess-v0.4.9.zip` — must be renamed to `EliteWrite-EarlyAccess-v0.4.10.zip` before Gumroad upload. Content is correct (10MB, single EliteWrite.app, Jun 2 2026).
-- ⛔ DO NOT UPLOAD ZIP until: (1) Gate B cleared (privacy page live); (2) zip renamed to v0.4.10 per CR-027.
+- Zip: ✅ EliteWrite-EarlyAccess-v0.4.10.zip — CR-027 + CR-028 confirmed Jun 3 2026. Single EliteWrite.app, 10MB, no golden copy, no debug files.
+- ⛔ DO NOT UPLOAD ZIP until Gate B cleared (privacy page live).
 - BUG-26 Gumroad reinstatement (after both gates): upload ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip → reinstate listing
 - DOCS-01: first-launch requirements update — Sequoia Privacy & Security path; Parakeet V2 474MB download; internet first launch only; RAM 1.0 GB minimum; first-run speed note
 - Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch

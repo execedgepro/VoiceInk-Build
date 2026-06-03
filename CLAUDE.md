@@ -856,12 +856,12 @@ Current: **v0.4.10-bug27-fix** (CLAUDE.md v2.24 — BUG-27 fixed; Screen Recordi
 
 ## 📌 WHERE WE ARE RIGHT NOW
 
-### Phase 4 — ⏸️ PAUSED — 2026-06-02
-**Last active:** Session 18 — CLOSED Jun 2 2026. 5 bugs fixed. 2 CRs sealed. CLAUDE.md v2.24.
-**App state:** Stable. v0.4.10-bug27-fix. BUG-26 open (Gumroad reinstatement pending).
-**Commercial model:** Locked. ⚠️ Gumroad listing RE-ARCHIVED Jun 2 2026 (no real buyers — test purchases only). Zip ready: EliteWrite-EarlyAccess-v0.4.10.zip (10MB, debug-excluded, CR-027/028 compliant). Reinstate after 1 remaining gate: Gate 5 — execedgepro.com/privacy live. Gate A (Ventura) — CLEARED Jun 3 2026 (confirmed incompatible).
+### Phase 4 — ⏸️ PAUSED — 2026-06-03
+**Last active:** Session 19 — CLOSED Jun 3 2026. CR-021/022 resolved. DOCS-01 complete. CLAUDE.md v2.27 final.
+**App state:** Stable. v0.4.10-bug27-fix. BUG-26 open (Gumroad reinstatement pending — 1 gate).
+**Commercial model:** Locked. ⚠️ Gumroad listing RE-ARCHIVED. Zip ready: EliteWrite-EarlyAccess-v0.4.10.zip (10MB, CR-027/028 confirmed). Reinstate after Gate B: execedgepro.com/privacy live + Officer Sela green light.
 
-**Resume trigger:** Ferdz says "resume Phase 4" → Director Mara opens Session 19.
+**Resume trigger:** Privacy page confirmed live → Director Mara opens Session 20.
 
 **Session 18 completed — Jun 2 2026:**
 - BUG-25 ✅ Onboarding rebranded — 4 VoiceInk strings replaced. Tester Rin Stage 5 confirmed.
@@ -881,13 +881,20 @@ Current: **v0.4.10-bug27-fix** (CLAUDE.md v2.24 — BUG-27 fixed; Screen Recordi
 **Session 16 completed (archived summary):**
 - UX-09/10/11/12/13 ✅ | CREDITS.md ✅ | Credential scan ✅ | Gate 4 ✅ | Gate 5 conditional | Gate 6 ✅ | Gate 9 ✅
 
-**Session 19 — Jun 3 2026 (in progress):**
-- Gate A: ✅ CLEARED Jun 3 2026 — Ventura 13.x confirmed INCOMPATIBLE. CR-021/022 UTM testing FULLY COMPLETE. Final compatibility matrix locked. Official published statement locked.
-- Gate B: execedgepro.com/privacy live → Officer Sela green light → Gate 5 cleared — ONLY REMAINING BLOCKER
-- Zip: ✅ EliteWrite-EarlyAccess-v0.4.10.zip — CR-027 + CR-028 confirmed Jun 3 2026. Single EliteWrite.app, 10MB, no golden copy, no debug files.
-- ⛔ DO NOT UPLOAD ZIP until Gate B cleared (privacy page live).
-- BUG-26 Gumroad reinstatement (after both gates): upload ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip → reinstate listing
-- DOCS-01: first-launch requirements update — Sequoia Privacy & Security path; Parakeet V2 474MB download; internet first launch only; RAM 1.0 GB minimum; first-run speed note
+**Session 19 completed — Jun 3 2026:**
+- CR-021 ✅ Ventura 13.x confirmed INCOMPATIBLE (MACOSX_DEPLOYMENT_TARGET = 14.4 hard block). Final compatibility matrix locked.
+- CR-021 ✅ Sonoma 14.4+ confirmed minimum. Official published statement locked.
+- CR-022 ✅ UTM testing fully complete (Sequoia / Sonoma / Ventura all resolved). Tester Rin sign-off confirmed.
+- Zip ✅ EliteWrite-EarlyAccess-v0.4.10.zip — renamed, CR-027 + CR-028 verified. Single EliteWrite.app, 10MB, clean.
+- DOCS-01 ✅ README + Gumroad copy fully updated — all 5 outstanding items resolved.
+- GitHub README ✅ Updated to Sonoma 14.4+ minimum, Sequoia first-launch path, model download note.
+- Gumroad copy ✅ Locked and ready — requirements + full first-launch guidance complete.
+- CLAUDE.md ✅ v2.27 final.
+
+**Pending — opens Session 20:**
+- Gate B: execedgepro.com/privacy live → Officer Sela green light → Gate 5 cleared
+- ⛔ DO NOT UPLOAD ZIP until Gate B cleared.
+- BUG-26 Gumroad reinstatement (after Gate B): upload ~/Documents/EliteWrite-EarlyAccess-v0.4.10.zip → reinstate listing
 - Item 11: replace PolarService with Gumroad verification (Product ID: tekkCjXZ6ToGQHYbjirkXA==) before paid launch
 - Track B: Item 9 — Apple Developer Program ($99/yr) → Hardened Runtime → notarization
 
@@ -938,7 +945,7 @@ Stage 6 — Session close + CR-009 check
 
 *CLAUDE.md v2.27 | VoiceInk → EliteWrite macOS Build Project*
 *Initialized: 2026-05-18 | Updated: 2026-06-03 | Founder: Ferdz*
-*Changelog: v2.27 — Session 19: DOCS-01 COMPLETE — README first-launch section fully updated (macOS security warning with Sonoma + Sequoia paths; 3 permissions; Parakeet V2 474MB model download; internet once only; RAM 1.0 GB minimum; first-run speed note); Gumroad copy updated with same first-launch items (Sequoia path + model download note added); DOCS-01 marked complete in Phase 4 gates; no new build — documentation only; CLAUDE.md v2.27*
+*Changelog: v2.27 final — Session 19 CLOSED Jun 3 2026. CR-021/022 fully resolved: Ventura ❌ incompatible confirmed, Sonoma 14.4+ minimum locked, final compatibility matrix + official published statement locked, UTM testing complete; zip EliteWrite-EarlyAccess-v0.4.10.zip renamed and CR-027/028 confirmed; DOCS-01 complete: README + Gumroad copy fully updated (Sequoia path, 474MB Parakeet V2 download, RAM 1.0GB, first-run note); WHERE WE ARE updated to Session 19 closed; Session 20 opens on privacy page live; CLAUDE.md v2.27 final*
 *Changelog: v2.26 — Session 19: CR-021/022 FULLY RESOLVED — final compatibility matrix locked (Tahoe ✅ / Sequoia ✅ / Sonoma 14.4+ ✅ minimum / Sonoma 14.0-14.3 ❌ / Ventura ❌ / Monterey ❌); official published statement locked Jun 3 2026; GitHub README updated to Sonoma 14.4+ minimum; Gumroad copy updated with requirements line; CR-022 UTM testing marked complete; zip CR-027 flag added (v0.4.9 zip on disk must be renamed to v0.4.10 before Gumroad upload); no new build — documentation only; CLAUDE.md v2.26*
 *Changelog: v2.25 — Session 19: CR-021 CRITICAL UPDATE — Ventura 13.x confirmed INCOMPATIBLE Jun 3 2026 (MACOSX_DEPLOYMENT_TARGET = 14.4 in app target; hard binary-level block; not Gatekeeper); minimum supported version updated to macOS Sonoma 14.4; all Ventura references updated across CR-021, CR-022, BUG-26, WHERE WE ARE; interim + full published statements updated; Gate A cleared; only Gate B (privacy page) remains before Gumroad reinstatement; no new build — documentation only; CLAUDE.md v2.25*
 *Changelog: v2.24 final — Session 18 CLOSED Jun 2 2026. Full session summary: BUG-25/27/28/29 closed; BUG-26 zip rebuilt (re-archived, 2 gates to reinstate); CR-027 Version Naming Consistency + CR-028 ZIP Contents Verification sealed; CR-021 Sonoma 14.6.1 confirmed; Screen Recording = 3rd permission documented across Gumroad copy + README; Council roster updated (10-member Claude.ai + 6-member CC Team); WHERE WE ARE updated with Session 18 close + Session 19 agenda; zip EliteWrite-EarlyAccess-v0.4.10.zip (10MB, debug-excluded, CR-027/028 compliant); app v0.4.10-bug27-fix; CLAUDE.md v2.24*
